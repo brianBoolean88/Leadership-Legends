@@ -8,7 +8,7 @@ var can_dash := bool(false)
 var dash_direction := Vector2(0,0)
 
 var player : CharacterBody2D
-@export var animator : AnimationPlayer
+@export var animator : AnimationPlayer 
 
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
@@ -16,16 +16,17 @@ func Enter():
 
 func Update(delta : float):
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized()
+	if !event_handler.inBattle:
+		Move(input_dir)
+		LessenDash(delta)
 	
-	Move(input_dir)
-	LessenDash(delta)
 
 	if(Input.is_action_just_pressed("Dash") && can_dash):
 		start_dash(input_dir)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, -1)
 		
-	if Input.is_action_just_pressed("Punch") or Input.is_action_just_pressed("Kick"):
-		Transition("Attacking")
+	if Input.is_action_just_pressed("BattleSequence"):
+		print("yhh");
 	
 func Move(input_dir):
 	#Suddenly turning mid dash
