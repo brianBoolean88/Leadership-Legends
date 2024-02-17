@@ -16,6 +16,7 @@ func init(character_name, lvl, tolerance, health, sprite):
 	visible = true
 	
 	event_handler.inBattle = true;
+	$Enemy.visible = true;
 	$AnimationPlayer.play("fade_out")
 	$LevelIndicator.text = "Level %s"%[lvl];
 	$Panel/Label.text = "A level %s %s appears!" %[lvl, character_name]
@@ -88,7 +89,13 @@ func detectEnd() -> int:
 	elif tolerance <= 0:
 		return 2;
 	return 3;
-	
+
+func dialogueText(ss) -> void:
+	$AnimationPlayer.play("dialogue_fade_in");
+	get_parent().get_parent().get_parent().get_parent().get_node("Dialogue").get_node("Label").text = ss
+	await get_tree().create_timer(3).timeout
+	$AnimationPlayer.play("dialogue_fade_out");
+
 func _on_move_1_button_pressed():
 	fullInvis();
 	$Panel/Label.text = "You use %s"%[AttackData.move1Name];
@@ -106,16 +113,22 @@ func _on_move_1_button_pressed():
 	var time_in_seconds = 1
 	
 	if cont == 1:
-		$Panel/Label.text = "You captured it!"
+		$Panel/Label.text = "You gathered an ally!"
+		$Tolerance.text = "";
+		$Health.value = 0;
+		$LevelIndicator.text = "";
+		$Enemy.visible = false;
 		time_in_seconds = 2;
 	elif cont == 2:
 		$Panel/Label.text = "You lost!"
+		$Tolerance.text = "";
+		$Health.value = 0;
+		$LevelIndicator.text = "";
+		$Enemy.visible = false;
 		time_in_seconds = 2;
 	
 	
 	await get_tree().create_timer(time_in_seconds).timeout
-
-	
 	if cont == 3:
 		fullInvis();
 		$Panel/Run_button.visible = true;
@@ -130,6 +143,7 @@ func _on_move_1_button_pressed():
 		event_handler.inBattle = false;
 		animatedSprite.queue_free();
 		AttackData.minionData.append(char_name);
+		dialogueText("Thanks for your consideration!");
 		print("captured!");
 	elif cont == 2:
 		fullInvis();
@@ -185,6 +199,9 @@ func _on_move_2_button_pressed():
 		event_handler.inBattle = false;
 		animatedSprite.queue_free();
 		AttackData.minionData.append(char_name);
+		
+		#$AnimationPlayer.play("dialogue_fade_out");
+		#print("faded out");
 		print("captured!");
 	elif cont == 2:
 		fullInvis();
