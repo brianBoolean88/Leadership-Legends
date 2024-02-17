@@ -1,10 +1,14 @@
-[gd_scene load_steps=40 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=42 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
+[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_aaoao"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_d5isq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_mb2dn"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="21_mks5l"]
 [ext_resource type="Texture2D" uid="uid://bw36ig60cpuaq" path="res://Art/Sprites/Square.png" id="27_0oljh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_42fkw"]
+font = ExtResource("2_aaoao")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6cp0"]
 load_path = "res://.godot/imported/Enemy09.png-bb5565872c8a59ca0e9a6c3f5b1b0fb8.ctex"
@@ -320,15 +324,26 @@ height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_de2nl"]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("levelLabel", "sprite", "healthbar", "hit_particles") groups=["Enemy"]]
 texture_filter = 1
 scale = Vector2(2, 2)
 script = ExtResource("1_db41y")
+levelLabel = NodePath("Label")
 sprite = NodePath("AnimatedSprite2D")
 healthbar = NodePath("ProgressBar")
 health = 75
 flipped_horizontal = true
 hit_particles = NodePath("HitParticles")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.5
+offset_top = -30.0
+offset_right = 20.5
+offset_bottom = -16.0
+text = "Level 1"
+label_settings = SubResource("LabelSettings_42fkw")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")

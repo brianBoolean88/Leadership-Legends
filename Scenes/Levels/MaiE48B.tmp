@@ -1,10 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://dei3j88yw6omf"]
+[gd_scene load_steps=40 format=3 uid="uid://dei3j88yw6omf"]
 
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="1_v023b"]
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="2_gsqk0"]
-[ext_resource type="Script" path="res://Scenes/Levels/Shadow.gd" id="2_mryah"]
 [ext_resource type="PackedScene" uid="uid://bblpsy4fvi76f" path="res://Scenes/Coin.tscn" id="3_qfkdr"]
-[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="3_xvfn2"]
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="4_8uhxl"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="5_numcg"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="7_n5jbx"]
@@ -13,13 +11,12 @@
 [ext_resource type="Script" path="res://Scenes/Levels/AreaExit.gd" id="9_0m0mm"]
 [ext_resource type="PackedScene" uid="uid://bt5yicfpmnlwk" path="res://Scenes/Levels/Basement01.tscn" id="10_hj57s"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="11_6cy1t"]
-[ext_resource type="AudioStream" uid="uid://bg2sl7g6ka8f3" path="res://Scenes/Levels/simple-piano-melody-9834.mp3" id="13_0mlm5"]
+[ext_resource type="AudioStream" uid="uid://bia7rrlxphfg2" path="res://Art/Audio/corridorsOgg.ogg" id="12_87j7f"]
 [ext_resource type="PackedScene" uid="uid://48vtm5vekhaq" path="res://Scenes/QuestUpdate.tscn" id="13_fd737"]
 [ext_resource type="Script" path="res://Scripts/QuestGeneral/Quest.gd" id="14_itxyw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pxx3v"]
-font = ExtResource("3_xvfn2")
-font_size = 34
+font_size = 11
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vokit"]
 radius = 12.0
@@ -182,20 +179,16 @@ texture_filter = 1
 [node name="Player" parent="." instance=ExtResource("1_v023b")]
 position = Vector2(-85, -117)
 
-[node name="AllPlayerMinions" type="Node" parent="."]
-
 [node name="MinionCloneSamples" type="Node" parent="."]
 
 [node name="Shadow" type="Area2D" parent="MinionCloneSamples"]
-position = Vector2(-961, 379)
-script = ExtResource("2_mryah")
-metadata/_edit_group_ = true
+position = Vector2(-487, 363)
 
 [node name="Label" type="Label" parent="MinionCloneSamples/Shadow"]
 offset_left = -41.0
-offset_top = -51.0
+offset_top = -38.0
 offset_right = 43.0
-offset_bottom = -28.0
+offset_bottom = -19.0
 text = "Shadow"
 label_settings = SubResource("LabelSettings_pxx3v")
 horizontal_alignment = 1
@@ -240,8 +233,7 @@ amplitude = 12.0
 [node name="Scene" type="Node" parent="."]
 
 [node name="NPC" parent="Scene" instance=ExtResource("8_30ow3")]
-position = Vector2(-183, 97)
-line1 = ["Touch an enemy to enter a negotiation cutscene.", "If you win, you capture the enemy.", "That enemy can capture other enemies for you!"]
+position = Vector2(83, 260)
 
 [node name="Welcome Label" type="Label" parent="Scene"]
 texture_filter = 1
@@ -249,11 +241,12 @@ offset_left = -59.0
 offset_top = -141.0
 offset_right = 209.0
 offset_bottom = -48.0
-text = "WASD - Move
-Space - Dash
-E - Switch Allies
-R - Recall Allies
-Q - Spawn Allies"
+text = "Welcome to the top-down project!
+WASD - Move
+SPACE - Dash
+
+LMB - Punch
+RMB - Spinning kick"
 label_settings = ExtResource("7_tuycv")
 
 [node name="TileMap" type="TileMap" parent="Scene"]
@@ -314,19 +307,21 @@ text = "Press 'E' To Enter"
 label_settings = ExtResource("7_tuycv")
 
 [node name="NPC2" parent="Scene" instance=ExtResource("8_30ow3")]
-position = Vector2(-203, -76)
-line1 = ["Welcome to leadership legends!"]
+position = Vector2(-108, 104)
+line1 = ["Hello! Everything is fine! Nothing to see here! "]
 
 [node name="Score_UI" parent="." instance=ExtResource("11_6cy1t")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_0mlm5")
-volume_db = -3.337
+stream = ExtResource("12_87j7f")
+volume_db = -1.0
 autoplay = true
 
-[node name="Enemy2" parent="." instance=ExtResource("2_gsqk0")]
-position = Vector2(-74, 213)
-enemyLvl = 2
+[node name="Enemy2" parent="." node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
+position = Vector2(-170, 75)
+sprite = NodePath("")
+healthbar = NodePath("")
+hit_particles = NodePath("")
 
 [node name="QuestStart" parent="." node_paths=PackedStringArray("quest") instance=ExtResource("13_fd737")]
 position = Vector2(-143, -11)
@@ -347,8 +342,7 @@ type = 3
 script = ExtResource("14_itxyw")
 quest_id = 1
 quest_name = "Explore"
-quest_objective = Array[String](["Talk to all NPCS", "Find a way past the enemy"])
+quest_objective = Array[String](["Expore the corridoors", "Find a way past the enemy"])
 
-[connection signal="body_shape_entered" from="MinionCloneSamples/Shadow" to="MinionCloneSamples/Shadow" method="_on_body_shape_entered"]
 [connection signal="body_entered" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_entered"]
 [connection signal="body_exited" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_exited"]
