@@ -13,8 +13,18 @@ script = ExtResource("1_dxnuv")
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 20.0
-offset_right = 405.0
-offset_bottom = 170.0
+offset_left = 254.0
+offset_top = 186.0
+offset_right = 373.0
+offset_bottom = 243.0
 text = "Start"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 265.0
+offset_right = 372.0
+offset_bottom = 322.0
+text = "Quit"
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
