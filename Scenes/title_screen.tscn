@@ -1,31 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw5qtmquykchh"]
+[gd_scene load_steps=3 format=3 uid="uid://cw5qtmquykchh"]
 
 [ext_resource type="Script" path="res://TitleScreen.gd" id="1_dxnuv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wb0vy"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dxnuv")
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 104.0
-offset_right = 391.0
-offset_bottom = 161.0
+offset_left = 270.0
+offset_top = 189.0
+offset_right = 389.0
+offset_bottom = 246.0
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 277.0
-offset_top = 182.0
-offset_right = 396.0
-offset_bottom = 239.0
+offset_left = 268.0
+offset_top = 262.0
+offset_right = 387.0
+offset_bottom = 319.0
 text = "Quit"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(468.103, 125.436)
+texture = SubResource("ViewportTexture_wb0vy")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
