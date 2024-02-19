@@ -13,7 +13,6 @@ config_version=5
 config/name="Leadership Legends"
 config/description="Learn to cultivate your leadership! FBLA Game 2023-2024: Brian Wang, Steven Mo, Thomas Zhao"
 config/version="1.4"
-config/tags=PackedStringArray("starterkit")
 run/main_scene="res://Scenes/Levels/MainFloor.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/use_filter=false
