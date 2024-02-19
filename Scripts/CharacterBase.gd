@@ -10,15 +10,11 @@ var invincible : bool = false
 var is_dead : bool = false
 
 func _ready():
-	init_character()
+	pass
 	
 func _process(_delta):
 	Turn()
 	
-#Add anything here that needs to be initialized on the character
-func init_character():
-	healthbar.max_value = health
-	healthbar.value = health
 
 #Flip charater sprites based on their current velocity
 func Turn():

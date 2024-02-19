@@ -14,3 +14,10 @@ func _die():
 	fsm.force_change_state("Die")
 	var death_scene = DEATH_SCREEN.instantiate()
 	add_child(death_scene)
+	
+	
+func dialogueText(ss) -> void:
+	$AnimationPlayer.play("dialogue_fade_in");
+	$Dialogue/Label.text = ss
+	await get_tree().create_timer(3).timeout
+	$AnimationPlayer.play("dialogue_fade_out");

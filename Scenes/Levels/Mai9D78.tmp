@@ -1,0 +1,609 @@
+[gd_scene load_steps=66 format=3 uid="uid://dei3j88yw6omf"]
+
+[ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="1_v023b"]
+[ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="2_gsqk0"]
+[ext_resource type="PackedScene" uid="uid://bblpsy4fvi76f" path="res://Scenes/Coin.tscn" id="3_qfkdr"]
+[ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="4_8uhxl"]
+[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="5_numcg"]
+[ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="7_n5jbx"]
+[ext_resource type="LabelSettings" uid="uid://da8inon5cmt2r" path="res://Art/Fonts/pixelized_label.tres" id="7_tuycv"]
+[ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="8_30ow3"]
+[ext_resource type="Script" path="res://Scenes/Levels/AreaExit.gd" id="9_0m0mm"]
+[ext_resource type="PackedScene" uid="uid://bt5yicfpmnlwk" path="res://Scenes/Levels/Basement01.tscn" id="10_hj57s"]
+[ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="11_6cy1t"]
+[ext_resource type="AudioStream" uid="uid://bia7rrlxphfg2" path="res://Art/Audio/corridorsOgg.ogg" id="12_87j7f"]
+[ext_resource type="PackedScene" uid="uid://48vtm5vekhaq" path="res://Scenes/QuestUpdate.tscn" id="13_fd737"]
+[ext_resource type="Script" path="res://Scripts/QuestGeneral/Quest.gd" id="14_itxyw"]
+[ext_resource type="Script" path="res://Scripts/battle_scene.gd" id="15_ev0pc"]
+[ext_resource type="Texture2D" uid="uid://byhablijvu12n" path="res://Art/BattleSequence/back.png" id="15_pud1k"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_n3tw7"]
+a = Vector2(17, 3)
+b = Vector2(-11, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtoj4"]
+size = Vector2(25, 30)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fg2lj"]
+load_path = "res://.godot/imported/Player_attack1.png-34c5ddb09f671a1509427ad274bbbc84.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cfcvs"]
+load_path = "res://.godot/imported/Player_attack2.png-94b5109085744e59248a62929175c272.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_whwty"]
+load_path = "res://.godot/imported/Player_attack3.png-049f1643405c4ba11df10413f4cebd5e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o0bqh"]
+load_path = "res://.godot/imported/Player_attack4.png-d8bcd731cfa744667a262c9a5a9863c1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fncth"]
+load_path = "res://.godot/imported/Player_attack5.png-1fe1126ace88b9968a7a8c59f3d6d76f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rp2ta"]
+load_path = "res://.godot/imported/Player_attack6.png-106c90f3897e4153ae98e0b55e067708.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efp7h"]
+load_path = "res://.godot/imported/Player_Dash1.png-a2faf66980c1e8ecb4f0b8b952525382.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k24kq"]
+load_path = "res://.godot/imported/Player_Dash2.png-ac6ae547ae588112259f9900632957d0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3qcwl"]
+load_path = "res://.godot/imported/Player_Dash3.png-587a88fc49c4e9cf52b0cffe34398fe5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vbu5t"]
+load_path = "res://.godot/imported/Player_Dash4.png-d570a76b98975f47f77768d860574a61.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6uyfr"]
+load_path = "res://.godot/imported/Player_Death1.png-130b2745ae406a47c68e062c1aedf067.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ybgl"]
+load_path = "res://.godot/imported/Player_Death2.png-971f0c58713299353657988aaa902ddd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01mst"]
+load_path = "res://.godot/imported/Player_Death3.png-d05a40cc8ae884cf4c76c805bf019ca4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1jv4u"]
+load_path = "res://.godot/imported/Player_Death4.png-507b0ab30ef179b86df957e0c5a0064f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yaeps"]
+load_path = "res://.godot/imported/Player_Idle1.png-75688ef2036fcb7a48a4a1f6fe44c46f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ccjfe"]
+load_path = "res://.godot/imported/Player_Idle2.png-0731cd20697fa292e7f80b4389adfa56.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bwfu8"]
+load_path = "res://.godot/imported/Player_Idle3.png-01c7516e3b8be9d8d20f758dcb076a98.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mx7ea"]
+load_path = "res://.godot/imported/Player_MoonKick1.png-7c97a54a23737a21149568c3a28cb257.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqxic"]
+load_path = "res://.godot/imported/Player_MoonKick2.png-32e4c4909de775ca4787591cc0209b4a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_opl2q"]
+load_path = "res://.godot/imported/Player_MoonKick3.png-96232eaf78fa76e783405f2f2c6b231c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jonoq"]
+load_path = "res://.godot/imported/Player_walk1.png-d970c3964b83a4394c8975e2b7f99ddd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c68m6"]
+load_path = "res://.godot/imported/Player_walk2.png-618de9b0e643fa6b3b97e5e783c8baa1.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35mbn"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("CompressedTexture2D_fg2lj")
+}, {
+"duration": 0.6,
+"texture": SubResource("CompressedTexture2D_cfcvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_whwty")
+}, {
+"duration": 1.25,
+"texture": SubResource("CompressedTexture2D_o0bqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_fncth")
+}, {
+"duration": 0.8,
+"texture": SubResource("CompressedTexture2D_rp2ta")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 0.25,
+"texture": SubResource("CompressedTexture2D_efp7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_k24kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_3qcwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_vbu5t")
+}],
+"loop": false,
+"name": &"Dash",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_6uyfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_0ybgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_01mst")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1jv4u")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_yaeps")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ccjfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_bwfu8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_mx7ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_qqxic")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_opl2q")
+}],
+"loop": false,
+"name": &"MoonKick",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_jonoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_c68m6")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6cp0"]
+load_path = "res://.godot/imported/Enemy09.png-bb5565872c8a59ca0e9a6c3f5b1b0fb8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mevv5"]
+load_path = "res://.godot/imported/Enemy10.png-2b13f1dc3a9a1db626574ad6292939e1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3gyuu"]
+load_path = "res://.godot/imported/Enemy11.png-74c5a80d1a5b6e021303539cf050f0f7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n5067"]
+load_path = "res://.godot/imported/Enemy12.png-776b08bb20f589c258e122f7268451e3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmlkv"]
+load_path = "res://.godot/imported/Enemy13.png-ee96501bb6f45dd8ea72fd1c5bf89eef.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nm7sq"]
+load_path = "res://.godot/imported/Enemy14.png-72f43b154cf70b3fcb5cf2e7604cd807.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1053m"]
+load_path = "res://.godot/imported/Enemy15.png-c02cd7d0245510f9a5610286bf513d9b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oysdx"]
+load_path = "res://.godot/imported/Enemy16.png-65f66df82f6c9ca5b2e777a02f71724d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v5qgf"]
+load_path = "res://.godot/imported/Enemy18.png-bf4f446e1305cbf49b49cf6c04f50459.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11yeb"]
+load_path = "res://.godot/imported/Enemy19.png-1ec4ac4c3cb657dfa871e3719a366f54.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_15aw7"]
+load_path = "res://.godot/imported/Enemy20.png-c832ca120ce3315b4784fe13df6ee197.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qf4jw"]
+load_path = "res://.godot/imported/Enemy21.png-c9de5cf0714289501930723e7f564ec1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ijf8h"]
+load_path = "res://.godot/imported/Enemy22.png-cadf75d5db496547c3ee20ff40de3e1c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enu3l"]
+load_path = "res://.godot/imported/Enemy01.png-bc171185661242c1c12c236777a2b526.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tx3fq"]
+load_path = "res://.godot/imported/Enemy02.png-85b4a0c5724e8f051ff07efbbb0340ac.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0om5y"]
+load_path = "res://.godot/imported/Enemy03.png-caedc4a192931321e92e1f3e37315fa7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4w5iu"]
+load_path = "res://.godot/imported/Enemy04.png-b3be951462a1527a7c689e367f5805f3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7eh6p"]
+load_path = "res://.godot/imported/Enemy06.png-1bfa534b9133c81c02c96ce18e6f5a1c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b3a2r"]
+load_path = "res://.godot/imported/Enemy07.png-204649409c79c661972255bc1125e7ba.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0daw1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_b6cp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_mevv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_3gyuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_n5067")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_cmlkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_nm7sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1053m")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_oysdx")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_v5qgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_11yeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_15aw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_qf4jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ijf8h")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_enu3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_tx3fq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_0om5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_4w5iu")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_7eh6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_b3a2r")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bxl1d"]
+resource_name = "fade_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ipxb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bo3ac"]
+resource_name = "fade_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hr2y4"]
+_data = {
+"RESET": SubResource("Animation_4ipxb"),
+"fade_in": SubResource("Animation_bxl1d"),
+"fade_out": SubResource("Animation_bo3ac")
+}
+
+[node name="Scene_Root" type="Node2D"]
+texture_filter = 1
+
+[node name="Player" parent="." instance=ExtResource("1_v023b")]
+position = Vector2(-85, -117)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("2_gsqk0")]
+position = Vector2(67, 71)
+
+[node name="Pickups" type="Node" parent="."]
+
+[node name="Pickup4" parent="Pickups" instance=ExtResource("3_qfkdr")]
+position = Vector2(2, 74)
+amplitude = 12.0
+
+[node name="Pickup2" parent="Pickups" instance=ExtResource("3_qfkdr")]
+position = Vector2(195, 68)
+amplitude = 12.0
+
+[node name="Pickup3" parent="Pickups" instance=ExtResource("3_qfkdr")]
+position = Vector2(-284, 218)
+amplitude = 12.0
+
+[node name="Pickup5" parent="Pickups" instance=ExtResource("3_qfkdr")]
+position = Vector2(192, 255)
+amplitude = 12.0
+
+[node name="SceneSettings" parent="." instance=ExtResource("4_8uhxl")]
+
+[node name="Scene" type="Node" parent="."]
+
+[node name="NPC" parent="Scene" instance=ExtResource("8_30ow3")]
+position = Vector2(83, 260)
+
+[node name="Welcome Label" type="Label" parent="Scene"]
+texture_filter = 1
+offset_left = -59.0
+offset_top = -141.0
+offset_right = 209.0
+offset_bottom = -48.0
+text = "Welcome to the top-down project!
+WASD - Move
+SPACE - Dash
+
+LMB - Punch
+RMB - Spinning kick"
+label_settings = ExtResource("7_tuycv")
+
+[node name="TileMap" type="TileMap" parent="Scene"]
+z_index = -2
+texture_filter = 1
+tile_set = ExtResource("7_n5jbx")
+format = 2
+layer_0/tile_data = PackedInt32Array(262143, 65536, 2, 131065, 0, 1, 196601, 0, 1, 65529, 327680, 0, 65530, 393216, 0, 65531, 589824, 2, 65532, 458752, 0, 65533, 524288, 0, 0, 131072, 0, 131066, 131072, 1, 131067, 393216, 1, 131068, 393216, 1, 131069, 393216, 1, 196602, 393216, 1, 196603, 393216, 1, 196604, 393216, 1, 196605, 393216, 1, 196606, 196608, 1, 196607, 393216, 1, 262137, 0, 2, 262138, 65536, 2, 262140, 65536, 2, 262141, 65536, 2, 262142, 196608, 2, 131072, 393216, 1, 196608, 327680, 2, 65536, 65536, 1, 196609, 589824, 0, 131073, 393216, 2, 65537, 131072, 1, 2, 196608, 0, 65538, 393216, 1, 131074, 327680, 1, 196610, 327680, 2, 1, 262144, 0, 65534, 196608, 0, 131070, 196608, 1, 65535, 262144, 0, 131071, 131072, 1, 458753, 65536, 2, 458754, 65536, 1, 262145, 589824, 1, 327681, 589824, 2, 327682, 458752, 0, 327680, 0, 0, 393217, 393216, 1, 393216, 327680, 1, 393218, 65536, 1, 458752, 131072, 2, 196611, 327680, 2, 196612, 327680, 2, 131075, 327680, 1, 65539, 393216, 1, 3, 458752, 0, 4, 393216, 0, 5, 262144, 0, 65541, 131072, 1, 6, 196608, 0, 65542, 196608, 1, 131078, 524288, 2, 196614, 196608, 2, 196613, 589824, 0, 65540, 393216, 1, 131076, 393216, 1, 131077, 393216, 1, 262139, 589824, 0, 327675, 589824, 1, 393211, 589824, 2, 393208, 262144, 0, 393209, 327680, 0, 393210, 393216, 0, 393206, 0, 0, 458742, 0, 1, 524278, 0, 2, 393207, 65536, 0, 458743, 65536, 1, 524279, 65536, 2, 458744, 65536, 1, 524280, 65536, 2, 458745, 131072, 1, 524281, 131072, 2, 458746, 393216, 1, 524282, 65536, 2, 458747, 393216, 1, 524283, 131072, 2, 458748, 393216, 1, 524284, 65536, 2, 458751, 393216, 1, 458750, 393216, 1, 458749, 393216, 1, 524287, 65536, 2, 524286, 131072, 2, 524285, 65536, 2, 393214, 458752, 0, 393215, 524288, 0, 393212, 458752, 0, 393213, 524288, 0, 262149, 589824, 1, 327685, 589824, 2, 458757, 131072, 1, 524293, 131072, 2, 458758, 196608, 1, 524294, 196608, 2, 327686, 196608, 0, 393222, 196608, 1, 393219, 131072, 1, 393220, 393216, 1, 393221, 393216, 1, 458755, 131072, 1, 458756, 393216, 1, 524291, 65536, 2, 524292, 131072, 2, 524290, 0, 2, 327683, 393216, 0, 327684, 524288, 0, -262151, 0, 0, -196615, 0, 1, -131079, 0, 1, -65543, 0, 2, -262150, 262144, 0, -196614, 131072, 1, -131078, 393216, 1, -65542, 65536, 2, -262149, 458752, 0, -196613, 393216, 1, -131077, 393216, 1, -65541, 589824, 0, -5, 589824, 1, -262148, 393216, 0, -196612, 393216, 1, -131076, 393216, 1, -65540, 65536, 2, -262147, 327680, 0, -196611, 196608, 1, -131075, 196608, 1, -65539, 196608, 2)
+
+[node name="WindowLights2" type="Node" parent="Scene"]
+
+[node name="PointLight2D" type="PointLight2D" parent="Scene/WindowLights2"]
+position = Vector2(-176, 8)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("5_numcg")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Scene/WindowLights2"]
+position = Vector2(-16, 8)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("5_numcg")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Scene/WindowLights2"]
+position = Vector2(49, 9)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("5_numcg")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Scene/WindowLights2"]
+position = Vector2(176, 10)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("5_numcg")
+
+[node name="DoorBlock" type="StaticBody2D" parent="Scene"]
+position = Vector2(13, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/DoorBlock"]
+position = Vector2(0, -7)
+shape = SubResource("SegmentShape2D_n3tw7")
+
+[node name="AreaExit" type="Area2D" parent="Scene"]
+position = Vector2(16, 9)
+script = ExtResource("9_0m0mm")
+basement_scene = ExtResource("10_hj57s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/AreaExit"]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_gtoj4")
+
+[node name="Label" type="Label" parent="Scene/AreaExit"]
+offset_left = -16.0
+offset_top = -25.0
+offset_right = 96.0
+offset_bottom = 1.0
+text = "Press 'E' To Enter"
+label_settings = ExtResource("7_tuycv")
+
+[node name="NPC2" parent="Scene" instance=ExtResource("8_30ow3")]
+position = Vector2(-108, 104)
+line1 = ["Hello! Everything is fine! Nothing to see here! "]
+
+[node name="Score_UI" parent="." instance=ExtResource("11_6cy1t")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_87j7f")
+volume_db = -1.0
+autoplay = true
+
+[node name="Enemy" parent="." instance=ExtResource("2_gsqk0")]
+position = Vector2(-171, 71)
+
+[node name="QuestStart" parent="." node_paths=PackedStringArray("quest") instance=ExtResource("13_fd737")]
+position = Vector2(-143, -11)
+quest = NodePath("../FirstQuest")
+type = 1
+
+[node name="QuestUpdate" parent="." node_paths=PackedStringArray("quest") instance=ExtResource("13_fd737")]
+position = Vector2(11, 211)
+quest = NodePath("../FirstQuest")
+type = 2
+
+[node name="QuestFinish" parent="." node_paths=PackedStringArray("quest") instance=ExtResource("13_fd737")]
+position = Vector2(32, 23)
+quest = NodePath("../FirstQuest")
+type = 3
+
+[node name="FirstQuest" type="Node" parent="."]
+script = ExtResource("14_itxyw")
+quest_id = 1
+quest_name = "Explore"
+quest_objective = Array[String](["Expore the corridoors", "Find a way past the enemy"])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="battle_scene" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -267.0
+offset_top = -46.0
+offset_right = 117.0
+offset_bottom = 194.0
+metadata/_edit_group_ = true
+
+[node name="background" type="TextureRect" parent="CanvasLayer/battle_scene"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -104.0
+offset_bottom = -33.0
+texture = ExtResource("15_pud1k")
+script = ExtResource("15_ev0pc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="AnimatedSprite2D" parent="CanvasLayer/battle_scene/background"]
+texture_filter = 1
+position = Vector2(101, 126)
+sprite_frames = SubResource("SpriteFrames_35mbn")
+animation = &"Idle"
+frame = 1
+frame_progress = 0.0482408
+
+[node name="Enemy" type="AnimatedSprite2D" parent="CanvasLayer/battle_scene/background"]
+position = Vector2(268, 124)
+sprite_frames = SubResource("SpriteFrames_0daw1")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 3
+frame_progress = 0.301784
+
+[node name="Panel" type="Panel" parent="CanvasLayer/battle_scene/background"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 146.0
+offset_right = 367.0
+offset_bottom = 230.0
+
+[node name="Button" type="Button" parent="CanvasLayer/battle_scene/background/Panel"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 6.0
+offset_right = 333.0
+offset_bottom = 37.0
+text = "Fight
+"
+
+[node name="Button2" type="Button" parent="CanvasLayer/battle_scene/background/Panel"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 44.0
+offset_right = 334.0
+offset_bottom = 75.0
+text = "Run"
+
+[node name="Label" type="Label" parent="CanvasLayer/battle_scene/background/Panel"]
+layout_mode = 0
+offset_right = 284.0
+offset_bottom = 83.0
+text = "Placeholder text."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/battle_scene/background"]
+libraries = {
+"": SubResource("AnimationLibrary_hr2y4")
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/battle_scene/background"]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 239.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="body_entered" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_entered"]
+[connection signal="body_exited" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_exited"]

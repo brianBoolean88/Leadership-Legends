@@ -1,0 +1,199 @@
+[gd_scene load_steps=26 format=3 uid="uid://eew3u75siddd"]
+
+[ext_resource type="Script" path="res://Scripts/Shadow.gd" id="1_d7yem"]
+[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_73pcn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3vjd0"]
+font = ExtResource("2_73pcn")
+font_size = 34
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rfj44"]
+radius = 12.0
+height = 44.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6cp0"]
+load_path = "res://.godot/imported/Enemy09.png-bb5565872c8a59ca0e9a6c3f5b1b0fb8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mevv5"]
+load_path = "res://.godot/imported/Enemy10.png-2b13f1dc3a9a1db626574ad6292939e1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3gyuu"]
+load_path = "res://.godot/imported/Enemy11.png-74c5a80d1a5b6e021303539cf050f0f7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n5067"]
+load_path = "res://.godot/imported/Enemy12.png-776b08bb20f589c258e122f7268451e3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmlkv"]
+load_path = "res://.godot/imported/Enemy13.png-ee96501bb6f45dd8ea72fd1c5bf89eef.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nm7sq"]
+load_path = "res://.godot/imported/Enemy14.png-72f43b154cf70b3fcb5cf2e7604cd807.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1053m"]
+load_path = "res://.godot/imported/Enemy15.png-c02cd7d0245510f9a5610286bf513d9b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oysdx"]
+load_path = "res://.godot/imported/Enemy16.png-65f66df82f6c9ca5b2e777a02f71724d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v5qgf"]
+load_path = "res://.godot/imported/Enemy18.png-bf4f446e1305cbf49b49cf6c04f50459.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11yeb"]
+load_path = "res://.godot/imported/Enemy19.png-1ec4ac4c3cb657dfa871e3719a366f54.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_15aw7"]
+load_path = "res://.godot/imported/Enemy20.png-c832ca120ce3315b4784fe13df6ee197.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qf4jw"]
+load_path = "res://.godot/imported/Enemy21.png-c9de5cf0714289501930723e7f564ec1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ijf8h"]
+load_path = "res://.godot/imported/Enemy22.png-cadf75d5db496547c3ee20ff40de3e1c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enu3l"]
+load_path = "res://.godot/imported/Enemy01.png-bc171185661242c1c12c236777a2b526.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tx3fq"]
+load_path = "res://.godot/imported/Enemy02.png-85b4a0c5724e8f051ff07efbbb0340ac.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0om5y"]
+load_path = "res://.godot/imported/Enemy03.png-caedc4a192931321e92e1f3e37315fa7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4w5iu"]
+load_path = "res://.godot/imported/Enemy04.png-b3be951462a1527a7c689e367f5805f3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7eh6p"]
+load_path = "res://.godot/imported/Enemy06.png-1bfa534b9133c81c02c96ce18e6f5a1c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b3a2r"]
+load_path = "res://.godot/imported/Enemy07.png-204649409c79c661972255bc1125e7ba.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_di2iw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_b6cp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_mevv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_3gyuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_n5067")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_cmlkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_nm7sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1053m")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_oysdx")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_v5qgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_11yeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_15aw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_qf4jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ijf8h")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_enu3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_tx3fq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_0om5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_4w5iu")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_7eh6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_b3a2r")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k5w52"]
+cull_mode = 2
+polygon = PackedVector2Array(3, -8, 6.5, -4, 7.5, 3.5, 4.5, 10, -1.5, 10.5, -6, 4, -4.5, -6, -1, -8.5)
+
+[node name="Shadow" type="StaticBody2D"]
+position = Vector2(1035, 216)
+script = ExtResource("1_d7yem")
+metadata/_edit_group_ = true
+
+[node name="Name" type="Label" parent="."]
+offset_left = -41.0
+offset_top = -82.0
+offset_right = 43.0
+offset_bottom = -54.0
+text = "Shadow"
+label_settings = SubResource("LabelSettings_3vjd0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name2" type="Label" parent="."]
+offset_left = -41.0
+offset_top = -56.0
+offset_right = 43.0
+offset_bottom = -28.0
+text = "Lvl ...."
+label_settings = SubResource("LabelSettings_3vjd0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_rfj44")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_di2iw")
+animation = &"Attack"
+autoplay = "Idle"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite2D"]
+occluder = SubResource("OccluderPolygon2D_k5w52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rfj44")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
