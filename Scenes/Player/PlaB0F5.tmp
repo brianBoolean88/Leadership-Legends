@@ -1,10 +1,8 @@
-[gd_scene load_steps=92 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=81 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
-[ext_resource type="Script" path="res://Scripts/Minion.gd" id="10_lof2j"]
+[ext_resource type="Texture2D" uid="uid://byhablijvu12n" path="res://Art/BattleSequence/back.png" id="10_olaq8"]
 [ext_resource type="Script" path="res://Scripts/battle_scene.gd" id="11_au2jd"]
-[ext_resource type="Texture2D" uid="uid://b7vseq6o7cflu" path="res://Art/BattleSequence/Battleground2.png" id="11_oej5d"]
-[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="13_lfmpa"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_gooki"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
@@ -18,13 +16,6 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uky13"]
 polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10, 5, 10, 5, 2, 10, -1, 10, -10, 8, -13)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yai2w"]
-
-[sub_resource type="Theme" id="Theme_gbkp3"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_duu3f"]
-font = ExtResource("13_lfmpa")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fg2lj"]
 load_path = "res://.godot/imported/Player_attack1.png-34c5ddb09f671a1509427ad274bbbc84.ctex"
@@ -249,6 +240,12 @@ func get_random_offset() -> Vector2:
 		rand.randf_range(-shake_strength, shake_strength)
 	)
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub6e5"]
+bg_color = Color(0.0352941, 0.0156863, 0.00784314, 0.427451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0guox"]
+bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hf0vr"]
 animations = [{
@@ -489,19 +486,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub6e5"]
-bg_color = Color(0.0352941, 0.0156863, 0.00784314, 0.427451)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0guox"]
-bg_color = Color(1, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_ns0l0"]
-font = ExtResource("13_lfmpa")
-font_size = 49
-
-[sub_resource type="LabelSettings" id="LabelSettings_of8i5"]
-font = ExtResource("13_lfmpa")
-font_size = 29
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_4ipxb"]
 length = 0.001
@@ -516,18 +502,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../../../Dialogue:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_bxl1d"]
@@ -562,41 +536,9 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_3nmk2"]
-resource_name = "dialogue_fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../../Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_bstkk"]
-resource_name = "dialogue_fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../../Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hr2y4"]
 _data = {
 "RESET": SubResource("Animation_4ipxb"),
-"dialogue_fade_in": SubResource("Animation_3nmk2"),
-"dialogue_fade_out": SubResource("Animation_bstkk"),
 "fade_in": SubResource("Animation_bxl1d"),
 "fade_out": SubResource("Animation_bo3ac")
 }
@@ -841,102 +783,34 @@ tracks/1/keys = {
 "values": [&"Walk"]
 }
 
-[sub_resource type="Animation" id="Animation_u5mby"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_61nsx"]
-resource_name = "dialogue_fade_in"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_xt3mo"]
-resource_name = "dialogue_fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gtuut"]
 _data = {
 "Attack": SubResource("Animation_jtcnw"),
 "Dash": SubResource("Animation_a1dma"),
 "Death": SubResource("Animation_fkgk5"),
-"DialogueFadeIn": SubResource("Animation_61nsx"),
-"DialogueFadeOut": SubResource("Animation_xt3mo"),
 "Idle": SubResource("Animation_1i780"),
 "MoonKick": SubResource("Animation_7c1ec"),
-"RESET": SubResource("Animation_u5mby"),
 "Walk": SubResource("Animation_wo7cn")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "hit_particles") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Player"]]
 top_level = true
 texture_filter = 1
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_y5oq4")
 sprite = NodePath("AnimatedSprite2D")
+healthbar = NodePath("Camera2D/ProgressBar")
 health = 100
 hit_particles = NodePath("AnimatedSprite2D/HitParticles")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_uky13")
 
-[node name="Dialogue" type="Panel" parent="."]
-modulate = Color(1, 1, 1, 0)
-material = SubResource("CanvasItemMaterial_yai2w")
-offset_left = -51.0
-offset_top = -58.0
-offset_right = 50.0
-offset_bottom = -28.0
-theme = SubResource("Theme_gbkp3")
-
-[node name="Label" type="Label" parent="Dialogue"]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 29.0
-text = "Thanks for your considerations."
-label_settings = SubResource("LabelSettings_duu3f")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vax36")
-animation = &"Attack"
-frame = 5
+animation = &"Death"
 
 [node name="HitParticles" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
 position = Vector2(15, 5)
@@ -965,11 +839,9 @@ shape = SubResource("CircleShape2D_7m131")
 script = ExtResource("21_54cjv")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animator", "sprite")]
+[node name="Idle" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
 script = ExtResource("26_28u22")
-player = NodePath("../..")
 animator = NodePath("../../AnimationPlayer")
-sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="Attacking" type="Node" parent="FSM"]
 script = SubResource("GDScript_8kfkg")
@@ -984,10 +856,9 @@ script = ExtResource("28_wb7jg")
 anim = "MoonKick"
 damage = 25
 
-[node name="Moving" type="Node" parent="FSM" node_paths=PackedStringArray("sprite", "animator")]
+[node name="Moving" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
 script = ExtResource("29_bdbrv")
 movespeed = 140
-sprite = NodePath("../../AnimatedSprite2D")
 animator = NodePath("../../AnimationPlayer")
 
 [node name="Die" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
@@ -998,7 +869,6 @@ animator = NodePath("../../AnimationPlayer")
 energy = 0.3
 shadow_enabled = true
 texture = ExtResource("27_on0bn")
-metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
@@ -1006,16 +876,32 @@ position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = SubResource("GDScript_3r2rw")
 
-[node name="Minion" type="Label" parent="Camera2D"]
-offset_left = -154.0
-offset_top = 74.0
-offset_right = -73.0
-offset_bottom = 87.0
-text = "Selected Minion: none"
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D"]
+light_mask = 2
+visibility_layer = 2
+offset_left = -151.5
+offset_top = 82.5
+offset_right = -145.5
+offset_bottom = 146.5
+rotation = -1.57079
+theme_override_styles/background = SubResource("StyleBoxFlat_ub6e5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0guox")
+step = 1.0
+value = 25.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -151.5
+offset_top = 63.5
+offset_right = -105.5
+offset_bottom = 76.5
+text = "Health"
 label_settings = ExtResource("28_5mc6f")
-script = ExtResource("10_lof2j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="battle_scene" type="Control" parent="Camera2D/CanvasLayer"]
 layout_mode = 3
@@ -1033,45 +919,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -218.833
-offset_top = -126.667
-offset_right = 437.167
-offset_bottom = 292.333
+offset_left = -221.5
+offset_top = -120.0
+offset_right = 223.5
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_oej5d")
-expand_mode = 1
+texture = ExtResource("10_olaq8")
 script = ExtResource("11_au2jd")
 
 [node name="Player" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
 texture_filter = 1
-position = Vector2(144.667, 238.333)
-scale = Vector2(3.02604, 3.19792)
+position = Vector2(114.833, 111.667)
+scale = Vector2(1.86459, 1.89584)
 sprite_frames = SubResource("SpriteFrames_hf0vr")
 animation = &"Attack"
 
 [node name="Enemy" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
-position = Vector2(527.667, 235.333)
-scale = Vector2(3.70833, 3.29167)
+position = Vector2(298.667, 101)
+scale = Vector2(2.25, 1.95834)
 sprite_frames = SubResource("SpriteFrames_o41dt")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Background" type="Panel" parent="Camera2D/CanvasLayer/battle_scene/background"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 5.0
-offset_right = 537.0
-offset_bottom = 84.0
-
 [node name="Health" type="ProgressBar" parent="Camera2D/CanvasLayer/battle_scene/background"]
 light_mask = 2
 visibility_layer = 2
-layout_mode = 0
-offset_left = 111.667
-offset_top = 28.3333
-offset_right = 128.667
-offset_bottom = 417.333
+offset_left = 26.6668
+offset_top = 13.9998
+offset_right = 33.6668
+offset_bottom = 403.0
 rotation = -1.57079
 theme_override_styles/background = SubResource("StyleBoxFlat_ub6e5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0guox")
@@ -1081,24 +958,11 @@ show_percentage = false
 
 [node name="Tolerance" type="Label" parent="Camera2D/CanvasLayer/battle_scene/background"]
 layout_mode = 0
-offset_left = 83.6667
-offset_top = 30.3333
-offset_right = 309.667
-offset_bottom = 82.3333
-theme_override_font_sizes/font_size = 19
+offset_left = 88.0002
+offset_top = 16.6665
+offset_right = 351.0
+offset_bottom = 43.6665
 text = "Tolerance: 3 turns"
-label_settings = SubResource("LabelSettings_ns0l0")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="LevelIndicator" type="Label" parent="Camera2D/CanvasLayer/battle_scene/background"]
-layout_mode = 0
-offset_left = 378.667
-offset_top = 29.3333
-offset_right = 573.667
-offset_bottom = 89.3333
-text = "Level: _"
 label_settings = SubResource("LabelSettings_ns0l0")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1111,64 +975,54 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -231.0
-offset_top = -130.0
-offset_right = 234.0
-offset_bottom = -18.0
+offset_left = -198.5
+offset_top = -84.0
+offset_right = 198.5
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Fight_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 layout_mode = 0
-offset_left = 329.0
-offset_top = 13.0
-offset_right = 447.0
-offset_bottom = 59.0
-theme_override_fonts/font = ExtResource("13_lfmpa")
-theme_override_font_sizes/font_size = 40
-text = "Negotiate"
+offset_left = 286.0
+offset_top = 6.0
+offset_right = 382.0
+offset_bottom = 37.0
+text = "Fight
+"
 
 [node name="Move1_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 visible = false
 layout_mode = 0
-offset_left = 330.0
-offset_top = 13.0
-offset_right = 447.0
-offset_bottom = 57.0
-theme_override_fonts/font = ExtResource("13_lfmpa")
-theme_override_font_sizes/font_size = 40
+offset_left = 286.0
+offset_top = 6.0
+offset_right = 382.0
+offset_bottom = 37.0
 text = "Question!"
 
 [node name="Return" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 visible = false
 layout_mode = 0
-offset_left = 365.0
-offset_top = -42.0
-offset_right = 451.0
-offset_bottom = -7.0
-theme_override_fonts/font = ExtResource("13_lfmpa")
-theme_override_font_sizes/font_size = 40
+offset_left = 321.0
+offset_top = -35.0
+offset_right = 382.0
+offset_bottom = -4.0
 text = "Return"
 
 [node name="Move2_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 visible = false
 layout_mode = 0
-offset_left = 332.0
-offset_top = 66.0
-offset_right = 443.0
-offset_bottom = 108.0
-theme_override_fonts/font = ExtResource("13_lfmpa")
-theme_override_font_sizes/font_size = 40
+offset_left = 286.0
+offset_top = 46.0
+offset_right = 382.0
+offset_bottom = 77.0
 text = "Move2"
 
 [node name="Run_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 layout_mode = 0
-offset_left = 332.0
-offset_top = 66.0
-offset_right = 444.0
-offset_bottom = 108.0
-theme_override_fonts/font = ExtResource("13_lfmpa")
-theme_override_font_sizes/font_size = 40
+offset_left = 287.0
+offset_top = 44.0
+offset_right = 381.0
+offset_bottom = 75.0
 text = "Run"
 
 [node name="Label" type="Label" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
@@ -1176,7 +1030,6 @@ layout_mode = 0
 offset_right = 263.0
 offset_bottom = 83.0
 text = "Placeholder text."
-label_settings = SubResource("LabelSettings_of8i5")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -1193,10 +1046,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -330.0
-offset_top = -203.0
-offset_right = 336.0
-offset_bottom = 214.0
+offset_left = -227.5
+offset_top = -121.0
+offset_right = 228.5
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -1235,6 +1088,7 @@ offset_top = -98.0
 offset_right = 64.0
 offset_bottom = -72.0
 grow_horizontal = 2
+text = "announcement"
 label_settings = ExtResource("34_aqkdi")
 horizontal_alignment = 1
 uppercase = true
@@ -1244,5 +1098,4 @@ uppercase = true
 [connection signal="pressed" from="Camera2D/CanvasLayer/battle_scene/background/Panel/Fight_button" to="Camera2D/CanvasLayer/battle_scene/background" method="_on_fight_button_pressed"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/battle_scene/background/Panel/Move1_button" to="Camera2D/CanvasLayer/battle_scene/background" method="_on_move_1_button_pressed"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/battle_scene/background/Panel/Return" to="Camera2D/CanvasLayer/battle_scene/background" method="_on_return_pressed"]
-[connection signal="pressed" from="Camera2D/CanvasLayer/battle_scene/background/Panel/Move2_button" to="Camera2D/CanvasLayer/battle_scene/background" method="_on_move_2_button_pressed"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/battle_scene/background/Panel/Run_button" to="Camera2D/CanvasLayer/battle_scene/background" method="_on_run_button_pressed"]

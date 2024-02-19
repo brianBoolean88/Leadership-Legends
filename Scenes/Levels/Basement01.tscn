@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bt5yicfpmnlwk"]
+[gd_scene load_steps=13 format=3 uid="uid://bt5yicfpmnlwk"]
 
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="1_4stwf"]
+[ext_resource type="PackedScene" uid="uid://eew3u75siddd" path="res://Scenes/shadow.tscn" id="1_g1yy3"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="2_wbjck"]
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="3_ppqb8"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="4_4dura"]
@@ -12,9 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://48vtm5vekhaq" path="res://Scenes/QuestUpdate.tscn" id="10_qjwpn"]
 [ext_resource type="Script" path="res://Scripts/QuestGeneral/Quest.gd" id="11_oc6f3"]
 
-[node name="Basement01" type="Node2D"]
-
-[node name="SceneSettings" parent="." instance=ExtResource("1_4stwf")]
+[node name="Scene_Root" type="Node2D"]
 
 [node name="Scene" type="Node" parent="."]
 
@@ -56,6 +55,15 @@ texture = ExtResource("4_4dura")
 position = Vector2(653, -89)
 energy = 0.5
 texture = ExtResource("4_4dura")
+
+[node name="AllPlayerMinions" type="Node" parent="."]
+
+[node name="MinionCloneSamples" type="Node" parent="."]
+
+[node name="Shadow" parent="MinionCloneSamples" instance=ExtResource("1_g1yy3")]
+position = Vector2(-825, 240)
+
+[node name="SceneSettings" parent="." instance=ExtResource("1_4stwf")]
 
 [node name="Enemies" type="Node" parent="."]
 

@@ -11,7 +11,6 @@ var current_quest : Quest
 
 func _ready():
 	#Add current quest as a blank Quest Node
-	quest_announcement.text = ""
 	current_quest = QUESTRESOURCE.instantiate()
 	add_child(current_quest)
 
