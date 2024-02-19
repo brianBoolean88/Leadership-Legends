@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 var startupMove = false;
 var dir : bool;
@@ -7,6 +7,7 @@ var dir : bool;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Name2.text = "Lvl %s"%[level];
 	pass # Replace with function body.
 
 func startup(dir):
@@ -23,8 +24,7 @@ func startup(dir):
 func _process(delta):
 	pass
 
-
-func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_area_2d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body.is_in_group("Enemy"):
 		if level >= body.enemyLvl:
 			print("Wow, captured!");
@@ -37,5 +37,5 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 			AttackData.minionData.append(enemyName)
 			
 			event_handler.emit_signal("battle_started", body.enemyName, body.enemyLvl, body.tolerance, body.healthMain, body)
-		
+
 	pass # Replace with function body.

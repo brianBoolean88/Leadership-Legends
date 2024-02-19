@@ -7,7 +7,7 @@ func _ready():
 
 
 @export var currentSelectedMinionIndex = 0;
-@export var chosenMinion : String;
+@export var chosenMinion : String = "Shadow";
 @export var minionSwapManual : bool = false;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,6 +25,8 @@ func _process(delta):
 	
 	if AttackData.minionData.size() == 0:
 		text = "Selected Ally: none";
+		chosenMinion = "none";
+		currentSelectedMinionIndex = -1;
 	elif AttackData.minionData.size() == 1:
 		currentSelectedMinionIndex = 0
 		chosenMinion = AttackData.minionData[currentSelectedMinionIndex]
