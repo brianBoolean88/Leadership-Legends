@@ -1,7 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://eew3u75siddd"]
+[gd_scene load_steps=29 format=3 uid="uid://eew3u75siddd"]
 
 [ext_resource type="Script" path="res://Scripts/Shadow.gd" id="1_d7yem"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_73pcn"]
+[ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="3_0l383"]
+[ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="4_m7fby"]
+[ext_resource type="AudioStream" uid="uid://cobddu2k35y00" path="res://Art/Audio/BattleSceneSFX/BattleSequence.wav" id="4_m60mg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3vjd0"]
 font = ExtResource("2_73pcn")
@@ -195,5 +198,16 @@ occluder = SubResource("OccluderPolygon2D_k5w52")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rfj44")
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Victory" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("3_0l383")
+
+[node name="BattleStart" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("4_m60mg")
+
+[node name="Defeat" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("4_m7fby")
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

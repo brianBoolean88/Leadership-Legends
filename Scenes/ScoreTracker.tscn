@@ -3,24 +3,38 @@
 [ext_resource type="Script" path="res://Scenes/Levels/GameUI.gd" id="1_3k7kl"]
 [ext_resource type="LabelSettings" uid="uid://1cnb4418rr7" path="res://Art/Fonts/pixelized_label_large.tres" id="2_ygwdu"]
 
-[node name="Score_tracker_layer" type="CanvasLayer"]
+[node name="Score_tracker_layer" type="CanvasLayer" node_paths=PackedStringArray("money_label", "battles_label")]
 layer = 2
+script = ExtResource("1_3k7kl")
+money_label = NodePath("GameUI/MoneyLabel")
+battles_label = NodePath("GameUI/BattlesLabel")
 
-[node name="GameUI" type="Control" parent="." node_paths=PackedStringArray("money_label")]
+[node name="GameUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3k7kl")
-money_label = NodePath("MoneyLabel")
 
 [node name="MoneyLabel" type="Label" parent="GameUI"]
 z_index = 1
 layout_mode = 0
-offset_left = 533.0
-offset_top = 9.0
-offset_right = 573.0
-offset_bottom = 35.0
+offset_left = 578.0
+offset_top = 34.0
+offset_right = 644.0
+offset_bottom = 60.0
+text = "Coins: 0"
 label_settings = ExtResource("2_ygwdu")
+horizontal_alignment = 2
+
+[node name="BattlesLabel" type="Label" parent="GameUI"]
+z_index = 1
+layout_mode = 0
+offset_left = 529.0
+offset_top = 9.0
+offset_right = 643.0
+offset_bottom = 35.0
+text = "Battles Won: 0"
+label_settings = ExtResource("2_ygwdu")
+horizontal_alignment = 2

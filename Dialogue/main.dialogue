@@ -1,0 +1,43 @@
+~ start
+
+if main_status == "Start":
+	Guide: Hi fella. Welcome to the world of Leadership Legends!
+	Guide: Here, you'll be honing your ability to practice leadership.
+	- What is this place?
+	Guide: You have been sleeping for the past year, and have finally awoken.
+	Guide: But....FBLA has gone to ruins.
+	- What!? My club got ruined?? How??
+	Guide: DarkCorp Enterprises. You see, they overthrew your club after you left.
+	Guide: Now, everyone believes them.
+	- How should I get my members back?
+	Guide: Allow me to teach you the art of VERBAL COMMUNICATION!
+	Guide: To start, go to the monster next to me.
+	Guide: You'll initiate a battle sequence.
+	Guide: Defeat him, and you'll gain an ally.
+	Guide: Talk to me again after you finish.
+elif main_status == "Q1":
+	Guide: You have now gained an ally.
+	Guide: Press E to swap between your allies. You currently have 2.
+	- Ok.
+	Guide: Press Q to spawn your ally.
+	- Amazing.
+	Guide: Press R to recall him.
+	- Great.
+	Guide: You can spawn your ally on other monsters to automatically gather them as an ally.
+	Guide: Go try it on a monster further down from here.
+	Guide: Talk to me again after you finish.
+elif main_status == "Q2":
+	Guide: Congrats.
+	Guide: You now have 3 allies in this corrupt world.
+	- What are these so-called "allies" anyway?
+	Guide: What do I mean?
+	Guide: It is YOUR duty to use verbal communication to gather these corrupt allies back.
+	Guide: They were once your FBLA members.
+	Guide: Do it JUST like how you did earlier.
+	Guide: Please. Contribute to the cause. It seems you're one of the only 3 members left in FBLA...
+	- Who are the other 3 members?
+	Guide: I don't know. You'll have to find them.
+	Guide: Now go. Adventure your way through this world.
+	- Goodbye.
+
+=> END
