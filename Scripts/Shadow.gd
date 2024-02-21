@@ -5,6 +5,9 @@ var dir : bool;
 @export var level = 1;
 @export var enemyName = "Shadow";
 
+@onready var root = get_tree().get_root()
+@onready var scoreUI = root.get_node("Scene_Root/Score_UI")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Name2.text = "Lvl %s"%[level];
@@ -29,13 +32,22 @@ func _on_area_2d_body_shape_entered(body_rid, body, body_shape_index, local_shap
 		if level >= body.enemyLvl:
 			print("Wow, captured!");
 			AttackData.minionData.append(body.enemyName);
-			body.queue_free();
+			if body != null && body.is_queued_for_deletion() == false:
+				body.queue_free()
+			$Music/Victory.play()
+			if StateDialogue.main_status == "Q1":
+				StateDialogue.main_status = "Q2"
 			print("obtained new enemy!")
+			
+			scoreUI.currBattlesWon += 1
+			
 		else:
 			print("Nope, failed.");
-			self.queue_free()
-			AttackData.minionData.append(enemyName)
+			if self != null && self.is_queued_for_deletion() == false:
+				self.queue_free()
 			
+			AttackData.minionData.append(enemyName)
+			$Music/BattleStart.play()
 			event_handler.emit_signal("battle_started", body.enemyName, body.enemyLvl, body.tolerance, body.healthMain, body)
 
 	pass # Replace with function body.

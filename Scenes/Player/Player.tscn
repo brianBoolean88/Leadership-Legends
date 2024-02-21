@@ -1,10 +1,18 @@
-[gd_scene load_steps=90 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=99 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
 [ext_resource type="Script" path="res://Scripts/Minion.gd" id="10_lof2j"]
 [ext_resource type="Script" path="res://Scripts/battle_scene.gd" id="11_au2jd"]
 [ext_resource type="Texture2D" uid="uid://b7vseq6o7cflu" path="res://Art/BattleSequence/Battleground2.png" id="11_oej5d"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="13_lfmpa"]
+[ext_resource type="AudioStream" uid="uid://bqj7qhps81rwo" path="res://Scenes/Levels/Clement Panchout _ Jelly Blob _ 2017.wav" id="14_clbvy"]
+[ext_resource type="AudioStream" uid="uid://cseuohao12amf" path="res://Art/Audio/BattleSceneSFX/Select.wav" id="14_pklul"]
+[ext_resource type="AudioStream" uid="uid://bg2sl7g6ka8f3" path="res://Scenes/Levels/simple-piano-melody-9834.mp3" id="14_ssngf"]
+[ext_resource type="AudioStream" uid="uid://cmj36t1kcgnrs" path="res://Art/Audio/BattleSceneSFX/AttackSFX.wav" id="15_mcbi5"]
+[ext_resource type="AudioStream" uid="uid://cobddu2k35y00" path="res://Art/Audio/BattleSceneSFX/BattleSequence.wav" id="15_vubc7"]
+[ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="16_js7fr"]
+[ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="17_3l3bd"]
+[ext_resource type="AudioStream" uid="uid://bt0i24d1ltalk" path="res://Art/Audio/BattleSceneSFX/Dialogue.wav" id="18_sqmar"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_gooki"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
@@ -527,6 +535,36 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0.4)]
 }
 
+[sub_resource type="Animation" id="Animation_kx7ux"]
+resource_name = "dialogue_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../../Dialogue:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.4), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1gopm"]
+resource_name = "dialogue_fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../../Dialogue:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_bxl1d"]
 resource_name = "fade_in"
 length = 0.4
@@ -557,36 +595,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_kx7ux"]
-resource_name = "dialogue_fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../../Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.4), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_1gopm"]
-resource_name = "dialogue_fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../../Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hr2y4"]
@@ -809,6 +817,21 @@ tracks/2/keys = {
 "values": [&"MoonKick"]
 }
 
+[sub_resource type="Animation" id="Animation_0m40i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_wo7cn"]
 resource_name = "Walk"
 length = 0.4
@@ -853,21 +876,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_0m40i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Dialogue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_8vf85"]
 resource_name = "dialogue_fade_out"
 tracks/0/type = "value"
@@ -896,6 +904,9 @@ _data = {
 "dialogue_fade_out": SubResource("Animation_8vf85")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ovcu3"]
+radius = 31.0644
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "hit_particles") groups=["Player"]]
 top_level = true
 texture_filter = 1
@@ -908,12 +919,14 @@ hit_particles = NodePath("AnimatedSprite2D/HitParticles")
 
 [node name="Dialogue" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0)
+z_index = 100
 offset_left = -62.0
 offset_top = -89.0
 offset_right = 62.0
 offset_bottom = -36.0
 
 [node name="Label" type="Label" parent="Dialogue"]
+z_index = 101
 layout_mode = 0
 offset_right = 121.0
 offset_bottom = 52.0
@@ -999,10 +1012,11 @@ position_smoothing_speed = 15.0
 script = SubResource("GDScript_3r2rw")
 
 [node name="Minion" type="Label" parent="Camera2D"]
-offset_left = -151.0
-offset_top = 45.0
-offset_right = -70.0
-offset_bottom = 58.0
+z_index = 100
+offset_left = -154.5
+offset_top = 78.0
+offset_right = -73.5
+offset_bottom = 91.0
 text = "Selected Minion: none"
 label_settings = ExtResource("28_5mc6f")
 script = ExtResource("10_lof2j")
@@ -1010,6 +1024,7 @@ script = ExtResource("10_lof2j")
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="battle_scene" type="Control" parent="Camera2D/CanvasLayer"]
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_left = -0.666664
@@ -1034,6 +1049,8 @@ grow_vertical = 2
 texture = ExtResource("11_oej5d")
 expand_mode = 1
 script = ExtResource("11_au2jd")
+battleMusic = ExtResource("14_clbvy")
+normalMusic = ExtResource("14_ssngf")
 
 [node name="Player" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
 texture_filter = 1
@@ -1193,6 +1210,29 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Music" type="Node" parent="Camera2D/CanvasLayer/battle_scene/background"]
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
+stream = ExtResource("14_pklul")
+
+[node name="ButtonSelect" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
+stream = ExtResource("14_pklul")
+
+[node name="BattleStart" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
+stream = ExtResource("15_vubc7")
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
+stream = ExtResource("15_mcbi5")
+
+[node name="Victory" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
+stream = ExtResource("16_js7fr")
+
+[node name="Defeat" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
+stream = ExtResource("17_3l3bd")
+
+[node name="Dialogue" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
+stream = ExtResource("18_sqmar")
+
 [node name="hit_particle_blood" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 200
@@ -1230,6 +1270,16 @@ grow_horizontal = 2
 label_settings = ExtResource("34_aqkdi")
 horizontal_alignment = 1
 uppercase = true
+
+[node name="Direction" type="Marker2D" parent="."]
+
+[node name="ActionableFinder" type="Area2D" parent="Direction"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ovcu3")
 
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Punch_Hitbox" to="FSM/Attacking" method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Kick_Hitbox" to="FSM/Attacking" method="_on_hitbox_body_entered"]
