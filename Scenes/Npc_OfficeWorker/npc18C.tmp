@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckp2r52hlcfxn"]
+
+[ext_resource type="Texture2D" uid="uid://6q4m1k6yoib5" path="res://Scenes/Npc_OfficeWorker/NPC_Idle1.png" id="1_8kuud"]
+[ext_resource type="Texture2D" uid="uid://bb788wo5s7dkq" path="res://Scenes/Npc_OfficeWorker/NPC_Idle2.png" id="2_mswo7"]
+[ext_resource type="Script" path="res://Scenes/Npc_OfficeWorker/NpcDialogueScript.gd" id="3_xaw3v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t56sl"]
+radius = 91.022
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6yr8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8kuud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mswo7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pxhik"]
+radius = 23.0217
+
+[node name="NPC" type="Area2D"]
+script = ExtResource("3_xaw3v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t56sl")
+
+[node name="NPC" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l6yr8")
+autoplay = "default"
+frame = 1
+frame_progress = 0.902569
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NPC"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/StaticBody2D"]
+position = Vector2(1, 5)
+shape = SubResource("CircleShape2D_pxhik")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

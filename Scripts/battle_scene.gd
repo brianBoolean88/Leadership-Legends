@@ -5,16 +5,28 @@ var tolerance : int = 0;
 var health : int = 0;
 var animatedSprite : CharacterBody2D;
 var char_name : String;
+
+@export var battleMusic : AudioStreamWAV;
+@export var normalMusic : AudioStreamMP3;
+@onready var root = get_tree().get_root()
+@onready var normal_player_audio = root.get_node("Scene_Root/Music/Normal")
+@onready var battle_player_audio = root.get_node("Scene_Root/Music/Battle")
+@onready var scoreUI = root.get_node("Scene_Root/Score_UI")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#visible = false;
+	battle_player_audio.stream_paused = true
 	event_handler.battle_started.connect(init);
 	pass # Replace with function body.
 
 func init(character_name, lvl, tolerance, health, sprite):
 	animatedSprite = sprite;
 	visible = true
-	
+	$Music/BattleStart.play()
+	normal_player_audio.stream_paused = true
+	battle_player_audio.seek(0.0)
+	battle_player_audio.stream_paused = false
 	event_handler.inBattle = true;
 	$Enemy.visible = true;
 	$AnimationPlayer.play("fade_out")
@@ -50,6 +62,7 @@ func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
 
 func _on_fight_button_pressed():
+	$Music/ButtonClick.play()
 	$Panel/Run_button.visible = false;
 	$Panel/Fight_button.visible = false;
 	
@@ -66,6 +79,7 @@ func _on_fight_button_pressed():
 
 
 func _on_return_pressed():
+	$Music/ButtonClick.play()
 	$Panel/Run_button.visible = true;
 	$Panel/Fight_button.visible = true;
 	
@@ -98,11 +112,13 @@ func dialogueText(ss) -> void:
 
 func _on_move_1_button_pressed():
 	fullInvis();
+	$Music/ButtonClick.play()
 	$Panel/Label.text = "You use %s"%[AttackData.move1Name];
 	get_parent().get_parent().get_parent().startup();
 	
 	$Player.play("Attack");
 	$Player.play_backwards("Attack");
+	$Music/Attack.play()
 	
 	health -= AttackData.dmgData[AttackData.move1Name]
 	$Health.value = health;
@@ -118,6 +134,7 @@ func _on_move_1_button_pressed():
 		$Health.value = 0;
 		$LevelIndicator.text = "";
 		$Enemy.visible = false;
+		$Music/Victory.play()
 		time_in_seconds = 2;
 	elif cont == 2:
 		$Panel/Label.text = "You lost!"
@@ -125,6 +142,7 @@ func _on_move_1_button_pressed():
 		$Health.value = 0;
 		$LevelIndicator.text = "";
 		$Enemy.visible = false;
+		$Music/Defeat.play()
 		time_in_seconds = 2;
 	
 	
@@ -141,9 +159,20 @@ func _on_move_1_button_pressed():
 		$Panel/Fight_button.visible = true;
 		visible = false;
 		event_handler.inBattle = false;
-		animatedSprite.queue_free();
+		if animatedSprite != null && animatedSprite.is_queued_for_deletion() == false:
+			animatedSprite.queue_free()
 		AttackData.minionData.append(char_name);
+		$Music/Dialogue.play()
 		dialogueText("Thanks for your consideration!");
+		
+		normal_player_audio.stream_paused = false
+		battle_player_audio.stream_paused = true
+		
+		scoreUI.currBattlesWon += 1
+		
+		if StateDialogue.main_status == "Start":
+			StateDialogue.main_status = "Q1"
+		
 		print("captured!");
 	elif cont == 2:
 		fullInvis();
@@ -152,7 +181,8 @@ func _on_move_1_button_pressed():
 		visible = false;
 		event_handler.inBattle = false;
 		print("died!");
-		get_tree().reload_current_scene()
+		
+		get_tree().change_scene_to_file("res://Scenes/lose_screen.tscn")
 	
 	
 	pass # Replace with function body.
@@ -160,11 +190,13 @@ func _on_move_1_button_pressed():
 
 func _on_move_2_button_pressed():
 	fullInvis();
+	$Music/ButtonClick.play()
 	$Panel/Label.text = "You use %s"%[AttackData.move2Name];
 	get_parent().get_parent().get_parent().startup();
 	
 	$Player.play("Attack");
 	$Player.play_backwards("Attack");
+	$Music/Attack.play()
 	
 	health -= AttackData.dmgData[AttackData.move2Name]
 	$Health.value = health;
@@ -175,16 +207,24 @@ func _on_move_2_button_pressed():
 	var time_in_seconds = 1
 	
 	if cont == 1:
-		$Panel/Label.text = "You captured it!"
+		$Panel/Label.text = "You gathered an ally!"
+		$Tolerance.text = "";
+		$Health.value = 0;
+		$LevelIndicator.text = "";
+		$Enemy.visible = false;
+		$Music/Victory.play()
 		time_in_seconds = 2;
 	elif cont == 2:
 		$Panel/Label.text = "You lost!"
+		$Tolerance.text = "";
+		$Health.value = 0;
+		$LevelIndicator.text = "";
+		$Enemy.visible = false;
+		$Music/Defeat.play()
 		time_in_seconds = 2;
 	
 	
 	await get_tree().create_timer(time_in_seconds).timeout
-
-	
 	if cont == 3:
 		fullInvis();
 		$Panel/Run_button.visible = true;
@@ -197,11 +237,17 @@ func _on_move_2_button_pressed():
 		$Panel/Fight_button.visible = true;
 		visible = false;
 		event_handler.inBattle = false;
-		animatedSprite.queue_free();
+		if animatedSprite != null && animatedSprite.is_queued_for_deletion() == false:
+			animatedSprite.queue_free()
 		AttackData.minionData.append(char_name);
+		$Music/Dialogue.play()
 		
-		#$AnimationPlayer.play("dialogue_fade_out");
-		#print("faded out");
+		normal_player_audio.stream_paused = false
+		battle_player_audio.stream_paused = true
+		
+		scoreUI.currBattlesWon += 1
+		
+		dialogueText("Thanks for your consideration!");
 		print("captured!");
 	elif cont == 2:
 		fullInvis();

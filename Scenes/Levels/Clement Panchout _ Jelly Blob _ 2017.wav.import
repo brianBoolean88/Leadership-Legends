@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bqj7qhps81rwo"
+path="res://.godot/imported/Clement Panchout _ Jelly Blob _ 2017.wav-0def1462ad3e829957925dc13c80dda0.sample"
+
+[deps]
+
+source_file="res://Scenes/Levels/Clement Panchout _ Jelly Blob _ 2017.wav"
+dest_files=["res://.godot/imported/Clement Panchout _ Jelly Blob _ 2017.wav-0def1462ad3e829957925dc13c80dda0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

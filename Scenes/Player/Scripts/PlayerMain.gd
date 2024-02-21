@@ -2,11 +2,20 @@ extends CharacterBase
 class_name PlayerMain
 
 @onready var fsm = $FSM as FiniteStateMachine
+@onready var actionable_finder: Area2D = $Direction/ActionableFinder
+
 
 const DEATH_SCREEN = preload("res://Scenes/DeathScreen.tscn")
 
-#All of our logic is either in the CharacterBase class
+#logic is either in the CharacterBase class
 #or spread out over our states in the finite-state-manager, this class is almost empty 
+
+func _unhandled_input(event) -> void:
+	if Input.is_action_just_pressed("DialogueInteract"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			return
 
 func _die():
 	super() #calls _die() on base-class CharacterBase

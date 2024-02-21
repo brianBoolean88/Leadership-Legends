@@ -1,0 +1,223 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfi7b0klj2gkl"]
+
+[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="1_cruth"]
+[ext_resource type="Script" path="res://Scenes/lose_screen.gd" id="1_qey6v"]
+[ext_resource type="AudioStream" uid="uid://ct2eg0xb2rnvp" path="res://Art/Audio/Time Flies _Clement Panchout _2016.wav" id="3_chonj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0aoa6"]
+font = ExtResource("1_cruth")
+font_size = 80
+font_color = Color(0.835294, 0.305882, 0.411765, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lfdqd"]
+font = ExtResource("1_cruth")
+font_size = 50
+font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="Theme" id="Theme_oxxpr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a85bn"]
+bg_color = Color(0.968627, 0.333333, 0.470588, 0)
+
+[sub_resource type="Animation" id="Animation_f5cea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.835294, 0.305882, 0.411765, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(157, 34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/Label2:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/Label2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 291)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background/ButtonBG:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u0lxv"]
+resource_name = "init"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.835294, 0.305882, 0.411765, 0), Color(0.835294, 0.305882, 0.411765, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(157, 34), Vector2(155, 115)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/Label2:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/Label2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(144, 291), Vector2(143, 192)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background/ButtonBG:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.5, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_owrqf"]
+_data = {
+"RESET": SubResource("Animation_f5cea"),
+"init": SubResource("Animation_u0lxv")
+}
+
+[node name="LoseScreen" type="Node2D"]
+script = ExtResource("1_qey6v")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 663.0
+offset_bottom = 418.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 34.0
+offset_right = 552.0
+offset_bottom = 98.0004
+text = "Seems like you lost."
+label_settings = SubResource("LabelSettings_0aoa6")
+
+[node name="Label2" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 291.0
+offset_right = 539.003
+offset_bottom = 355.0
+text = "Try again?"
+label_settings = SubResource("LabelSettings_lfdqd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonBG" type="Panel" parent="Background"]
+visible = false
+layout_mode = 0
+offset_left = 278.0
+offset_top = 275.0
+offset_right = 394.0
+offset_bottom = 330.0
+theme = SubResource("Theme_oxxpr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a85bn")
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="Background/ButtonBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -20.0
+offset_right = 45.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_cruth")
+theme_override_font_sizes/font_size = 40
+text = "Let's go!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_owrqf")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_chonj")
+volume_db = -14.006
+autoplay = true
+
+[connection signal="pressed" from="Background/ButtonBG/Button" to="." method="_on_button_pressed"]
