@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1t40biyxtejb"
-path="res://.godot/imported/TX Shadow Plant.png-958c81194823f3cbb0499d0044e8911d.ctex"
+uid="uid://by3qwg38tax6d"
+path="res://.godot/imported/VibrantLandscape.png-eb5a81108a8e0362c2ee15e8f8225fbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/TX Shadow Plant.png"
-dest_files=["res://.godot/imported/TX Shadow Plant.png-958c81194823f3cbb0499d0044e8911d.ctex"]
+source_file="res://Art/BattleSceneBG/VibrantLandscape.png"
+dest_files=["res://.godot/imported/VibrantLandscape.png-eb5a81108a8e0362c2ee15e8f8225fbb.ctex"]
 
 [params]
 

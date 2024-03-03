@@ -1,37 +1,83 @@
-extends Label
+extends TextureRect
+
+@export var index : int = 0; # We will automatically give the player a Shadow Strategist Minion.
+@export var minionSwapManual : bool = false; # This will be called by another script to automatically swap minions.
+@export var labelText : Label;
+@export var player : PlayerMain;
+@export var sprite : AnimatedSprite2D;
+
+@onready var root = get_tree().get_root()
+@onready var minionCloneSamples = root.get_node("Scene_Root/MinionCloneSamples");
+@onready var minionCloneFolder = root.get_node("Scene_Root/AllPlayerMinions");
+
+var loadedHeadshots = {
+	"Shadow Strategist" : load("res://Headshots/Shadow Strategist.png"),
+	"NotListed" : load("res://Headshots/NoHeadshot.png"),
+}
+
+func purifyName(allyName):
+	for i in loadedHeadshots:
+		if allyName[0] == i:
+			return
+	allyName[0] = "NotListed"
 
 
-# Called when the node enters the scene tree for the first time.
+func updateImage():
+	var selectedAlly = AttackData.minionData[index]
+	var chosenAlly = [selectedAlly]
+	purifyName(chosenAlly)
+	var preloadedImage = loadedHeadshots[chosenAlly[0]]
+	if preloadedImage:
+		self.texture = preloadedImage
+
+
 func _ready():
-	pass # Replace with function body.
+	self.visible = true
+	updateImage()
 
-
-@export var currentSelectedMinionIndex = 0;
-@export var chosenMinion : String = "Shadow";
-@export var minionSwapManual : bool = false;
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("MinionSwap") or minionSwapManual:
+	#Reading input for minion utilization
+	if Input.is_action_just_pressed("MinionSpawn") and AttackData.minionData.size() > 0: #Spawning minions next to the player
+		var chosen_minion = AttackData.minionData[index]
+		if minionCloneSamples.has_node(chosen_minion):
+			var enemy = minionCloneSamples.get_node(chosen_minion).duplicate()
+			enemy.position = player.position
+			minionCloneFolder.add_child(enemy)
+			enemy.startup(sprite.scale.x)
+			AttackData.minionData.remove_at(index)
+			minionSwapManual = true
+		else:
+			print("Selected minion sample does not exist!")	
+	
+	if Input.is_action_just_pressed("MinionRecall"): #Recalling all minions back to player's inventory
+		var minion_names = []
+		for child in minionCloneFolder.get_children():
+			child.queue_free()
+			minion_names.append(child.enemyName)
+		AttackData.minionData += minion_names
+	
+	if Input.is_action_just_pressed("MinionSwap") or minionSwapManual: #Swapping to another minion
 		minionSwapManual = false
-		if AttackData.minionData.size() == 0:
+		
+		if AttackData.minionData.size() == 0: #If the player has no more minions, then we can't swap.
 			return
 		
-		currentSelectedMinionIndex += 1;
-		if currentSelectedMinionIndex > AttackData.minionData.size()-1:
-			currentSelectedMinionIndex = 0;
-		chosenMinion = AttackData.minionData[currentSelectedMinionIndex];
-		text = "Selected Ally (%s): %s [E]" %[currentSelectedMinionIndex+1, chosenMinion];
+		index += 1;
+		if index > AttackData.minionData.size()-1: #We will loop back around to the first ally
+			index = 0;
+		
+		labelText.text = str(index+1);
+		#Change Image
+		updateImage()
+	#End of reading input
 	
-	if AttackData.minionData.size() == 0:
-		text = "Selected Ally: none";
-		chosenMinion = "none";
-		currentSelectedMinionIndex = -1;
-	elif AttackData.minionData.size() == 1:
-		currentSelectedMinionIndex = 0
-		chosenMinion = AttackData.minionData[currentSelectedMinionIndex]
-		text = "Selected Ally (%s): %s [E]" %[currentSelectedMinionIndex+1, chosenMinion];
-	elif text == "Selected Ally: none":
-		currentSelectedMinionIndex = 0
-		chosenMinion = AttackData.minionData[currentSelectedMinionIndex]
-		text = "Selected Ally (%s): %s [E]" %[currentSelectedMinionIndex+1, chosenMinion];
+	#Changing the UI based on information
+	if AttackData.minionData.size() == 0: #If the player has no allies
+		labelText.text = "";
+		index = -1;
+	else: #The player has some allies
+		index = max(0, index) #Ensure the player has at least one ally equipped
+		labelText.text = str(index+1);
+		#Change Image
+		updateImage()
+	#End of changing UI from player's information

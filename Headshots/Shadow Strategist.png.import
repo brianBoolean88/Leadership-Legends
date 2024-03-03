@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnucb5fimncwu"
-path="res://.godot/imported/TX Tileset Grass.png-c87e4202c0c1bbb21a2472e6ea1b8bd7.ctex"
+uid="uid://b1jgsdcltjrqk"
+path="res://.godot/imported/Shadow Strategist.png-0e0835dae6eec17b9df1893969c38f81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/TX Tileset Grass.png"
-dest_files=["res://.godot/imported/TX Tileset Grass.png-c87e4202c0c1bbb21a2472e6ea1b8bd7.ctex"]
+source_file="res://Headshots/Shadow Strategist.png"
+dest_files=["res://.godot/imported/Shadow Strategist.png-0e0835dae6eec17b9df1893969c38f81.ctex"]
 
 [params]
 

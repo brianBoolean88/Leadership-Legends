@@ -15,5 +15,5 @@ class_name Attack_Data
 }
 
 @export var minionData = [
-	"Shadow",
+	"Shadow Strategist",
 ]

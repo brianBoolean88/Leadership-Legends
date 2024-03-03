@@ -6,4 +6,4 @@ extends CanvasLayer
 
 func _process(_delta):
 	money_label.text = "Coins: " + "%d" % GameManager.money
-	battles_label.text = "Battles Won: %s" %[currBattlesWon]
+	battles_label.text = "Battles Won: %d" % GameManager.battles_won

@@ -1,6 +1,7 @@
-[gd_scene load_steps=99 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=101 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
+[ext_resource type="Texture2D" uid="uid://b1jgsdcltjrqk" path="res://Headshots/Shadow Strategist.png" id="10_0w7wn"]
 [ext_resource type="Script" path="res://Scripts/Minion.gd" id="10_lof2j"]
 [ext_resource type="Script" path="res://Scripts/battle_scene.gd" id="11_au2jd"]
 [ext_resource type="Texture2D" uid="uid://b7vseq6o7cflu" path="res://Art/BattleSequence/Battleground2.png" id="11_oej5d"]
@@ -242,10 +243,10 @@ func apply_shake() -> void:
 	shake_strength = RANDOM_SHAKE_STRENGTH
 	
 func _process(delta: float) -> void:
-	#Fade out the intensity over time
+	$MoneyLabel.text = \"Coins: \" + \"%d\" % GameManager.money
+	$BattlesLabel.text = \"Battles Won: %d\" % GameManager.battles_won
+	
 	shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
-	#Shake by adjusting camera.offset so we can move the camera around
-	#via its position property
 	$CanvasLayer.offset = get_random_offset()
 
 func get_random_offset() -> Vector2:
@@ -254,6 +255,10 @@ func get_random_offset() -> Vector2:
 		rand.randf_range(-shake_strength, shake_strength)
 	)
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_olvia"]
+font = ExtResource("13_lfmpa")
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hf0vr"]
 animations = [{
@@ -1011,15 +1016,30 @@ position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = SubResource("GDScript_3r2rw")
 
-[node name="Minion" type="Label" parent="Camera2D"]
-z_index = 100
-offset_left = -154.5
-offset_top = 78.0
-offset_right = -73.5
-offset_bottom = 91.0
-text = "Selected Minion: none"
-label_settings = ExtResource("28_5mc6f")
+[node name="SelectedMinion" type="TextureRect" parent="Camera2D" node_paths=PackedStringArray("labelText", "player", "sprite")]
+visible = false
+z_index = 101
+offset_left = -22.5
+offset_top = 63.0
+offset_right = 25.5
+offset_bottom = 111.0
+texture = ExtResource("10_0w7wn")
 script = ExtResource("10_lof2j")
+labelText = NodePath("Minion")
+player = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Minion" type="Label" parent="Camera2D/SelectedMinion"]
+z_index = 100
+layout_mode = 0
+offset_left = 33.5
+offset_top = 4.5
+offset_right = 40.5
+offset_bottom = 17.5
+text = "1"
+label_settings = SubResource("LabelSettings_olvia")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
@@ -1033,7 +1053,6 @@ offset_right = 426.333
 offset_bottom = 240.667
 
 [node name="background" type="TextureRect" parent="Camera2D/CanvasLayer/battle_scene"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1203,9 +1222,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -330.0
-offset_top = -203.0
+offset_top = -210.5
 offset_right = 336.0
-offset_bottom = 214.0
+offset_bottom = 213.5
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -1232,6 +1251,26 @@ stream = ExtResource("17_3l3bd")
 
 [node name="Dialogue" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
 stream = ExtResource("18_sqmar")
+
+[node name="MoneyLabel" type="Label" parent="Camera2D"]
+z_index = 1
+offset_left = 93.0
+offset_top = -70.0
+offset_right = 159.0
+offset_bottom = -44.0
+text = "Coins: 0"
+label_settings = ExtResource("34_aqkdi")
+horizontal_alignment = 2
+
+[node name="BattlesLabel" type="Label" parent="Camera2D"]
+z_index = 1
+offset_left = 44.0
+offset_top = -95.0
+offset_right = 158.0
+offset_bottom = -69.0
+text = "Battles Won: 0"
+label_settings = ExtResource("34_aqkdi")
+horizontal_alignment = 2
 
 [node name="hit_particle_blood" type="GPUParticles2D" parent="."]
 emitting = false

@@ -29,7 +29,6 @@ GameManager="*res://Scripts/Managers/GameManager.gd"
 AudioManager="*res://Scripts/Managers/AudioManager.gd"
 event_handler="*res://Scripts/event_handler.gd"
 AttackData="*res://Scripts/AttackData.gd"
-Minion="*res://Scripts/Minion.gd"
 QuestScript="*res://Scripts/QuestGeneral/QuestTracker.gd"
 StateDialogue="*res://Scripts/Dialogue/state.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
@@ -58,6 +57,8 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 folder_colors={
 "res://Art/": "red",
+"res://Dialogue/": "blue",
+"res://Headshots/": "teal",
 "res://Scenes/": "green",
 "res://Scripts/": "yellow"
 }

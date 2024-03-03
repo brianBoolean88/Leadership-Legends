@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp7864x161jsp"
-path="res://.godot/imported/TX Plant.png-d8edc262d4a41f697149137192f3c2f0.ctex"
+uid="uid://dxnorngkoc7yd"
+path="res://.godot/imported/Farm.png-4790764dddc9f678c3f6253d828c83db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/TX Plant.png"
-dest_files=["res://.godot/imported/TX Plant.png-d8edc262d4a41f697149137192f3c2f0.ctex"]
+source_file="res://Art/BattleSceneBG/Farm.png"
+dest_files=["res://.godot/imported/Farm.png-4790764dddc9f678c3f6253d828c83db.ctex"]
 
 [params]
 

@@ -11,55 +11,69 @@ var char_name : String;
 @onready var root = get_tree().get_root()
 @onready var normal_player_audio = root.get_node("Scene_Root/Music/Normal")
 @onready var battle_player_audio = root.get_node("Scene_Root/Music/Battle")
-@onready var scoreUI = root.get_node("Scene_Root/Score_UI")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	#visible = false;
-	battle_player_audio.stream_paused = true
-	event_handler.battle_started.connect(init);
-	pass # Replace with function body.
+	battle_player_audio.stream_paused = true #pause the battle music
+	event_handler.battle_started.connect(init); #connect to battle_started signal
+	
+func menu(checkpoint):
+	if checkpoint == "actionMenu":
+		$Panel/Move1_button.visible = false;
+		$Panel/Move2_button.visible = false;
+		$Panel/Return.visible = false;
+		$Panel/Fight_button.visible = true;
+		$Panel/Run_button.visible = true;
+		$Panel/Fight_button.grab_focus();
+	elif checkpoint == "moveMenu":
+		$Panel/Move1_button.visible = true;
+		$Panel/Move2_button.visible = true;
+		$Panel/Return.visible = true;
+		$Panel/Fight_button.visible = false;
+		$Panel/Run_button.visible = false;
+		$Panel/Move1_button.grab_focus();
+		
 
 func init(character_name, lvl, tolerance, health, sprite):
+	#Add constructor values
 	animatedSprite = sprite;
-	visible = true
-	$Music/BattleStart.play()
-	normal_player_audio.stream_paused = true
-	battle_player_audio.seek(0.0)
-	battle_player_audio.stream_paused = false
-	event_handler.inBattle = true;
-	$Enemy.visible = true;
-	$AnimationPlayer.play("fade_out")
-	$LevelIndicator.text = "Level %s"%[lvl];
-	$Panel/Label.text = "A level %s %s appears!" %[lvl, character_name]
 	char_name = character_name;
-	$Panel/Move1_button.text = AttackData.move1Name;
-	$Panel/Move2_button.text = AttackData.move2Name;
-	$Health.value = health;
 	self.health = health;
 	self.tolerance = tolerance;
+	
+	 #move names must be updated each new battle
+	$Panel/Move1_button.text = AttackData.move1Name;
+	$Panel/Move2_button.text = AttackData.move2Name;
+	
+	#Begin battle music
+	normal_player_audio.stream_paused = true #stop normal music
+	battle_player_audio.seek(0.0) #start battle music
+	battle_player_audio.stream_paused = false
+	
+	#Make battle UI visible
+	event_handler.inBattle = true;
+	$Enemy.visible = true;
+	visible = true
+	$AnimationPlayer.play("fade_out")
+	
+	#display text
+	$LevelIndicator.text = "Level %s"%[lvl];
 	$Tolerance.text = "Tolerance: %s turns." %[tolerance];
+	$Health.value = health;
+	$Panel/Label.text = "A level %s %s appears!" %[lvl, character_name]
+	
+	#disable all actions for 2 seconds
 	$Panel/Move1_button.disabled = true;
 	$Panel/Move2_button.disabled = true;
-		
-	var time_in_seconds = 2
-	await get_tree().create_timer(time_in_seconds).timeout
+	await get_tree().create_timer(2).timeout
 	
+	#ask for an action
 	$Panel/Label.text = "What will you do?";
-	$Panel/Move1_button.disabled = false;
-	$Panel/Move2_button.disabled = false;
-	$Panel/Fight_button.grab_focus();
-	
-	pass
-
+	menu("actionMenu")
 
 func _on_run_button_pressed():
+	#TODO: make a chance to make the run successful
 	visible = false;
 	event_handler.inBattle = false;
-	pass # Replace with function body.
-
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
 
 func _on_fight_button_pressed():
 	$Music/ButtonClick.play()
@@ -168,7 +182,7 @@ func _on_move_1_button_pressed():
 		normal_player_audio.stream_paused = false
 		battle_player_audio.stream_paused = true
 		
-		scoreUI.currBattlesWon += 1
+		GameManager.battles_won += 1
 		
 		if StateDialogue.main_status == "Start":
 			StateDialogue.main_status = "Q1"
@@ -245,7 +259,7 @@ func _on_move_2_button_pressed():
 		normal_player_audio.stream_paused = false
 		battle_player_audio.stream_paused = true
 		
-		scoreUI.currBattlesWon += 1
+		GameManager.battles_won += 1
 		
 		dialogueText("Thanks for your consideration!");
 		print("captured!");

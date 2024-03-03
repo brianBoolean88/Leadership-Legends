@@ -6,7 +6,6 @@ var dir : bool;
 @export var enemyName = "Shadow";
 
 @onready var root = get_tree().get_root()
-@onready var scoreUI = root.get_node("Scene_Root/Score_UI")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,7 +38,7 @@ func _on_area_2d_body_shape_entered(body_rid, body, body_shape_index, local_shap
 				StateDialogue.main_status = "Q2"
 			print("obtained new enemy!")
 			
-			scoreUI.currBattlesWon += 1
+			GameManager.battles_won += 1
 			
 		else:
 			print("Nope, failed.");

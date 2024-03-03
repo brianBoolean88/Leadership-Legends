@@ -1,6 +1,7 @@
 extends Node
 
 var money = 0
+var battles_won = 0
 var level : String = "MainFloor.tscn"
 
 #NOTE This class is our game manager and handles the players money and loading scenes

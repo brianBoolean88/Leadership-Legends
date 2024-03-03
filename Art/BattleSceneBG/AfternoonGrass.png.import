@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1jgsdcltjrqk"
-path="res://.godot/imported/Enemy01.png-bc171185661242c1c12c236777a2b526.ctex"
+uid="uid://bq5lov00hiexe"
+path="res://.godot/imported/AfternoonGrass.png-60d85375aa01c860915be40b3bf28936.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Enemy/Sprites/Enemy01.png"
-dest_files=["res://.godot/imported/Enemy01.png-bc171185661242c1c12c236777a2b526.ctex"]
+source_file="res://Art/BattleSceneBG/AfternoonGrass.png"
+dest_files=["res://.godot/imported/AfternoonGrass.png-60d85375aa01c860915be40b3bf28936.ctex"]
 
 [params]
 
