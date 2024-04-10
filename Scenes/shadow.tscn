@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://eew3u75siddd"]
+[gd_scene load_steps=28 format=3 uid="uid://eew3u75siddd"]
 
 [ext_resource type="Script" path="res://Scripts/Shadow.gd" id="1_d7yem"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_73pcn"]
@@ -52,9 +52,6 @@ load_path = "res://.godot/imported/Enemy21.png-c9de5cf0714289501930723e7f564ec1.
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ijf8h"]
 load_path = "res://.godot/imported/Enemy22.png-cadf75d5db496547c3ee20ff40de3e1c.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enu3l"]
-load_path = "res://.godot/imported/Enemy01.png-bc171185661242c1c12c236777a2b526.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tx3fq"]
 load_path = "res://.godot/imported/Enemy02.png-85b4a0c5724e8f051ff07efbbb0340ac.ctex"
@@ -127,9 +124,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_enu3l")
-}, {
-"duration": 1.0,
 "texture": SubResource("CompressedTexture2D_tx3fq")
 }, {
 "duration": 1.0,
@@ -190,7 +184,7 @@ shape = SubResource("CapsuleShape2D_rfj44")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_di2iw")
-animation = &"Attack"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite2D"]

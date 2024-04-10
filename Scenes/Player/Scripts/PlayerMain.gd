@@ -30,3 +30,12 @@ func dialogueText(ss) -> void:
 	$Dialogue/Label.text = ss
 	await get_tree().create_timer(3).timeout
 	$AnimationPlayer.play("dialogue_fade_out");
+	
+var water_timer = 10
+
+func _physics_process(delta):
+	var tile_map = get_node("/root/Scene_Root/Scene/TileMap");
+	
+
+func decrease_timer_action():
+	pass

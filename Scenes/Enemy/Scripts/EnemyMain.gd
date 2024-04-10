@@ -7,10 +7,10 @@ var player_in_range = false
 @export var enemyLvl : int = 1;
 @export var tolerance : int = 3;
 @export var healthMain : int = 100;
-@export var levelLabel : Label;
+@onready var levelLabel = $Label
 
 func _ready():
-	levelLabel.text = "Level %s" %[enemyLvl]
+	levelLabel.text = "Level %s\nHealth: %s" %[enemyLvl, healthMain]
 
 func _on_collider_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body.is_in_group("Player"):

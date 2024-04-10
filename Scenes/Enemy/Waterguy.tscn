@@ -1,0 +1,305 @@
+[gd_scene load_steps=28 format=3 uid="uid://0ifs2fq36yy7"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_r8gcm"]
+[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_cjr56"]
+[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/Dude_Monster_Idle_4.png" id="2_g3vlb"]
+[ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="4_ch2wq"]
+[ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="5_iwlr4"]
+[ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="6_j7q1n"]
+[ext_resource type="Texture2D" uid="uid://bw36ig60cpuaq" path="res://Art/Sprites/Square.png" id="7_fk33l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_42fkw"]
+line_spacing = -5.0
+font = ExtResource("2_cjr56")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er0iy"]
+atlas = ExtResource("2_g3vlb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysmeo"]
+atlas = ExtResource("2_g3vlb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqo1p"]
+atlas = ExtResource("2_g3vlb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ytjc"]
+atlas = ExtResource("2_g3vlb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ga6xj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er0iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysmeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqo1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ytjc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqf5a"]
+size = Vector2(27, 36.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e04wa"]
+cull_mode = 2
+polygon = PackedVector2Array(3, -8, 6.5, -4, 7.5, 3.5, 4.5, 10, -1.5, 10.5, -6, 4, -4.5, -6, -1, -8.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6b3o"]
+bg_color = Color(0.0352941, 0.0156863, 0.00784314, 0.427451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w435t"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_aelqt"]
+_data = [Vector2(0, 1), 0.0, 0.0278013, 0, 0, Vector2(0.331081, 0.373626), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.11722, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dwv2q"]
+curve = SubResource("Curve_aelqt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6o6nb"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.5
+angle_min = -90.0
+angle_max = 90.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 98, 0)
+color = Color(0, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_dwv2q")
+
+[sub_resource type="Animation" id="Animation_pya5h"]
+resource_name = "Attack"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.65, 0.8, 1, 1.1, 1.25, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_vh18e"]
+resource_name = "Chasing"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_1r6mx"]
+resource_name = "Death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_lw05y"]
+resource_name = "Idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1jlq"]
+_data = {
+"Attack": SubResource("Animation_pya5h"),
+"Chasing": SubResource("Animation_vh18e"),
+"Death": SubResource("Animation_1r6mx"),
+"Idle": SubResource("Animation_lw05y")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nmcst"]
+radius = 11.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_de2nl"]
+
+[node name="WaterGuy" type="CharacterBody2D" groups=["Enemy"]]
+texture_filter = 1
+position = Vector2(279, 202)
+scale = Vector2(2, 2)
+script = ExtResource("1_r8gcm")
+health = 75
+flipped_horizontal = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.5
+offset_top = -38.0
+offset_right = 20.5
+offset_bottom = -24.0
+text = "Level 1
+Health: 0"
+label_settings = SubResource("LabelSettings_42fkw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ga6xj")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.348846
+
+[node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
+position = Vector2(-11.5, 0.75)
+shape = SubResource("RectangleShape2D_cqf5a")
+disabled = true
+
+[node name="HitParticles" parent="AnimatedSprite2D" instance=ExtResource("4_ch2wq")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite2D"]
+occluder = SubResource("OccluderPolygon2D_e04wa")
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("5_iwlr4")
+
+[node name="enemy_idle_state" type="Node" parent="FSM"]
+script = ExtResource("6_j7q1n")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -14.0
+offset_top = -9.5
+offset_right = -11.0
+offset_bottom = 17.5
+rotation = -1.57079
+theme_override_styles/background = SubResource("StyleBoxFlat_x6b3o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_w435t")
+step = 1.0
+value = 51.0
+fill_mode = 2
+show_percentage = false
+
+[node name="HitParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_6o6nb")
+texture = ExtResource("7_fk33l")
+one_shot = true
+explosiveness = 0.9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i1jlq")
+}
+autoplay = "Idle"
+
+[node name="Collider" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("CapsuleShape2D_nmcst")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_de2nl")
+
+[connection signal="body_shape_entered" from="Collider" to="." method="_on_collider_body_shape_entered"]

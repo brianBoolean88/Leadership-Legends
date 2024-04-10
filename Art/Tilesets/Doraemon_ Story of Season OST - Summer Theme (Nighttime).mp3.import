@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1m4cp3ew6f5u"
+path="res://.godot/imported/Doraemon_ Story of Season OST - Summer Theme (Nighttime).mp3-146e836b889b80115098e23efe5a1ae4.mp3str"
+
+[deps]
+
+source_file="res://Art/Tilesets/Doraemon_ Story of Season OST - Summer Theme (Nighttime).mp3"
+dest_files=["res://.godot/imported/Doraemon_ Story of Season OST - Summer Theme (Nighttime).mp3-146e836b889b80115098e23efe5a1ae4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

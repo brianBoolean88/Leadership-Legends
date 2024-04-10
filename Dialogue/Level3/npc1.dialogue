@@ -1,0 +1,9 @@
+~ start
+
+You: testing!!
+Frederick: Hey...
+if GameManager.ione == false:
+	set GameManager.interactedNPCS = GameManager.interactedNPCS + 1
+	set GameManager.ione = true
+
+=> END

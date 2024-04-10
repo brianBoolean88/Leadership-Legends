@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddhkb3u68e3p3"]
+
+[ext_resource type="Script" path="res://Scenes/question_tab.gd" id="1_cubww"]
+[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="1_q4leu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7xa6r"]
+font = ExtResource("1_q4leu")
+font_size = 50
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cdyln"]
+font = ExtResource("1_q4leu")
+font_size = 25
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="QuestionTab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cubww")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 650.0
+offset_bottom = 402.0
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="MoveLabel" type="Label" parent="BG"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 4.0
+offset_right = 443.0
+offset_bottom = 45.0
+text = "USING MOVE: PATHOS"
+label_settings = SubResource("LabelSettings_7xa6r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestionLabel" type="Label" parent="BG"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 44.0
+offset_right = 586.0
+offset_bottom = 85.0
+text = "QUESTION: WHAT DATE WAS IT RELEASED?"
+label_settings = SubResource("LabelSettings_cdyln")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="OptionA" type="Button" parent="BG"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 136.0
+offset_right = 532.0
+offset_bottom = 180.0
+theme_override_fonts/font = ExtResource("1_q4leu")
+theme_override_font_sizes/font_size = 20
+text = "OPTION A: Sasdfasdfssadfsadfdsf"
+text_overrun_behavior = 3
+
+[node name="OptionB" type="Button" parent="BG"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 189.0
+offset_right = 532.0
+offset_bottom = 233.0
+theme_override_fonts/font = ExtResource("1_q4leu")
+theme_override_font_sizes/font_size = 20
+text = "OPTION B: Sasdfasdfssadfsadfdsf"
+text_overrun_behavior = 3
+
+[node name="OptionC" type="Button" parent="BG"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 243.0
+offset_right = 532.0
+offset_bottom = 287.0
+theme_override_fonts/font = ExtResource("1_q4leu")
+theme_override_font_sizes/font_size = 20
+text = "OPTION C: Sasdfasdfssadfsadfdsf"
+text_overrun_behavior = 3
+
+[node name="OptionD" type="Button" parent="BG"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 297.0
+offset_right = 532.0
+offset_bottom = 341.0
+theme_override_fonts/font = ExtResource("1_q4leu")
+theme_override_font_sizes/font_size = 20
+text = "OPTION D: Sasdfasdfssadfsadfdsf"
+text_overrun_behavior = 3
+
+[connection signal="pressed" from="BG/OptionA" to="." method="_on_option_a_pressed"]
+[connection signal="pressed" from="BG/OptionB" to="." method="_on_option_b_pressed"]
+[connection signal="pressed" from="BG/OptionC" to="." method="_on_option_c_pressed"]
+[connection signal="pressed" from="BG/OptionD" to="." method="_on_option_d_pressed"]

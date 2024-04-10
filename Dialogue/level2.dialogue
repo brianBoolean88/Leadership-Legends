@@ -1,0 +1,20 @@
+~ start
+
+You: How am I supposed to cross this river??
+Guide: Here, you'll be practicing your ability to use your allies.
+- What do you mean?
+	Guide: You see, your allies don't get affected by water
+	Guide: You have a timer when crossing the river.
+	Guide: Go near an ally to reset your timer.
+	Guide: Spawn your allies wisely!
+- Why am I crossing this river?
+	Guide: We're going to find member #1.
+	Guide: He is within the cave beyond here.
+	Guide: Watch out for enemies...
+- Help, I don't have enough minions!
+	Guide: Well, there's a FBLAquatic Spirit right there.
+	Guide: Catching him will give you a level 3 spirit.
+	Guide: By the way, see what I did there? Teehee...
+
+
+=> END

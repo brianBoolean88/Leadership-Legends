@@ -39,6 +39,7 @@ signal finished_typing()
 ## The amount of time to pause when exposing a character present in pause_at_characters.
 @export var seconds_per_pause_step: float = 0.3
 
+var soundObjects = []
 
 ## The current line of dialogue.
 var dialogue_line:
@@ -62,6 +63,14 @@ var _last_wait_index: int = -1
 var _last_mutation_index: int = -1
 var _waiting_seconds: float = 0
 
+func _ready():
+	for child in self.get_children():
+		soundObjects.append(child)
+
+func playRandomSound():
+	var randomIndex = randi() % soundObjects.size()
+	var randomSound = soundObjects[randomIndex]
+	randomSound.play()
 
 func _process(delta: float) -> void:
 	if self.is_typing:
@@ -96,6 +105,8 @@ func type_out() -> void:
 	_waiting_seconds = 0
 	_last_wait_index = -1
 	_last_mutation_index = -1
+	
+	playRandomSound()
 
 	self.is_typing = true
 

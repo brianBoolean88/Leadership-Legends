@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=41 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_aaoao"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bw36ig60cpuaq" path="res://Art/Sprites/Square.png" id="27_0oljh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_42fkw"]
+line_spacing = -5.0
 font = ExtResource("2_aaoao")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6cp0"]
@@ -48,9 +49,6 @@ load_path = "res://.godot/imported/Enemy21.png-c9de5cf0714289501930723e7f564ec1.
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ijf8h"]
 load_path = "res://.godot/imported/Enemy22.png-cadf75d5db496547c3ee20ff40de3e1c.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enu3l"]
-load_path = "res://.godot/imported/Enemy01.png-bc171185661242c1c12c236777a2b526.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tx3fq"]
 load_path = "res://.godot/imported/Enemy02.png-85b4a0c5724e8f051ff07efbbb0340ac.ctex"
@@ -122,9 +120,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_enu3l")
-}, {
 "duration": 1.0,
 "texture": SubResource("CompressedTexture2D_tx3fq")
 }, {
@@ -324,11 +319,11 @@ height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_de2nl"]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("levelLabel", "sprite", "healthbar", "hit_particles") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Enemy"]]
 texture_filter = 1
+position = Vector2(279, 202)
 scale = Vector2(2, 2)
 script = ExtResource("1_db41y")
-levelLabel = NodePath("Label")
 sprite = NodePath("AnimatedSprite2D")
 healthbar = NodePath("ProgressBar")
 health = 75
@@ -337,18 +332,21 @@ hit_particles = NodePath("HitParticles")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -16.5
-offset_top = -30.0
+offset_top = -38.0
 offset_right = 20.5
-offset_bottom = -16.0
-text = "Level 1"
+offset_bottom = -24.0
+text = "Level 1
+Health: 0"
 label_settings = SubResource("LabelSettings_42fkw")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"Attack"
+animation = &"Idle"
 autoplay = "Idle"
+frame_progress = 0.559725
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
 

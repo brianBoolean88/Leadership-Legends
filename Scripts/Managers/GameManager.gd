@@ -4,8 +4,17 @@ var money = 0
 var battles_won = 0
 var level : String = "MainFloor.tscn"
 
-#NOTE This class is our game manager and handles the players money and loading scenes
-#These functions can be called globally from anywhere
+var interactedNPCS = 0
+var ione = false
+var itwo = false
+var ithree = false
+var ifour = false
+var ifive = false
+
+var inventory = []
+
+var boughtShirt = false
+var boughtPants = false
 
 func reset_money():
 	money = 0

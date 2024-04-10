@@ -12,6 +12,7 @@ extends TextureRect
 
 var loadedHeadshots = {
 	"Shadow Strategist" : load("res://Headshots/Shadow Strategist.png"),
+	"FBLAqua Spirit" : load("res://Headshots/FBLAqua Spirit.png"),
 	"NotListed" : load("res://Headshots/NoHeadshot.png"),
 }
 
@@ -30,10 +31,25 @@ func updateImage():
 	if preloadedImage:
 		self.texture = preloadedImage
 
+var ray_length = 10000
+var minions_node_path = "Scene_Root/AllPlayerMinions"
 
 func _ready():
 	self.visible = true
 	updateImage()
+
+func get_input_direction():
+	# Get the input direction based on WASD keys
+	var input_vector = Vector2.ZERO
+	if Input.is_action_pressed("MoveRight"):
+		input_vector.x += 1
+	if Input.is_action_pressed("MoveLeft"):
+		input_vector.x -= 1
+	if Input.is_action_pressed("MoveUp"):
+		input_vector.y += 1
+	if Input.is_action_pressed("MoveDown"):
+		input_vector.y -= 1
+	return input_vector.normalized()
 
 func _process(delta):
 	#Reading input for minion utilization
@@ -69,6 +85,25 @@ func _process(delta):
 		labelText.text = str(index+1);
 		#Change Image
 		updateImage()
+	
+	if Input.is_action_just_pressed("MinionJump"):
+		var player_position = player.global_transform.origin
+		var ray_end = player_position + get_input_direction() * ray_length
+		var space_state = get_world_2d().direct_space_state
+		var params = PhysicsRayQueryParameters2D.new()
+		params.from = player_position
+		params.to = ray_end
+		var rid_array : Array[RID]
+		rid_array.append(player.get_rid())
+		params.exclude = rid_array
+		params.collision_mask = 1
+		var collision = space_state.intersect_ray(params)
+		
+		if collision and collision.collider is StaticBody2D:
+			var parent_node = collision.collider.get_parent()
+			if (parent_node.name == "AllPlayerMinions"):
+				var minion_position = collision.position
+				player.global_transform.origin = minion_position
 	#End of reading input
 	
 	#Changing the UI based on information

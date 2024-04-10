@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://yhi3hx0ypx6i"]
+
+[ext_resource type="Script" path="res://Scenes/inv_ui_slot.gd" id="1_bglgj"]
+[ext_resource type="Texture2D" uid="uid://fwr3kp1usjh6" path="res://Art/Icons/inventory-slot.png" id="1_eqacf"]
+[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="3_u4y73"]
+[ext_resource type="AudioStream" uid="uid://cl12erkx5qxqm" path="res://Art/Audio/Effects/fail.wav" id="4_8ywu6"]
+[ext_resource type="AudioStream" uid="uid://b3y12rhxq8ik8" path="res://Art/Audio/Effects/eat.wav" id="4_k2k1h"]
+[ext_resource type="AudioStream" uid="uid://crw3kdf0wqjro" path="res://Art/Audio/Effects/item_equip.mp3" id="5_qxitr"]
+
+[node name="inv_UI_slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(40, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_bglgj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_eqacf")
+centered = false
+
+[node name="item_display" type="Sprite2D" parent="."]
+position = Vector2(20, 19)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 38.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("3_u4y73")
+text = "USE"
+
+[node name="Eating" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_k2k1h")
+volume_db = -7.13
+
+[node name="Wearing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qxitr")
+
+[node name="Fail" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8ywu6")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

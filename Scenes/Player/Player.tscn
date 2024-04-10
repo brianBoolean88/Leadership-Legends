@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=107 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
 [ext_resource type="Texture2D" uid="uid://b1jgsdcltjrqk" path="res://Headshots/Shadow Strategist.png" id="10_0w7wn"]
@@ -12,10 +12,12 @@
 [ext_resource type="AudioStream" uid="uid://cmj36t1kcgnrs" path="res://Art/Audio/BattleSceneSFX/AttackSFX.wav" id="15_mcbi5"]
 [ext_resource type="AudioStream" uid="uid://cobddu2k35y00" path="res://Art/Audio/BattleSceneSFX/BattleSequence.wav" id="15_vubc7"]
 [ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="16_js7fr"]
+[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/Dude_Monster_Idle_4.png" id="16_jtuuo"]
 [ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="17_3l3bd"]
 [ext_resource type="AudioStream" uid="uid://bt0i24d1ltalk" path="res://Art/Audio/BattleSceneSFX/Dialogue.wav" id="18_sqmar"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_gooki"]
+[ext_resource type="PackedScene" uid="uid://ddhkb3u68e3p3" path="res://Scenes/question_tab.tscn" id="23_2j0v6"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="27_on0bn"]
 [ext_resource type="LabelSettings" uid="uid://da8inon5cmt2r" path="res://Art/Fonts/pixelized_label.tres" id="28_5mc6f"]
@@ -398,9 +400,6 @@ load_path = "res://.godot/imported/Enemy21.png-c9de5cf0714289501930723e7f564ec1.
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ijf8h"]
 load_path = "res://.godot/imported/Enemy22.png-cadf75d5db496547c3ee20ff40de3e1c.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enu3l"]
-load_path = "res://.godot/imported/Enemy01.png-bc171185661242c1c12c236777a2b526.ctex"
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tx3fq"]
 load_path = "res://.godot/imported/Enemy02.png-85b4a0c5724e8f051ff07efbbb0340ac.ctex"
 
@@ -472,9 +471,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_enu3l")
-}, {
-"duration": 1.0,
 "texture": SubResource("CompressedTexture2D_tx3fq")
 }, {
 "duration": 1.0,
@@ -499,6 +495,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfbo8"]
+atlas = ExtResource("16_jtuuo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7gl1"]
+atlas = ExtResource("16_jtuuo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eosub"]
+atlas = ExtResource("16_jtuuo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkqg6"]
+atlas = ExtResource("16_jtuuo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rt0dk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfbo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7gl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eosub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkqg6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub6e5"]
 bg_color = Color(0.0352941, 0.0156863, 0.00784314, 0.427451)
 
@@ -507,7 +539,7 @@ bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ns0l0"]
 font = ExtResource("13_lfmpa")
-font_size = 49
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_of8i5"]
 font = ExtResource("13_lfmpa")
@@ -1053,6 +1085,7 @@ offset_right = 426.333
 offset_bottom = 240.667
 
 [node name="background" type="TextureRect" parent="Camera2D/CanvasLayer/battle_scene"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1078,12 +1111,23 @@ scale = Vector2(3.02604, 3.19792)
 sprite_frames = SubResource("SpriteFrames_hf0vr")
 animation = &"Attack"
 
-[node name="Enemy" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
+[node name="Shadow Strategist" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
+visible = false
 position = Vector2(527.667, 235.333)
 scale = Vector2(3.70833, 3.29167)
 sprite_frames = SubResource("SpriteFrames_o41dt")
 animation = &"Idle"
 autoplay = "Idle"
+
+[node name="FBLAqua Spirit" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
+visible = false
+position = Vector2(527.667, 235.333)
+scale = Vector2(3.70833, 3.29167)
+sprite_frames = SubResource("SpriteFrames_rt0dk")
+autoplay = "default"
+frame = 1
+frame_progress = 0.789743
+flip_h = true
 
 [node name="Background" type="Panel" parent="Camera2D/CanvasLayer/battle_scene/background"]
 layout_mode = 0
@@ -1118,7 +1162,7 @@ text = "Tolerance: 3 turns"
 label_settings = SubResource("LabelSettings_ns0l0")
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="LevelIndicator" type="Label" parent="Camera2D/CanvasLayer/battle_scene/background"]
 layout_mode = 0
@@ -1251,6 +1295,10 @@ stream = ExtResource("17_3l3bd")
 
 [node name="Dialogue" type="AudioStreamPlayer2D" parent="Camera2D/CanvasLayer/battle_scene/background/Music"]
 stream = ExtResource("18_sqmar")
+
+[node name="QuestionTab" parent="Camera2D/CanvasLayer/battle_scene/background" instance=ExtResource("23_2j0v6")]
+visible = false
+layout_mode = 1
 
 [node name="MoneyLabel" type="Label" parent="Camera2D"]
 z_index = 1

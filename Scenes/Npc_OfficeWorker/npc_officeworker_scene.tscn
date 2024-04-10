@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckp2r52hlcfxn"]
+[gd_scene load_steps=8 format=3 uid="uid://ckp2r52hlcfxn"]
 
 [ext_resource type="Texture2D" uid="uid://6q4m1k6yoib5" path="res://Scenes/Npc_OfficeWorker/NPC_Idle1.png" id="1_8kuud"]
 [ext_resource type="Texture2D" uid="uid://bb788wo5s7dkq" path="res://Scenes/Npc_OfficeWorker/NPC_Idle2.png" id="2_mswo7"]
 [ext_resource type="Script" path="res://Scenes/Npc_OfficeWorker/NpcDialogueScript.gd" id="3_xaw3v"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="4_5cmrm"]
-[ext_resource type="PackedScene" uid="uid://c5r4iaw4g3u2n" path="res://Scenes/actionable.tscn" id="5_0nc7s"]
-[ext_resource type="Resource" uid="uid://cfpl53b0ilae8" path="res://Dialogue/main.dialogue" id="6_5ilc0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l6yr8"]
 animations = [{
@@ -24,9 +22,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pxhik"]
 radius = 13.0384
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x8anh"]
-radius = 50.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_fhfyr"]
 font = ExtResource("4_5cmrm")
 
@@ -36,20 +31,13 @@ script = ExtResource("3_xaw3v")
 [node name="NPC" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l6yr8")
 autoplay = "default"
-frame = 1
-frame_progress = 0.902569
+frame_progress = 0.489959
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NPC"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/StaticBody2D"]
 position = Vector2(1, 5)
 shape = SubResource("CircleShape2D_pxhik")
-
-[node name="Actionable" parent="." instance=ExtResource("5_0nc7s")]
-dialogue_resource = ExtResource("6_5ilc0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
-shape = SubResource("CircleShape2D_x8anh")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -24.0
