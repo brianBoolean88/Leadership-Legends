@@ -1,0 +1,15 @@
+~ start
+
+You: Hey! Have you heard about FBLA?
+Ellie: Hi, no, sorry, I'm not interested.
+You: Oh ok, that's fine.
+Ellie: I used to be in it. I remember learning leadership skills, like speaking out to a group of students.
+You: Yes! Would you like to do it again?
+Ellie: No....I don't want to learn about the hard stuff...
+Ellie: Like ROI (Return on Investment)...
+
+if GameManager.itwo == false:
+	set GameManager.interactedNPCS = GameManager.interactedNPCS + 1
+	set GameManager.itwo = true
+
+=> END

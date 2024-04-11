@@ -16,6 +16,8 @@ func _unhandled_input(event) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
+	elif Input.is_action_just_pressed("quitCommand"):
+		get_tree().quit()
 
 func _die():
 	super() #calls _die() on base-class CharacterBase
@@ -32,9 +34,6 @@ func dialogueText(ss) -> void:
 	$AnimationPlayer.play("dialogue_fade_out");
 	
 var water_timer = 10
-
-func _physics_process(delta):
-	var tile_map = get_node("/root/Scene_Root/Scene/TileMap");
 	
 
 func decrease_timer_action():

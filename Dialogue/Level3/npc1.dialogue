@@ -1,7 +1,14 @@
 ~ start
 
-You: testing!!
-Frederick: Hey...
+You: Hey! How are you doing?
+Frederick: Hey...just juggling some balls right now.
+You: Have you heard about FBLA?
+Frederick: Hey, you know I heard there was an old FBLA member beyond this village.
+- Who is he?
+	Frederick: His name is Douglass. He's been quite outraged waiting to find another FBLA member.
+- Is he that popular?
+	Frederick: Yeah. Nowadays, Darkcorp Enterprises has taken over, so it's hard to find a stern FBLA member.
+Frederick: Ah, so you're in FBLA? Maybe you can go talk to him. I'm a loyal Darkness Corp member!
 if GameManager.ione == false:
 	set GameManager.interactedNPCS = GameManager.interactedNPCS + 1
 	set GameManager.ione = true

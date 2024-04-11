@@ -1,0 +1,544 @@
+[gd_scene load_steps=43 format=3 uid="uid://cwceug6bl1wi5"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/menu.gd" id="1_7cc37"]
+[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_5i4ay"]
+[ext_resource type="Texture2D" uid="uid://bxvtpkw4v6grt" path="res://Art/Sprites/SquareIcon.png" id="3_rapyd"]
+[ext_resource type="Script" path="res://Scripts/Music.gd" id="4_s8bt4"]
+[ext_resource type="AudioStream" uid="uid://cuo0ag86spqhw" path="res://Art/Audio/UNIVERSFIELD_-_Space_Journey_Through_Nebulae_and_Galaxy.mp3" id="5_3afcn"]
+[ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="6_redid"]
+[ext_resource type="AudioStream" uid="uid://cseuohao12amf" path="res://Art/Audio/BattleSceneSFX/Select.wav" id="7_viq0h"]
+[ext_resource type="AudioStream" uid="uid://cmj36t1kcgnrs" path="res://Art/Audio/BattleSceneSFX/AttackSFX.wav" id="8_ofho2"]
+[ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="9_i7qh8"]
+[ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="10_s8sul"]
+[ext_resource type="AudioStream" uid="uid://bt0i24d1ltalk" path="res://Art/Audio/BattleSceneSFX/Dialogue.wav" id="11_2m7jf"]
+[ext_resource type="Texture2D" uid="uid://b2dkr1edwimi" path="res://Art/Sprites/Pixelate title.png" id="12_htfcl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oyw1v"]
+font = ExtResource("2_5i4ay")
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jrv37"]
+font = ExtResource("2_5i4ay")
+font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v1g5c"]
+
+[sub_resource type="Animation" id="Animation_3bv1o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music/Normal:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-12.842]
+}
+
+[sub_resource type="Animation" id="Animation_p0bji"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music/Normal:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -12.842]
+}
+
+[sub_resource type="Animation" id="Animation_23jw5"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music/Normal:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-12.842, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtxbs"]
+_data = {
+"RESET": SubResource("Animation_3bv1o"),
+"fade_in": SubResource("Animation_p0bji"),
+"fade_out": SubResource("Animation_23jw5")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fg2lj"]
+load_path = "res://.godot/imported/Player_attack1.png-34c5ddb09f671a1509427ad274bbbc84.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cfcvs"]
+load_path = "res://.godot/imported/Player_attack2.png-94b5109085744e59248a62929175c272.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_whwty"]
+load_path = "res://.godot/imported/Player_attack3.png-049f1643405c4ba11df10413f4cebd5e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o0bqh"]
+load_path = "res://.godot/imported/Player_attack4.png-d8bcd731cfa744667a262c9a5a9863c1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fncth"]
+load_path = "res://.godot/imported/Player_attack5.png-1fe1126ace88b9968a7a8c59f3d6d76f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rp2ta"]
+load_path = "res://.godot/imported/Player_attack6.png-106c90f3897e4153ae98e0b55e067708.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efp7h"]
+load_path = "res://.godot/imported/Player_Dash1.png-a2faf66980c1e8ecb4f0b8b952525382.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k24kq"]
+load_path = "res://.godot/imported/Player_Dash2.png-ac6ae547ae588112259f9900632957d0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3qcwl"]
+load_path = "res://.godot/imported/Player_Dash3.png-587a88fc49c4e9cf52b0cffe34398fe5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vbu5t"]
+load_path = "res://.godot/imported/Player_Dash4.png-d570a76b98975f47f77768d860574a61.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6uyfr"]
+load_path = "res://.godot/imported/Player_Death1.png-130b2745ae406a47c68e062c1aedf067.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ybgl"]
+load_path = "res://.godot/imported/Player_Death2.png-971f0c58713299353657988aaa902ddd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01mst"]
+load_path = "res://.godot/imported/Player_Death3.png-d05a40cc8ae884cf4c76c805bf019ca4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1jv4u"]
+load_path = "res://.godot/imported/Player_Death4.png-507b0ab30ef179b86df957e0c5a0064f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yaeps"]
+load_path = "res://.godot/imported/Player_Idle1.png-75688ef2036fcb7a48a4a1f6fe44c46f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ccjfe"]
+load_path = "res://.godot/imported/Player_Idle2.png-0731cd20697fa292e7f80b4389adfa56.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bwfu8"]
+load_path = "res://.godot/imported/Player_Idle3.png-01c7516e3b8be9d8d20f758dcb076a98.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mx7ea"]
+load_path = "res://.godot/imported/Player_MoonKick1.png-7c97a54a23737a21149568c3a28cb257.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqxic"]
+load_path = "res://.godot/imported/Player_MoonKick2.png-32e4c4909de775ca4787591cc0209b4a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_opl2q"]
+load_path = "res://.godot/imported/Player_MoonKick3.png-96232eaf78fa76e783405f2f2c6b231c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jonoq"]
+load_path = "res://.godot/imported/Player_walk1.png-d970c3964b83a4394c8975e2b7f99ddd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c68m6"]
+load_path = "res://.godot/imported/Player_walk2.png-618de9b0e643fa6b3b97e5e783c8baa1.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tasba"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("CompressedTexture2D_fg2lj")
+}, {
+"duration": 0.6,
+"texture": SubResource("CompressedTexture2D_cfcvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_whwty")
+}, {
+"duration": 1.25,
+"texture": SubResource("CompressedTexture2D_o0bqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_fncth")
+}, {
+"duration": 0.8,
+"texture": SubResource("CompressedTexture2D_rp2ta")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 0.25,
+"texture": SubResource("CompressedTexture2D_efp7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_k24kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_3qcwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_vbu5t")
+}],
+"loop": false,
+"name": &"Dash",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_6uyfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_0ybgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_01mst")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1jv4u")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_yaeps")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ccjfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_bwfu8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_mx7ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_qqxic")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_opl2q")
+}],
+"loop": false,
+"name": &"MoonKick",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_jonoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_c68m6")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7cc37")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 2
+offset_right = 654.0
+offset_bottom = 403.0
+color = Color(0, 0, 0, 1)
+
+[node name="Credits" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 322.0
+offset_top = 20.0
+offset_right = 643.0
+offset_bottom = 389.0
+
+[node name="Credits" type="ScrollContainer" parent="CanvasLayer/Credits"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -812.0
+offset_top = -169.5
+offset_right = -14.0
+offset_bottom = 155.5
+grow_horizontal = 0
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Credits/Credits"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Leadership legends is created by:
+Brian Wang - Lead Programmer & GFX artist
+Steven Mo - Sprite Artist
+Thomas Zhao - Database writer, Storyline writer, Game Designer
+
+Video game icon background:
+Pixel Art Background from WikiMedia Commons
+Licensed under CC BY-SA 4.0 DEED
+https://creativecommons.org/licenses/by-sa/4.0/
+https://commons.wikimedia.org/wiki/File:Pixel_Art_Background.jpg
+
+
+Pixel Art Background from Cainos
+Itch.io, free product
+License requires no credit of author.
+https://cainos.itch.io/pixel-art-top-down-basic
+
+Some music from Clement.
+\"Music by Clement Panchout www.clementpanchout.com\",
+Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0) 
+https://clement-panchout.itch.io/yet-another-free-music-pack
+
+
+Free Tiny Hero Sprites Pixel Art
+No license available, free pixel art as stated under comments
+https://free-game-assets.itch.io/free-tiny-hero-sprites-pixel-art
+
+Fantasy RPG Music Pack
+alkakrab04@gmail.com
+(100% Copyrigt Free)
+https://alkakrab.itch.io/fantasy-rpg-soundtrack-music
+
+8-Bit Wii Shop Channel Music
+Luciana Garcia
+https://www.youtube.com/watch?v=N5AUwYEqTLA&t
+No copyright intended, all rights reserved to Nintendo's music & Garcia's remix.
+
+32x32 Clothes + snacks asset pack
+Noiryt
+Licened under CC-BY
+https://creativecommons.org/licenses/by/4.0/#
+Changes were made of recolorization of food sprites to be FBLA themed.
+
+
+Dialogue Text Sound Effects
+Alan Dalcastagne
+https://alan-dalcastagne.itch.io/dialog-text-sound-effects
+License:
+non-exclusive license – you’re free to use these packs in your commercial games. No license to claim as your own work.
+
+
+32x32 Tileset
+SolaarNoble
+Permissions:
+
+\"Anyone can use these assets for personal and commercial use. You are 100% allowed to edit these however you want for your own use as well. Credit is not required but would be appreciated. \"
+
+
+(FREE) Lively NPCs
+chierit & Zeno
+Licensed under 	Creative Commons Attribution v4.0 International
+https://creativecommons.org/licenses/by/4.0/deed.en
+
+Space Journey Through Nebulae and Galaxy
+Universfield
+Licensed under CC BY-SA
+Source: Free Music Archive
+"
+label_settings = SubResource("LabelSettings_oyw1v")
+horizontal_alignment = 2
+
+[node name="Controls" type="Panel" parent="CanvasLayer"]
+offset_left = 407.0
+offset_top = 74.0
+offset_right = 636.0
+offset_bottom = 353.0
+
+[node name="Controls" type="Label" parent="CanvasLayer/Controls"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 31.0
+offset_right = 202.0
+offset_bottom = 231.0
+size_flags_horizontal = 8
+text = "CONTROLS
+WASD - movement
+Space - dash
+B - inventory
+E - swap allies
+Q - spawn allies
+R - recall allies
+"
+label_settings = SubResource("LabelSettings_jrv37")
+horizontal_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -141.0
+offset_right = 141.0
+offset_bottom = -40.0
+grow_vertical = 0
+
+[node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.439216, 0.439216, 0.439216, 1)
+theme_override_fonts/font = ExtResource("2_5i4ay")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v1g5c")
+text = "Start"
+icon = ExtResource("3_rapyd")
+alignment = 0
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.439216, 0.439216, 0.439216, 1)
+theme_override_fonts/font = ExtResource("2_5i4ay")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v1g5c")
+text = "Credits"
+icon = ExtResource("3_rapyd")
+alignment = 0
+
+[node name="Controls" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.439216, 0.439216, 0.439216, 1)
+theme_override_fonts/font = ExtResource("2_5i4ay")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v1g5c")
+text = "Controls"
+icon = ExtResource("3_rapyd")
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.439216, 0.439216, 0.439216, 1)
+theme_override_fonts/font = ExtResource("2_5i4ay")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v1g5c")
+text = "Quit"
+icon = ExtResource("3_rapyd")
+alignment = 0
+
+[node name="Fader" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rtxbs")
+}
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("4_s8bt4")
+
+[node name="Normal" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("5_3afcn")
+volume_db = -12.842
+autoplay = true
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -2
+texture_filter = 1
+tile_set = ExtResource("6_redid")
+format = 2
+layer_0/name = "grass"
+layer_0/tile_data = PackedInt32Array(-1, 327695, 5, 65535, 327695, 5, 131071, 327695, 5, 196607, 327695, 5, 262143, 327695, 5, 327679, 327695, 5, 393215, 327695, 5, 458751, 327695, 5, 524287, 327695, 5, 589823, 327695, 5, 655359, 327695, 5, 720895, 327695, 5, 786431, 327695, 5, 851967, 327695, 5, -65536, 327695, 5, 0, 327695, 5, 65536, 327695, 5, 131072, 327695, 5, 196608, 327695, 5, 262144, 327695, 5, 327680, 327695, 5, 393216, 786447, 4, 458752, 786447, 5, 524288, 786447, 5, 589824, 786447, 5, 655360, 786447, 5, 720896, 786447, 6, 786432, 327695, 5, -65535, 327695, 5, 1, 327695, 5, 65537, 327695, 5, 131073, 327695, 5, 196609, 327695, 5, 262145, 327695, 5, 327681, 327695, 5, 393217, 851983, 4, 458753, 851983, 5, 524289, 851983, 5, 589825, 851983, 5, 655361, 851983, 5, 720897, 851983, 6, 786433, 327695, 5, -65534, 327695, 5, 2, 327695, 5, 65538, 327695, 5, 131074, 327695, 5, 196610, 327695, 5, 262146, 327695, 5, 327682, 327695, 5, 393218, 851983, 4, 458754, 851983, 5, 524290, 851983, 5, 589826, 851983, 5, 655362, 851983, 5, 720898, 851983, 6, 786434, 327695, 5, -65533, 327695, 5, 3, 327695, 5, 65539, 327695, 5, 131075, 327695, 5, 196611, 327695, 5, 262147, 327695, 5, 327683, 327695, 5, 393219, 851983, 4, 458755, 851983, 5, 524291, 851983, 5, 589827, 851983, 5, 655363, 851983, 5, 720899, 851983, 6, 786435, 327695, 5, -65532, 327695, 5, 4, 327695, 5, 65540, 327695, 5, 131076, 327695, 5, 196612, 327695, 5, 262148, 327695, 5, 327684, 327695, 5, 393220, 917519, 4, 458756, 917519, 5, 524292, 917519, 5, 589828, 917519, 5, 655364, 917519, 5, 720900, 917519, 6, 786436, 327695, 5, -65531, 327695, 5, 5, 327695, 5, 65541, 327695, 5, 131077, 327695, 5, 196613, 327695, 5, 262149, 327695, 5, 327685, 327695, 5, 393221, 327695, 5, 458757, 327695, 5, 524293, 327695, 5, 589829, 327695, 5, 655365, 327695, 5, 720901, 327695, 5, 786437, 327695, 5, -65530, 327695, 5, 6, 327695, 5, 65542, 327695, 5, 131078, 327695, 5, 196614, 327695, 5, 262150, 327695, 5, 327686, 327695, 5, 393222, 327695, 5, 458758, 327695, 5, 524294, 327695, 5, 589830, 327695, 5, 655366, 327695, 5, 720902, 327695, 5, 786438, 327695, 5, -65529, 327695, 5, 7, 327695, 5, 65543, 327695, 5, 131079, 327695, 5, 196615, 327695, 5, 262151, 327695, 5, 327687, 327695, 5, 393223, 327695, 5, 458759, 327695, 5, 524295, 327695, 5, 589831, 327695, 5, 655367, 327695, 5, 720903, 327695, 5, 786439, 327695, 5, -65528, 327695, 5, 8, 327695, 5, 65544, 327695, 5, 131080, 327695, 5, 196616, 327695, 5, 262152, 327695, 5, 327688, 327695, 5, 393224, 327695, 5, 458760, 327695, 5, 524296, 327695, 5, 589832, 327695, 5, 655368, 327695, 5, 720904, 327695, 5, 786440, 327695, 5, -65527, 327695, 5, 9, 327695, 5, 65545, 327695, 5, 131081, 327695, 5, 196617, 327695, 5, 262153, 327695, 5, 327689, 327695, 5, 393225, 327695, 5, 458761, 327695, 5, 524297, 327695, 5, 589833, 327695, 5, 655369, 327695, 5, 720905, 327695, 5, 786441, 327695, 5, -65526, 327695, 5, 10, 327695, 5, 65546, 327695, 5, 131082, 327695, 5, 196618, 327695, 5, 262154, 327695, 5, 327690, 327695, 5, 393226, 327695, 5, 458762, 327695, 5, 524298, 327695, 5, 589834, 327695, 5, 655370, 327695, 5, 720906, 327695, 5, 786442, 327695, 5, -65525, 327695, 5, 11, 327695, 5, 65547, 327695, 5, 131083, 327695, 5, 196619, 327695, 5, 262155, 327695, 5, 327691, 327695, 5, 393227, 327695, 5, 458763, 327695, 5, 524299, 327695, 5, 589835, 327695, 5, 655371, 327695, 5, 720907, 327695, 5, 786443, 327695, 5, -65524, 327695, 5, 12, 327695, 5, 65548, 327695, 5, 131084, 327695, 5, 196620, 327695, 5, 262156, 327695, 5, 327692, 327695, 5, 393228, 327695, 5, 458764, 327695, 5, 524300, 327695, 5, 589836, 327695, 5, 655372, 327695, 5, 720908, 327695, 5, 786444, 327695, 5, -65523, 327695, 5, 13, 327695, 5, 65549, 327695, 5, 131085, 327695, 5, 196621, 327695, 5, 262157, 327695, 5, 327693, 327695, 5, 393229, 327695, 5, 458765, 327695, 5, 524301, 327695, 5, 589837, 327695, 5, 655373, 327695, 5, 720909, 327695, 5, 786445, 327695, 5, -65522, 327695, 5, 14, 327695, 5, 65550, 327695, 5, 131086, 327695, 5, 196622, 327695, 5, 262158, 327695, 5, 327694, 327695, 5, 393230, 327695, 5, 458766, 327695, 5, 524302, 327695, 5, 589838, 327695, 5, 655374, 327695, 5, 720910, 327695, 5, 786446, 327695, 5, -65521, 327695, 5, 15, 327695, 5, 65551, 327695, 5, 131087, 327695, 5, 196623, 327695, 5, 262159, 327695, 5, 327695, 327695, 5, 393231, 327695, 5, 458767, 327695, 5, 524303, 327695, 5, 589839, 327695, 5, 655375, 327695, 5, 720911, 327695, 5, 786447, 327695, 5, -65520, 327695, 5, 16, 327695, 5, 65552, 327695, 5, 131088, 327695, 5, 196624, 327695, 5, 262160, 327695, 5, 327696, 327695, 5, 393232, 327695, 5, 458768, 327695, 5, 524304, 327695, 5, 589840, 327695, 5, 655376, 327695, 5, 720912, 327695, 5, 786448, 327695, 5, -65519, 327695, 5, 17, 327695, 5, 65553, 327695, 5, 131089, 327695, 5, 196625, 327695, 5, 262161, 327695, 5, 327697, 327695, 5, 393233, 327695, 5, 458769, 327695, 5, 524305, 327695, 5, 589841, 327695, 5, 655377, 327695, 5, 720913, 327695, 5, 786449, 327695, 5, -65518, 327695, 5, 18, 327695, 5, 65554, 327695, 5, 131090, 327695, 5, 196626, 327695, 5, 262162, 327695, 5, 327698, 327695, 5, 393234, 327695, 5, 458770, 327695, 5, 524306, 327695, 5, 589842, 327695, 5, 655378, 327695, 5, 720914, 327695, 5, 786450, 327695, 5, -65517, 327695, 5, 19, 327695, 5, 65555, 327695, 5, 131091, 327695, 5, 196627, 327695, 5, 262163, 327695, 5, 327699, 327695, 5, 393235, 327695, 5, 458771, 327695, 5, 524307, 327695, 5, 589843, 327695, 5, 655379, 327695, 5, 720915, 327695, 5, 786451, 327695, 5, -65516, 327695, 5, 20, 327695, 5, 65556, 327695, 5, 131092, 327695, 5, 196628, 327695, 5, 262164, 327695, 5, 327700, 327695, 5, 393236, 327695, 5, 458772, 327695, 5, 524308, 327695, 5, 589844, 327695, 5, 655380, 327695, 5, 720916, 327695, 5, 786452, 327695, 5)
+layer_1/name = "stone"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "props"
+layer_2/z_index = 2
+layer_2/tile_data = PackedInt32Array()
+
+[node name="Music" type="Node" parent="TileMap"]
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="TileMap/Music"]
+stream = ExtResource("7_viq0h")
+
+[node name="ButtonSelect" type="AudioStreamPlayer2D" parent="TileMap/Music"]
+stream = ExtResource("7_viq0h")
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="TileMap/Music"]
+stream = ExtResource("8_ofho2")
+
+[node name="Victory" type="AudioStreamPlayer2D" parent="TileMap/Music"]
+stream = ExtResource("9_i7qh8")
+
+[node name="Defeat" type="AudioStreamPlayer2D" parent="TileMap/Music"]
+stream = ExtResource("10_s8sul")
+
+[node name="Dialogue" type="AudioStreamPlayer2D" parent="TileMap/Music"]
+stream = ExtResource("11_2m7jf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(225, 307)
+scale = Vector2(1.5625, 1.625)
+sprite_frames = SubResource("SpriteFrames_tasba")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
+frame_progress = 0.071861
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(93, 226)
+scale = Vector2(0.237903, 0.237903)
+texture = ExtResource("12_htfcl")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="animation_finished" from="Fader" to="." method="_on_fader_animation_finished"]
+[connection signal="finished" from="Music/Normal" to="Music" method="_on_normal_finished"]

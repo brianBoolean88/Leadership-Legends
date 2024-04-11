@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bt5yicfpmnlwk"]
+[gd_scene load_steps=46 format=3 uid="uid://bt5yicfpmnlwk"]
 
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="1_4stwf"]
 [ext_resource type="PackedScene" uid="uid://eew3u75siddd" path="res://Scenes/shadow.tscn" id="1_g1yy3"]
@@ -24,7 +24,8 @@
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="19_iwq45"]
 [ext_resource type="PackedScene" uid="uid://c6ytp5xpkjkb1" path="res://Scenes/inventory.tscn" id="20_7vtv2"]
 [ext_resource type="PackedScene" uid="uid://0ifs2fq36yy7" path="res://Scenes/Enemy/Waterguy.tscn" id="21_xaok2"]
-[ext_resource type="Script" path="res://Scenes/Levels/NextLevel.gd" id="25_jwh76"]
+[ext_resource type="Script" path="res://Scenes/Levels/Credits.gd" id="25_3vwwt"]
+[ext_resource type="Script" path="res://Scenes/Levels/NextLevel2.gd" id="25_t1s24"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f8rm5"]
 radius = 35.0571
@@ -104,7 +105,11 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duowy"]
-size = Vector2(1362, 35.6172)
+size = Vector2(6263.5, 47.8086)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ra065"]
+font = ExtResource("19_iwq45")
+font_size = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwwup"]
 size = Vector2(79, 71)
@@ -439,7 +444,7 @@ volume_db = -16.887
 autoplay = true
 
 [node name="Refrigerator" type="Area2D" parent="."]
-position = Vector2(951, -381)
+position = Vector2(-305, -410)
 script = ExtResource("18_lcbxs")
 metadata/_edit_group_ = true
 
@@ -473,11 +478,11 @@ libraries = {
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall"]
-position = Vector2(1492, -794)
+position = Vector2(2666.25, -794)
 shape = SubResource("RectangleShape2D_duowy")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="InvisibleWall"]
-position = Vector2(1803, 84)
+position = Vector2(526.5, 90.0957)
 shape = SubResource("RectangleShape2D_duowy")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="InvisibleWall"]
@@ -499,12 +504,39 @@ color = Color(0, 0, 0, 1)
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("20_7vtv2")]
 
+[node name="Credits" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 165.0
+offset_top = 14.0
+offset_right = 486.0
+offset_bottom = 383.0
+script = ExtResource("25_3vwwt")
+
+[node name="Label" type="Label" parent="CanvasLayer/Credits"]
+layout_mode = 2
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 305.0
+offset_bottom = 338.0
+text = "Rules:
+Player verbal communicates w/ an enemy.
+Player must fight them in a pokemon-battle style fashion.
+WASD - movement
+Space - dash
+B - inventory
+E - swap allies
+Q - spawn allies
+R - recall allies
+"
+label_settings = SubResource("LabelSettings_ra065")
+autowrap_mode = 3
+
 [node name="FBLAqua Spirit" parent="." instance=ExtResource("12_vvuvw")]
 position = Vector2(2144, 958)
 
 [node name="NextLevel" type="Area2D" parent="."]
 position = Vector2(3501, -747)
-script = ExtResource("25_jwh76")
+script = ExtResource("25_t1s24")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]

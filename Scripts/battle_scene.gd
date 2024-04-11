@@ -3,7 +3,7 @@ var thread: Thread
 
 var tolerance : int = 0;
 var health : int = 0;
-var animatedSprite : CharacterBody2D;
+var animatedSprite;
 var char_name : String;
 
 @export var battleMusic : AudioStreamWAV;
@@ -71,6 +71,10 @@ func visibleEnemy(vis):
 	animate.visible = vis
 
 func init(character_name, lvl, tolerance, health, sprite):
+	
+	if GameManager.KingDouglass == true:
+		$DouglassBG.visible = true
+	
 	#Add constructor values
 	animatedSprite = sprite;
 	char_name = character_name;
@@ -135,6 +139,8 @@ func detectEnd() -> int:
 		return 1; #return 1 if the player has got rid of all the health of the enemy
 	elif tolerance <= 0:
 		return 2; #return 2 if the player has run out of "tolerance" for the monster
+	
+	$Darkness.visible = false
 	return 3; #return 3 if battle continues
 
 func dialogueText(text) -> void:
@@ -158,7 +164,7 @@ func onMove(button) -> void:
 		moveName = AttackData.move2Name
 	
 	#initiate question scene
-	question_scene.init(moveName)
+	question_scene.init(moveName, GameManager.easyMode)
 
 func answered_question(moveName):
 	#determine if we should use the move based on the MCQ
@@ -189,6 +195,10 @@ func answered_question(moveName):
 	var cont = detectEnd();
 	
 	if cont == 1: #Player got rid of all the health of the enemy
+		
+		if GameManager.KingDouglass == true:
+			$DouglassBG.visible = false
+			
 		$Panel/Label.text = "You gathered an ally!"
 		$Tolerance.text = "";
 		$Health.value = 0;
@@ -217,6 +227,9 @@ func answered_question(moveName):
 		if StateDialogue.main_status == "Start":
 			StateDialogue.main_status = "Q1"
 		
+		if GameManager.KingDouglass == true:
+			GameManager.KingDouglass = false
+			GameManager.douglassEnd()
 		print("captured!");	
 	elif cont == 2: #Player ran out of time for tolerance
 		$Panel/Label.text = "You lost!"
@@ -233,17 +246,87 @@ func answered_question(moveName):
 		$Panel/Fight_button.visible = true;
 		visible = false;
 		event_handler.inBattle = false;
-		print("died!");
 		
-		get_tree().change_scene_to_file("res://Scenes/lose_screen.tscn")
+		if GameManager.KingDouglass == true:
+			GameManager.KingDouglass = false
+			GameManager.badEnding = true
+			GameManager.douglassEnd()
+		else:
+			get_tree().change_scene_to_file("res://Scenes/lose_screen.tscn")
 	elif cont == 3: #Player can continue the game
 		await get_tree().create_timer(1).timeout
 		
-		fullInvis();
-		detectRunButton();
-		$Panel/Fight_button.visible = true;
-		$Panel/Label.text = "What will you do?";
-		$Panel/Fight_button.grab_focus();
+		
+		$Panel/Label.text = "The enemy is about to attack."
+		enemyAttack()
+
+func resetCont():
+	fullInvis();
+	detectRunButton();
+	$Panel/Fight_button.visible = true;
+	$Panel/Label.text = "What will you do?";
+	$Panel/Fight_button.grab_focus();
+	
+func enemyAttack():
+	await get_tree().create_timer(1).timeout
+	var randomAttack = (randi() % 9)+1
+	#1/3 chance to attack
+	if randomAttack == 1:
+		
+		#Dialogue
+		$Panel/Label.text = "The enemy is not feeling convinced."
+		await get_tree().create_timer(1).timeout
+		
+		if GameManager.KingDouglass == true:
+			tolerance -= 3
+			$Panel/Label.text = "-3 tolerance."
+		else:
+			tolerance -= 1
+			$Panel/Label.text = "-1 tolerance."
+		
+		#Tolerance
+		
+		$Tolerance.text = "Tolerance: %s turns." %[tolerance]
+		
+		#Shake + Attack sound
+		get_parent().get_parent().get_parent().startup();
+		$Music/Attack.play()
+		
+	elif randomAttack == 2:
+		
+		#Lower field of vision
+		$Panel/Label.text = "The enemy is retaliating."
+		await get_tree().create_timer(1).timeout
+		$Panel/Label.text = "He lowers your field of vision."
+		$Darkness.visible = true
+		
+		#Shake + Attack sound
+		get_parent().get_parent().get_parent().startup();
+		$Music/Attack.play()
+		
+	elif randomAttack == 3:
+		
+		#Add HP
+		$Panel/Label.text = "The enemy remembered he has a voice in this debate."
+		await get_tree().create_timer(1).timeout
+		$Panel/Label.text = "He gains HP."
+		
+		if GameManager.KingDouglass == true:
+			health += 100
+		else:
+			health += 50
+		
+		if health > $Health.max_value:
+			health = $Health.max_value
+			print("Max Health!")
+		
+		$Health.value = health
+		
+		#Shake + Attack sound
+		get_parent().get_parent().get_parent().startup();
+		$Music/Attack.play()
+	await get_tree().create_timer(1).timeout
+	resetCont()
 
 func _on_move_1_button_pressed():
 	onMove("move1")

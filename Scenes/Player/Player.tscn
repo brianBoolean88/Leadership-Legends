@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=113 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
 [ext_resource type="Texture2D" uid="uid://b1jgsdcltjrqk" path="res://Headshots/Shadow Strategist.png" id="10_0w7wn"]
@@ -11,8 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://bg2sl7g6ka8f3" path="res://Scenes/Levels/simple-piano-melody-9834.mp3" id="14_ssngf"]
 [ext_resource type="AudioStream" uid="uid://cmj36t1kcgnrs" path="res://Art/Audio/BattleSceneSFX/AttackSFX.wav" id="15_mcbi5"]
 [ext_resource type="AudioStream" uid="uid://cobddu2k35y00" path="res://Art/Audio/BattleSceneSFX/BattleSequence.wav" id="15_vubc7"]
+[ext_resource type="Texture2D" uid="uid://buxnkvlxiqg7i" path="res://Art/LivelyNPCS/king.png" id="16_3tqg7"]
 [ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="16_js7fr"]
 [ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/Dude_Monster_Idle_4.png" id="16_jtuuo"]
+[ext_resource type="Texture2D" uid="uid://h80ocumqtilp" path="res://Art/BattleSceneBG/AfternoonFullMist.png" id="16_oe6h8"]
 [ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="17_3l3bd"]
 [ext_resource type="AudioStream" uid="uid://bt0i24d1ltalk" path="res://Art/Audio/BattleSceneSFX/Dialogue.wav" id="18_sqmar"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
@@ -20,11 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://ddhkb3u68e3p3" path="res://Scenes/question_tab.tscn" id="23_2j0v6"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="27_on0bn"]
-[ext_resource type="LabelSettings" uid="uid://da8inon5cmt2r" path="res://Art/Fonts/pixelized_label.tres" id="28_5mc6f"]
 [ext_resource type="Script" path="res://Scripts/AttackData.gd" id="28_wb7jg"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerWalkState.gd" id="29_bdbrv"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerDeathState.gd" id="30_ecf44"]
-[ext_resource type="Script" path="res://Scripts/QuestGeneral/QuestTracker.gd" id="33_2eisr"]
 [ext_resource type="LabelSettings" uid="uid://1cnb4418rr7" path="res://Art/Fonts/pixelized_label_large.tres" id="34_aqkdi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jijq5"]
@@ -495,40 +495,83 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jfbo8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k40b"]
 atlas = ExtResource("16_jtuuo")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j7gl1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hlqx"]
 atlas = ExtResource("16_jtuuo")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eosub"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsjwb"]
 atlas = ExtResource("16_jtuuo")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pkqg6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqrcw"]
 atlas = ExtResource("16_jtuuo")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ie318"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k40b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hlqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsjwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqrcw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tgtm"]
+atlas = ExtResource("16_3tqg7")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqdun"]
+atlas = ExtResource("16_3tqg7")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b45f"]
+atlas = ExtResource("16_3tqg7")
+region = Rect2(68, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pawk"]
+atlas = ExtResource("16_3tqg7")
+region = Rect2(102, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sftl"]
+atlas = ExtResource("16_3tqg7")
+region = Rect2(136, 0, 34, 34)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rt0dk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jfbo8")
+"texture": SubResource("AtlasTexture_8tgtm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j7gl1")
+"texture": SubResource("AtlasTexture_dqdun")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eosub")
+"texture": SubResource("AtlasTexture_3b45f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pkqg6")
+"texture": SubResource("AtlasTexture_6pawk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sftl")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub6e5"]
@@ -1104,6 +1147,12 @@ script = ExtResource("11_au2jd")
 battleMusic = ExtResource("14_clbvy")
 normalMusic = ExtResource("14_ssngf")
 
+[node name="DouglassBG" type="Sprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
+visible = false
+position = Vector2(334, 212)
+scale = Vector2(0.293403, 0.330247)
+texture = ExtResource("16_oe6h8")
+
 [node name="Player" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
 texture_filter = 1
 position = Vector2(144.667, 238.333)
@@ -1123,10 +1172,20 @@ autoplay = "Idle"
 visible = false
 position = Vector2(527.667, 235.333)
 scale = Vector2(3.70833, 3.29167)
+sprite_frames = SubResource("SpriteFrames_ie318")
+autoplay = "default"
+frame = 3
+frame_progress = 0.430556
+flip_h = true
+
+[node name="Douglass" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
+visible = false
+position = Vector2(496.354, 192.146)
+scale = Vector2(5.55026, 5.8321)
 sprite_frames = SubResource("SpriteFrames_rt0dk")
 autoplay = "default"
-frame = 1
-frame_progress = 0.789743
+frame = 4
+frame_progress = 0.662173
 flip_h = true
 
 [node name="Background" type="Panel" parent="Camera2D/CanvasLayer/battle_scene/background"]
@@ -1299,6 +1358,17 @@ stream = ExtResource("18_sqmar")
 [node name="QuestionTab" parent="Camera2D/CanvasLayer/battle_scene/background" instance=ExtResource("23_2j0v6")]
 visible = false
 layout_mode = 1
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 21.0
+offset_bottom = 18.0
+
+[node name="Darkness" type="ColorRect" parent="Camera2D/CanvasLayer/battle_scene/background"]
+visible = false
+layout_mode = 0
+offset_right = 661.0
+offset_bottom = 420.0
+color = Color(0, 0, 0, 0.65098)
 
 [node name="MoneyLabel" type="Label" parent="Camera2D"]
 z_index = 1
@@ -1332,31 +1402,6 @@ explosiveness = 1.0
 libraries = {
 "": SubResource("AnimationLibrary_gtuut")
 }
-
-[node name="QuestTracker" type="Node2D" parent="." node_paths=PackedStringArray("quest_info", "quest_announcement")]
-script = ExtResource("33_2eisr")
-quest_info = NodePath("QuestText")
-quest_announcement = NodePath("QuestAnnounceText")
-
-[node name="QuestText" type="Label" parent="QuestTracker"]
-offset_left = -303.0
-offset_top = -166.0
-offset_right = -151.0
-offset_bottom = -137.0
-label_settings = ExtResource("28_5mc6f")
-
-[node name="QuestAnnounceText" type="Label" parent="QuestTracker"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -64.0
-offset_top = -98.0
-offset_right = 64.0
-offset_bottom = -72.0
-grow_horizontal = 2
-label_settings = ExtResource("34_aqkdi")
-horizontal_alignment = 1
-uppercase = true
 
 [node name="Direction" type="Marker2D" parent="."]
 

@@ -1,0 +1,18 @@
+~ start
+
+You: Hey!
+Oscar: Hey!
+You: Working on a farm, I assume?
+Oscar: Yep! I'm preparing the farm for some visitors who are coming over from Columbia university!
+You: Really? Why are they coming over?
+Oscar: Well, Columbia used to be the place where FBLA's concept was made.
+Oscar: So, I've invited some people over to question about their knowledge of FBLA.
+You: (I shouldn't tell him I'm a member yet. He must want something.)
+You: What do you want from FBLA?
+Oscar: I'm reporting them to Darkcorp Enterprises.
+
+if GameManager.ifive == false:
+	set GameManager.interactedNPCS = GameManager.interactedNPCS + 1
+	set GameManager.ifive = true
+
+=> END

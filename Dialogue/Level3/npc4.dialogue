@@ -1,0 +1,21 @@
+~ start
+
+You: Hey!
+Guardy: I must defend these islands. Oh hey! I didn't see you there.
+You: Hi there. Have you heard about FBLA?
+Guardy: Yes! Rumors are, that four legendary figures who are still stern FBLA members await!
+You: Wow.
+- Where are they?
+	Guardy: Well, all I know is that one of them is further down this village.
+	Guardy: The others...I have no clue.
+- Do you know who they are?
+	Guardy: I know the one past here is Douglass. That's all.
+Guardy: He told me he was trying to fund for March of Dimes.
+Guardy: I don't know what that means, however.
+You: I see. Thanks.
+
+if GameManager.ifour == false:
+	set GameManager.interactedNPCS = GameManager.interactedNPCS + 1
+	set GameManager.ifour = true
+
+=> END

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cvu6wfbefeony"]
+[gd_scene load_steps=37 format=3 uid="uid://cvu6wfbefeony"]
 
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="1_v023b"]
 [ext_resource type="PackedScene" uid="uid://eew3u75siddd" path="res://Scenes/shadow.tscn" id="2_8ii7x"]
@@ -22,7 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://c6ytp5xpkjkb1" path="res://Scenes/inventory.tscn" id="19_7u03m"]
 [ext_resource type="AudioStream" uid="uid://bqj7qhps81rwo" path="res://Scenes/Levels/Clement Panchout _ Jelly Blob _ 2017.wav" id="19_xpul3"]
 [ext_resource type="Script" path="res://Scripts/Music.gd" id="20_y5vnp"]
-[ext_resource type="Script" path="res://Scenes/Levels/NextLevel.gd" id="21_1hm3p"]
+[ext_resource type="Script" path="res://Scenes/Levels/NextLevel1.gd" id="21_yundc"]
+[ext_resource type="Script" path="res://Scenes/Levels/Credits.gd" id="24_td76n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umnl4"]
 radius = 50.0
@@ -91,6 +92,16 @@ font_color = Color(0.917647, 0, 0.741176, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g7tjl"]
 font = ExtResource("17_hmvo7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6w25q"]
+font = ExtResource("17_hmvo7")
+font_size = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct55m"]
+size = Vector2(448.5, 201)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8hry"]
+size = Vector2(99, 98)
 
 [node name="Scene_Root" type="Node2D"]
 texture_filter = 1
@@ -266,7 +277,7 @@ libraries = {
 
 [node name="NextLevel" type="Area2D" parent="."]
 position = Vector2(2219, -537)
-script = ExtResource("21_1hm3p")
+script = ExtResource("21_yundc")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
@@ -350,6 +361,48 @@ offset_bottom = 403.0
 color = Color(0, 0, 0, 1)
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("19_7u03m")]
+
+[node name="Credits" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 165.0
+offset_top = 14.0
+offset_right = 486.0
+offset_bottom = 383.0
+script = ExtResource("24_td76n")
+
+[node name="Label" type="Label" parent="CanvasLayer/Credits"]
+layout_mode = 2
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 305.0
+offset_bottom = 338.0
+text = "Rules:
+Player verbal communicates w/ an enemy.
+Player must fight them in a pokemon-battle style fashion.
+WASD - movement
+Space - dash
+B - inventory
+E - swap allies
+Q - spawn allies
+R - recall allies
+"
+label_settings = SubResource("LabelSettings_6w25q")
+autowrap_mode = 3
+
+[node name="Water" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+position = Vector2(1270.75, -65.5)
+shape = SubResource("RectangleShape2D_ct55m")
+
+[node name="Water2" type="StaticBody2D" parent="."]
+position = Vector2(1082, -482)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water2"]
+position = Vector2(54.5, 48)
+shape = SubResource("RectangleShape2D_u8hry")
 
 [connection signal="finished" from="Music/Normal" to="Music" method="_on_normal_finished"]
 [connection signal="finished" from="Music/Battle" to="Music" method="_on_battle_finished"]

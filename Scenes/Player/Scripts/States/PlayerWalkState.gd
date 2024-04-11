@@ -16,16 +16,19 @@ func Enter():
 	animator.play("Walk")
 
 func Update(delta : float):
-	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized()
-	if !event_handler.inBattle:
-		Move(input_dir)
-		LessenDash(delta)
 	
+	if GameManager.CanMove == true:
+		var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized()
+		if !event_handler.inBattle:
+			Move(input_dir)
+			LessenDash(delta)
+		
 
-	if(Input.is_action_just_pressed("Dash") && can_dash):
-		start_dash(input_dir)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, -1)
-
+		if(Input.is_action_just_pressed("Dash") && can_dash):
+			start_dash(input_dir)
+			AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, -1)
+	else:
+		Transition("Idle")
 
 	
 func Move(input_dir):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddhkb3u68e3p3"]
+[gd_scene load_steps=9 format=3 uid="uid://ddhkb3u68e3p3"]
 
 [ext_resource type="Script" path="res://Scenes/question_tab.gd" id="1_cubww"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="1_q4leu"]
@@ -11,9 +11,61 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cdyln"]
 font = ExtResource("1_q4leu")
-font_size = 25
+font_size = 32
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_5c7g0"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 420), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ggd5t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 420)]
+}
+
+[sub_resource type="Animation" id="Animation_2cyn0"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 420)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ir1wd"]
+_data = {
+"RESET": SubResource("Animation_ggd5t"),
+"fade_in": SubResource("Animation_5c7g0"),
+"fade_out": SubResource("Animation_2cyn0")
+}
 
 [node name="QuestionTab" type="Control"]
 layout_mode = 3
@@ -26,9 +78,10 @@ script = ExtResource("1_cubww")
 
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 0
+offset_top = 420.0
 offset_right = 650.0
-offset_bottom = 402.0
-color = Color(0.14902, 0.14902, 0.14902, 1)
+offset_bottom = 822.0
+color = Color(0.141176, 0.141176, 0.141176, 1)
 
 [node name="MoveLabel" type="Label" parent="BG"]
 layout_mode = 0
@@ -43,10 +96,10 @@ vertical_alignment = 1
 
 [node name="QuestionLabel" type="Label" parent="BG"]
 layout_mode = 0
-offset_left = 98.0
-offset_top = 44.0
-offset_right = 586.0
-offset_bottom = 85.0
+offset_left = 2.0
+offset_top = 42.0
+offset_right = 640.0
+offset_bottom = 183.0
 text = "QUESTION: WHAT DATE WAS IT RELEASED?"
 label_settings = SubResource("LabelSettings_cdyln")
 horizontal_alignment = 1
@@ -55,49 +108,54 @@ autowrap_mode = 3
 
 [node name="OptionA" type="Button" parent="BG"]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 136.0
-offset_right = 532.0
-offset_bottom = 180.0
+offset_left = -1.0
+offset_top = 183.0
+offset_right = 637.0
+offset_bottom = 227.0
 theme_override_fonts/font = ExtResource("1_q4leu")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "OPTION A: Sasdfasdfssadfsadfdsf"
 text_overrun_behavior = 3
 
 [node name="OptionB" type="Button" parent="BG"]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 189.0
-offset_right = 532.0
-offset_bottom = 233.0
+offset_top = 238.0
+offset_right = 636.0
+offset_bottom = 282.0
 theme_override_fonts/font = ExtResource("1_q4leu")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "OPTION B: Sasdfasdfssadfsadfdsf"
 text_overrun_behavior = 3
 
 [node name="OptionC" type="Button" parent="BG"]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 243.0
-offset_right = 532.0
-offset_bottom = 287.0
+offset_left = 2.0
+offset_top = 294.0
+offset_right = 637.0
+offset_bottom = 338.0
 theme_override_fonts/font = ExtResource("1_q4leu")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "OPTION C: Sasdfasdfssadfsadfdsf"
 text_overrun_behavior = 3
 
 [node name="OptionD" type="Button" parent="BG"]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 297.0
-offset_right = 532.0
-offset_bottom = 341.0
+offset_left = 3.0
+offset_top = 349.0
+offset_right = 642.0
+offset_bottom = 393.0
 theme_override_fonts/font = ExtResource("1_q4leu")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "OPTION D: Sasdfasdfssadfsadfdsf"
 text_overrun_behavior = 3
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ir1wd")
+}
 
 [connection signal="pressed" from="BG/OptionA" to="." method="_on_option_a_pressed"]
 [connection signal="pressed" from="BG/OptionB" to="." method="_on_option_b_pressed"]
 [connection signal="pressed" from="BG/OptionC" to="." method="_on_option_c_pressed"]
 [connection signal="pressed" from="BG/OptionD" to="." method="_on_option_d_pressed"]
+[connection signal="animation_finished" from="Transition" to="." method="_on_transition_animation_finished"]

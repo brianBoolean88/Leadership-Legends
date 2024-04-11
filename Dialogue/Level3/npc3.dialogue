@@ -1,0 +1,14 @@
+~ start
+
+You: Hey! Have you heard about FBLA?
+Cathie: Hi! No, I have not heard about FBLA!
+You: Great! Let me tell you about it. So, it's a club called Future Business Leaders of America...
+Cathie: Oh, ok! So basically parliamentary procedures are part of Robert's Rules!?
+You: (Where did she get that from)
+You: Yeah...something like that.
+
+if GameManager.ithree == false:
+	set GameManager.interactedNPCS = GameManager.interactedNPCS + 1
+	set GameManager.ithree = true
+
+=> END

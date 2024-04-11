@@ -119,11 +119,6 @@ var questions = [
 		"correct": 2
 	},
 	{
-		"question": "In order to be understood on the telephone, a business's employees should always:",
-		"options": ["Pie chart", "Pictograph", "Map", "Flowchart"],
-		"correct": 3
-	},
-	{
 		"question": "What type of communication style is usually appropriate for evaluation or counseling interviews with 	employees?",
 		"options": ["Casual", "Formal", "Routine", "Technical"],
 		"correct": 1
@@ -166,21 +161,188 @@ var questions = [
 
 ]
 
-func askQuestion():
-	var randomQuestionIndex = randi() % questions.size()
-	questionLabel.text = questions[randomQuestionIndex]["question"]
-	var options = questions[randomQuestionIndex]["options"]
-	var correctOption = questions[randomQuestionIndex]["correct"]
-	
-	aOption.text = "A. " + options[0]
-	bOption.text = "B. " + options[1]
-	cOption.text = "C. " + options[2]
-	dOption.text = "D. " + options[3]
-	
-	currCorrectIndex = correctOption
-	questionReady = true
+var easyQuestions = [
+	{
+		"question": "What does ROI stand for in business?",
+		"options": ["Return on Investment", "Rate of Income", "Risk of Investment", "N/A"],
+		"correct": 0
+	},
+	{
+		"question": "Which economic system relies on supply and demand to determine the distribution of goods and services?",
+		"options": ["Capitalism", "Socialism", "Communism", "N/A"],
+		"correct": 0
+	},
+	{
+		"question": "What does CEO stand for in business?",
+		"options": ["Chief Executive Officer", "Chief Economic Officer", "Corporate Executive Officer", "N/A"],
+		"correct": 0
+	},
+	{
+		"question": "What is the term for the money a business makes after covering its expenses?",
+		"options": ["Profit", "Revenue", "Cost", "N/A"],
+		"correct": 0
+	},
+	{
+		"question": "What does FBLA mean?",
+		"options": ["Future Business Leaders of America", "Fundamental Bosses Leaders Association", "Foundation Best Leaders Association", "N/A"],
+		"correct": 0
+	},	
+	{
+		"question": "How do you treat others with respect?",
+		"options": ["Disrespect them.", "Handshake them.", "Give them the side eye", "N/A"],
+		"correct": 1
+	},	
+];
 
-func init(moveName):
+
+var douglassQuestions = [
+	{
+		"question": "What does ROI stand for in business?",
+		"options": ["Return on Investment", "Rate of Income", "Risk of Investment", "N/A"],
+		"correct": 0
+	},
+	{
+		"question": "What parliamentary procedures(off which book) do FBLA meetings follow?",
+		"options": ["Gilbert's Rules", "Romeo's Rules", "Robert's Rules", "FBLA's Rules"],
+		"correct": 2
+	},
+	{
+		"question": "What charitable organization does FBLA primarily support?",
+		"options": ["America First", "FLA", "Feeding America", "March of Dimes"],
+		"correct": 3
+	},
+	{
+		"question": "The concept of FBLA was developed at what university??",
+		"options": ["University of Los Angeles", "Columbia University", "Stanford", "Cal State Fullerton"],
+		"correct": 2
+	},
+	{
+		"question": "What does FBLA mean?",
+		"options": ["Future Business Leaders of America", "Fundamental Bosses Leaders Association", "Foundation Best Leaders Association", "N/A"],
+		"correct": 0
+	},	
+	{
+		"question": "How do you treat others with respect?",
+		"options": ["Disrespect them.", "Handshake them.", "Give them the side eye", "N/A"],
+		"correct": 1
+	},	
+		{
+		"question": "As Kevin edits a professional report, he is not sure whether to italicize or underscore a book title. To 	obtain the correct information, Kevin should:",
+		"options": ["Refer to the appropriate publisher's style manual", "Ask his coworker for advice", "Look up the information in 	a current dictionary", "Identify the reader's preferences"],
+		"correct": 0
+	},
+	{
+		"question": "When Steven asks questions in an open-minded way, he avoids:",
+		"options": ["Stating his own opinion", "Attacking some else's idea", "Suggesting a better way to do something", "Mentioning 	the truth"],
+		"correct": 1
+	},
+	{
+		"question": "It is easier for employees to develop positive customer/ client relations if employees understand that each 	customer is:",
+		"options": ["A possible problem", "A unique individual", "In a hurry", "Like most others"],
+		"correct": 1
+	},
+	{
+		"question": "Your coworkers and your supervisor both deserve the same...",
+		"options": ["Disrespect", "praise", "level of authority", "Respect"],
+		"correct": 3
+	},
+	{
+		"question": "Listening without interrupting the speaker is an example of...",
+		"options": ["Netiquette", "Ethics", "Business Etiquette", "Etiquette"],
+		"correct": 2
+	},
+	{
+		"question": "Which of the following is NOT one of the four types of basic written communication documents?",
+		"options": ["reports", "letter", "email", "thesis"],
+		"correct": 3
+	},
+	{
+		"question": "What group of individuals establishes the policies that govern FBLA-PBL?",
+		"options": ["Board of Directors", "Board of Governors", "FBLA CEO", "National Executive Council"],
+		"correct": 0
+	},
+	{
+		"question": "If business of the National Executive Council is conducted by mail, what is the vote required for action?",
+		"options": ["1/2 Vote", "Majority", "Plurality", "3/4 Vote"],
+		"correct": 3
+	},
+	{
+		"question": "Which of the following is not an official publication of FBLA-PBL?",
+		"options": ["Tomorrow's Business Leader", "FBLA Adviser's Hotline", "Business Leaders of Tomorrow", "The PBL Business Leader"],
+		"correct": 2
+	},
+	{
+		"question": "Why is it often important to take notes during meetings or presentations?",
+		"options": ["The audience needs something to do", "The speaker is difficult to understand", "This information will be 	needed later", "Writing keeps the mind focused"],
+		"correct": 2
+	},
+	{
+		"question": "Which is an example of a textual graphic that is used in a business report?",
+		"options": ["Pie chart", "Pictograph", "Map", "Flowchart"],
+		"correct": 3
+	},
+	{
+		"question": "The primary reason customers give for not returning to a business is a lack of:",
+		"options": ["Speak from notes", "Use technical terminology", "Enunciate clearly", "Speak rapidly"],
+		"correct": 2
+	},
+	{
+		"question": "What type of communication style is usually appropriate for evaluation or counseling interviews with 	employees?",
+		"options": ["Casual", "Formal", "Routine", "Technical"],
+		"correct": 1
+	},
+	{
+		"question": "Which is not a tool that people use when participating in discussions?",
+		"options": ["Pointing out missing information", "Commentating a personal experience", "Building on someone else's comment", 	"Helping the group summarize what has been said"],
+		"correct": 1
+	},
+];
+
+
+func askQuestion(mode):
+	if mode == "Easy":
+		var randomQuestionIndex = randi() % easyQuestions.size()
+		questionLabel.text = easyQuestions[randomQuestionIndex]["question"]
+		var options = easyQuestions[randomQuestionIndex]["options"]
+		var correctOption = easyQuestions[randomQuestionIndex]["correct"]
+		aOption.text = "A. " + options[0]
+		bOption.text = "B. " + options[1]
+		cOption.text = "C. " + options[2]
+		dOption.text = "N/A"
+		
+		currCorrectIndex = correctOption
+		questionReady = true
+	elif mode == "Hard":
+		var randomQuestionIndex = randi() % questions.size()
+		questionLabel.text = questions[randomQuestionIndex]["question"]
+		var options = questions[randomQuestionIndex]["options"]
+		var correctOption = questions[randomQuestionIndex]["correct"]
+		aOption.text = "A. " + options[0]
+		bOption.text = "B. " + options[1]
+		cOption.text = "C. " + options[2]
+		dOption.text = "D. " + options[3]
+		
+		currCorrectIndex = correctOption
+		questionReady = true
+	elif mode == "Douglass":
+		var randomQuestionIndex = randi() % douglassQuestions.size()
+		questionLabel.text = douglassQuestions[randomQuestionIndex]["question"]
+		var options = douglassQuestions[randomQuestionIndex]["options"]
+		var correctOption = douglassQuestions[randomQuestionIndex]["correct"]
+		aOption.text = "A. " + options[0]
+		bOption.text = "B. " + options[1]
+		cOption.text = "C. " + options[2]
+		dOption.text = "D. " + options[3]
+		
+		currCorrectIndex = correctOption
+		questionReady = true
+
+@onready var animationPlayer = $Transition
+
+func init(moveName, easyMode):
+	
+	animationPlayer.play("fade_in")
+	
 	visible = true
 	AttackData.passedQuestion = false
 	questionReady = false
@@ -188,7 +350,13 @@ func init(moveName):
 	
 	aOption.grab_focus()
 	
-	askQuestion()
+	if GameManager.KingDouglass == true:
+		askQuestion("Douglass")
+	else:
+		if easyMode == true:
+			askQuestion("Easy")
+		else:
+			askQuestion("Hard")
 	# TODO: add functionality to accomodate to specific moves, when asking questions
 	
 	currMoveName = moveName
@@ -199,14 +367,13 @@ func init(moveName):
 	else:
 		print("do something")
 
+var chosenIndex : int = 0
+
 func onButtonPress(index):
 	if questionReady:
 		AttackData.passedQuestion = true
-		visible = false
-		if currCorrectIndex == index:
-			AttackData.correctAnswer = true
-		get_parent().answered_question(currMoveName)
-		currMoveName = ""
+		chosenIndex = index
+		animationPlayer.play("fade_out")
 
 func _on_option_a_pressed():
 	onButtonPress(0)
@@ -221,3 +388,13 @@ func _on_option_c_pressed():
 
 func _on_option_d_pressed():
 	onButtonPress(3)
+
+
+func _on_transition_animation_finished(anim_name):
+	if anim_name == "fade_out":
+		visible = false
+		if currCorrectIndex == chosenIndex:
+			AttackData.correctAnswer = true
+		get_parent().answered_question(currMoveName)
+		currMoveName = ""
+		chosenIndex = 0
