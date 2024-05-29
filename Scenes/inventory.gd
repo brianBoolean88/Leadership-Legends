@@ -20,7 +20,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("InventoryKey"):
 		if is_open:
 			close()
-		else:
+		elif event_handler.inBattle == false:
 			open()
 			update_slots()
 

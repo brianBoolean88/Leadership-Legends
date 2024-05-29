@@ -24,12 +24,13 @@ func purifyName(allyName):
 
 
 func updateImage():
-	var selectedAlly = AttackData.minionData[index]
-	var chosenAlly = [selectedAlly]
-	purifyName(chosenAlly)
-	var preloadedImage = loadedHeadshots[chosenAlly[0]]
-	if preloadedImage:
-		self.texture = preloadedImage
+	if AttackData.minionData.size() > 0:
+		var selectedAlly = AttackData.minionData[index]
+		var chosenAlly = [selectedAlly]
+		purifyName(chosenAlly)
+		var preloadedImage = loadedHeadshots[chosenAlly[0]]
+		if preloadedImage:
+			self.texture = preloadedImage
 
 var ray_length = 10000
 var minions_node_path = "Scene_Root/AllPlayerMinions"
@@ -58,6 +59,7 @@ func _process(delta):
 		if minionCloneSamples.has_node(chosen_minion):
 			var enemy = minionCloneSamples.get_node(chosen_minion).duplicate()
 			enemy.position = player.position
+			enemy.level += GameManager.boostLevelOffset
 			minionCloneFolder.add_child(enemy)
 			enemy.startup(sprite.scale.x)
 			AttackData.minionData.remove_at(index)

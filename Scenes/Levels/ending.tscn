@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://pc5duoycwpqh"]
+[gd_scene load_steps=16 format=3 uid="uid://pc5duoycwpqh"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/ending.gd" id="1_ul5vt"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_r6s2c"]
 [ext_resource type="AudioStream" uid="uid://dvrowkv17axbo" path="res://Art/Audio/Pixel 7.mp3" id="3_akl1m"]
 [ext_resource type="Script" path="res://Scripts/Music.gd" id="4_xofad"]
+[ext_resource type="Texture2D" uid="uid://bmxoy6nowfok4" path="res://Art/Sprites/ending_frame_2.png" id="5_jwpyw"]
+[ext_resource type="Texture2D" uid="uid://bl0pub8mmfjyq" path="res://Art/Sprites/ending_frame_1.png" id="6_lkg8p"]
+[ext_resource type="Texture2D" uid="uid://d4kv2polppp1q" path="res://Art/Sprites/ending_frame_intermission.png" id="7_huo3y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kdvm4"]
 font = ExtResource("2_r6s2c")
@@ -104,61 +107,6 @@ tracks/6/keys = {
 "values": ["And with that..."]
 }
 
-[sub_resource type="Animation" id="Animation_p0bji"]
-resource_name = "fade_in"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Music/Normal:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-80.0, -12.842]
-}
-
-[sub_resource type="Animation" id="Animation_23jw5"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Music/Normal:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-12.842, -80.0]
-}
-
 [sub_resource type="Animation" id="Animation_o3m8i"]
 resource_name = "ending"
 length = 30.0
@@ -243,6 +191,61 @@ FBLA Game Simulation Programming
 Loved the experience.", "The end."]
 }
 
+[sub_resource type="Animation" id="Animation_p0bji"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music/Normal:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -12.842]
+}
+
+[sub_resource type="Animation" id="Animation_23jw5"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music/Normal:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-12.842, -80.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rtxbs"]
 _data = {
 "RESET": SubResource("Animation_3bv1o"),
@@ -250,6 +253,26 @@ _data = {
 "fade_in": SubResource("Animation_p0bji"),
 "fade_out": SubResource("Animation_23jw5")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvdri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jwpyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lkg8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_huo3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_huo3y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Ending" type="Control"]
 layout_mode = 3
@@ -300,6 +323,14 @@ script = ExtResource("4_xofad")
 stream = ExtResource("3_akl1m")
 volume_db = -12.842
 autoplay = true
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+position = Vector2(320.5, 203.75)
+scale = Vector2(0.373326, 0.42041)
+sprite_frames = SubResource("SpriteFrames_gvdri")
+autoplay = "default"
+frame = 3
+frame_progress = 0.758347
 
 [connection signal="animation_finished" from="Fader" to="." method="_on_fader_animation_finished"]
 [connection signal="finished" from="Music/Normal" to="Music" method="_on_normal_finished"]

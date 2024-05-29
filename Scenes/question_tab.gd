@@ -214,7 +214,7 @@ var douglassQuestions = [
 	{
 		"question": "The concept of FBLA was developed at what university??",
 		"options": ["University of Los Angeles", "Columbia University", "Stanford", "Cal State Fullerton"],
-		"correct": 2
+		"correct": 1
 	},
 	{
 		"question": "What does FBLA mean?",

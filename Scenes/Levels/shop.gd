@@ -46,7 +46,7 @@ func onButtonClick(cash, item_name):
 
 func _on_apple_buy_pressed():
 	if GameManager.boughtShirt == false:
-		onButtonClick(20, "FBLAShirt")
+		onButtonClick(100, "FBLAShirt")
 	else:
 		label.text = "already bought shirt!"
 		if notiAnimPlaying == false:

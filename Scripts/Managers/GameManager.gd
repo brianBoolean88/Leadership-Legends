@@ -7,6 +7,8 @@ var level : String = "MainFloor.tscn"
 var easyMode = true
 var badEnding = false
 
+var boostLevelOffset = 0
+
 var interactedNPCS = 0
 var ione = false
 var itwo = false

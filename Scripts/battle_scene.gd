@@ -13,6 +13,7 @@ var char_name : String;
 @onready var root = get_tree().get_root()
 @onready var normal_player_audio = root.get_node("Scene_Root/Music/Normal")
 @onready var battle_player_audio = root.get_node("Scene_Root/Music/Battle")
+@onready var inventory = root.get_node("Scene_Root/CanvasLayer/Inventory")
 
 func _ready():
 	battle_player_audio.stream_paused = true #pause the battle music
@@ -26,7 +27,7 @@ func fullInvis():
 	$Panel/Return.visible = false;
 
 func detectRunButton():
-	if AttackData.unlockRun == true:
+	if AttackData.unlockRun == true and GameManager.KingDouglass == false:
 		$Panel/Run_button.visible = true;
 	else:
 		$Panel/Run_button.visible = false;
@@ -71,6 +72,8 @@ func visibleEnemy(vis):
 	animate.visible = vis
 
 func init(character_name, lvl, tolerance, health, sprite):
+	
+	inventory.visible = false
 	
 	if GameManager.KingDouglass == true:
 		$DouglassBG.visible = true
@@ -166,32 +169,7 @@ func onMove(button) -> void:
 	#initiate question scene
 	question_scene.init(moveName, GameManager.easyMode)
 
-func answered_question(moveName):
-	#determine if we should use the move based on the MCQ
-	if AttackData.correctAnswer:
-		$Panel/Label.text = "You use %s"%[moveName]
-		health -= AttackData.dmgData[moveName]
-		$Health.value = health
-	else:
-		$Panel/Label.text = "Oh no! You almost missed %s"%[moveName]
-		health -= AttackData.dmgData[moveName]/2
-		$Health.value = health
-		
-	tolerance -= 1
-	$Tolerance.text = "Tolerance: %s turns." %[tolerance]
-	
-	#reset question parameters after we're done
-	AttackData.passedQuestion = false
-	AttackData.correctAnswer = false
-
-	#Apply shake to the camera
-	get_parent().get_parent().get_parent().startup();
-	
-	#Player attacking animation
-	$Player.play("Attack");
-	$Player.play_backwards("Attack");
-	$Music/Attack.play()
-
+func endWrap(haveEnemyAttack):
 	var cont = detectEnd();
 	
 	if cont == 1: #Player got rid of all the health of the enemy
@@ -230,6 +208,12 @@ func answered_question(moveName):
 		if GameManager.KingDouglass == true:
 			GameManager.KingDouglass = false
 			GameManager.douglassEnd()
+		
+		#coins add
+		if char_name == "FBLAqua Spirit":
+			GameManager.money += 20
+		else:
+			GameManager.money += 10
 		print("captured!");	
 	elif cont == 2: #Player ran out of time for tolerance
 		$Panel/Label.text = "You lost!"
@@ -256,9 +240,37 @@ func answered_question(moveName):
 	elif cont == 3: #Player can continue the game
 		await get_tree().create_timer(1).timeout
 		
+		if haveEnemyAttack:
+			$Panel/Label.text = "The enemy is about to attack."
+			enemyAttack()
 		
-		$Panel/Label.text = "The enemy is about to attack."
-		enemyAttack()
+func answered_question(moveName):
+	#determine if we should use the move based on the MCQ
+	if AttackData.correctAnswer:
+		$Panel/Label.text = "You use %s"%[moveName]
+		health -= AttackData.dmgData[moveName]
+		$Health.value = health
+	else:
+		$Panel/Label.text = "Oh no! You almost missed %s"%[moveName]
+		health -= AttackData.dmgData[moveName]/2
+		$Health.value = health
+		
+	tolerance -= 1
+	$Tolerance.text = "Tolerance: %s turns." %[tolerance]
+	
+	#reset question parameters after we're done
+	AttackData.passedQuestion = false
+	AttackData.correctAnswer = false
+
+	#Apply shake to the camera
+	get_parent().get_parent().get_parent().startup();
+	
+	#Player attacking animation
+	$Player.play("Attack");
+	$Player.play_backwards("Attack");
+	$Music/Attack.play()
+
+	endWrap(true)
 
 func resetCont():
 	fullInvis();
@@ -269,17 +281,23 @@ func resetCont():
 	
 func enemyAttack():
 	await get_tree().create_timer(1).timeout
+	
 	var randomAttack = (randi() % 9)+1
+	
+	#Douglass has 1/2 chance to attack
+	if GameManager.KingDouglass == true:
+		randomAttack = (randi() % 6)+1
+	
 	#1/3 chance to attack
 	if randomAttack == 1:
 		
 		#Dialogue
 		$Panel/Label.text = "The enemy is not feeling convinced."
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(2).timeout
 		
 		if GameManager.KingDouglass == true:
-			tolerance -= 3
-			$Panel/Label.text = "-3 tolerance."
+			tolerance -= 2
+			$Panel/Label.text = "-2 tolerance."
 		else:
 			tolerance -= 1
 			$Panel/Label.text = "-1 tolerance."
@@ -296,7 +314,7 @@ func enemyAttack():
 		
 		#Lower field of vision
 		$Panel/Label.text = "The enemy is retaliating."
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(2).timeout
 		$Panel/Label.text = "He lowers your field of vision."
 		$Darkness.visible = true
 		
@@ -308,24 +326,36 @@ func enemyAttack():
 		
 		#Add HP
 		$Panel/Label.text = "The enemy remembered he has a voice in this debate."
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(2).timeout
 		$Panel/Label.text = "He gains HP."
 		
 		if GameManager.KingDouglass == true:
-			health += 100
-		else:
 			health += 50
+		else:
+			health += 25
 		
 		if health > $Health.max_value:
 			health = $Health.max_value
-			print("Max Health!")
 		
 		$Health.value = health
 		
 		#Shake + Attack sound
 		get_parent().get_parent().get_parent().startup();
 		$Music/Attack.play()
-	await get_tree().create_timer(1).timeout
+	else:
+		$Panel/Label.text = "The enemy decided against it, and is listening to you again."
+		
+		var randomTolerance = (randi() % 2)+1
+		if randomTolerance == 1:
+			await get_tree().create_timer(2).timeout
+			$Panel/Label.text = "You gain 1 tolernace."
+			tolerance += 1
+			$Tolerance.text = "Tolerance: %s turns." %[tolerance]
+		
+		
+	
+	await get_tree().create_timer(2).timeout
+	endWrap(false)
 	resetCont()
 
 func _on_move_1_button_pressed():

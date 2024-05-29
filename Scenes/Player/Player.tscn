@@ -1,8 +1,10 @@
-[gd_scene load_steps=113 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=115 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
 [ext_resource type="Texture2D" uid="uid://b1jgsdcltjrqk" path="res://Headshots/Shadow Strategist.png" id="10_0w7wn"]
+[ext_resource type="Texture2D" uid="uid://cqk02t80ro8s5" path="res://Art/Sprites/backpack icon.png" id="10_44i4q"]
 [ext_resource type="Script" path="res://Scripts/Minion.gd" id="10_lof2j"]
+[ext_resource type="Texture2D" uid="uid://cgih4ucdio7v0" path="res://Art/Sprites/dash.png" id="10_pkq5v"]
 [ext_resource type="Script" path="res://Scripts/battle_scene.gd" id="11_au2jd"]
 [ext_resource type="Texture2D" uid="uid://b7vseq6o7cflu" path="res://Art/BattleSequence/Battleground2.png" id="11_oej5d"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="13_lfmpa"]
@@ -1091,6 +1093,40 @@ position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = SubResource("GDScript_3r2rw")
 
+[node name="DashIcon" type="Sprite2D" parent="Camera2D"]
+z_index = 100
+position = Vector2(-148, 84)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_pkq5v")
+
+[node name="Controls" type="Label" parent="Camera2D/DashIcon"]
+z_index = 100
+offset_left = 14.0
+offset_top = -3.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(Space)"
+label_settings = SubResource("LabelSettings_olvia")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackpackIcon" type="Sprite2D" parent="Camera2D"]
+z_index = 100
+position = Vector2(-148, 66.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_44i4q")
+
+[node name="Controls" type="Label" parent="Camera2D/BackpackIcon"]
+z_index = 100
+offset_left = 14.0
+offset_top = -3.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(B)"
+label_settings = SubResource("LabelSettings_olvia")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SelectedMinion" type="TextureRect" parent="Camera2D" node_paths=PackedStringArray("labelText", "player", "sprite")]
 visible = false
 z_index = 101
@@ -1112,6 +1148,18 @@ offset_top = 4.5
 offset_right = 40.5
 offset_bottom = 17.5
 text = "1"
+label_settings = SubResource("LabelSettings_olvia")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls" type="Label" parent="Camera2D/SelectedMinion"]
+z_index = 100
+layout_mode = 0
+offset_left = 33.5
+offset_top = 15.0
+offset_right = 40.5
+offset_bottom = 28.0
+text = "(E, Q, R)"
 label_settings = SubResource("LabelSettings_olvia")
 horizontal_alignment = 1
 vertical_alignment = 1

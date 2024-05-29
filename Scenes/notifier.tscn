@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://iafctwl8qswh"]
+
+[ext_resource type="Script" path="res://Scripts/notifier.gd" id="1_474jq"]
+[ext_resource type="AudioStream" uid="uid://dgmqb6r0k2as2" path="res://Art/Audio/MenuOpen.wav" id="2_g03ye"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dovov"]
+size = Vector2(307, 47)
+
+[node name="Notifier" type="Area2D"]
+script = ExtResource("1_474jq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_dovov")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_g03ye")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

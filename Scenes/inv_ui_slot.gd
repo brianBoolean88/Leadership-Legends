@@ -34,8 +34,13 @@ func eaten(fruit):
 	elif fruit == "FBLAPants":
 		equipSound.play()
 		AttackData.unlockRun = true
-	else:
+	elif fruit == "FBLASnack":
 		eatingSound.play()
+		GameManager.boostLevelOffset += 1
+	elif fruit == "FBLASoda":
+		eatingSound.play()
+		GameManager.boostLevelOffset += 4
+		
 	
 	itemRepresentative = ""
 	item_visual.texture = null

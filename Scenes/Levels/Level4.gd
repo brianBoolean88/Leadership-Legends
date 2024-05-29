@@ -5,8 +5,11 @@ extends Node2D
 @onready var bell = $Music/Bell
 
 func _ready():
+	GameManager.level = "Level4.tscn"
 	animationPlayer.play("fade_in")
 	bell.play()
+	event_handler.inBattle = false
+	GameManager.CanMove = true
 
 
 #character_name, lvl, tolerance, health, sprite
