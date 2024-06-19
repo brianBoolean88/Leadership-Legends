@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cvu6wfbefeony"]
+[gd_scene load_steps=44 format=3 uid="uid://cvu6wfbefeony"]
 
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="1_v023b"]
 [ext_resource type="PackedScene" uid="uid://eew3u75siddd" path="res://Scenes/shadow.tscn" id="2_8ii7x"]
@@ -110,6 +110,12 @@ font = ExtResource("17_hmvo7")
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_vlj1r"]
+font = ExtResource("17_hmvo7")
+font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uwm3f"]
 font = ExtResource("17_hmvo7")
 font_size = 32
 outline_size = 1
@@ -365,6 +371,18 @@ offset_right = 398.0
 offset_bottom = 221.0
 text = "SAMPLE NOTIFICATION"
 label_settings = SubResource("LabelSettings_vlj1r")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="CanvasLayer/Notification"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -1.0
+offset_right = 397.0
+offset_bottom = 25.0
+text = "F TO INTERACT"
+label_settings = SubResource("LabelSettings_uwm3f")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

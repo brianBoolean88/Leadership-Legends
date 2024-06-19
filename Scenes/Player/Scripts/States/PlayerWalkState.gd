@@ -24,7 +24,7 @@ func Update(delta : float):
 			LessenDash(delta)
 		
 
-		if(Input.is_action_just_pressed("Dash") && can_dash):
+		if(Input.is_action_just_pressed("Dash") && can_dash && GameManager.CanDash):
 			start_dash(input_dir)
 			AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, -1)
 	else:

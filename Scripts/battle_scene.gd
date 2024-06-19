@@ -71,12 +71,20 @@ func visibleEnemy(vis):
 	var animate = get_node(char_name)
 	animate.visible = vis
 
+var loadedHeadshots = {
+	"MainFloor.tscn" : load("res://Art/BattleSceneBG/VibrantGrass.png"),
+	"Level2.tscn" : load("res://Art/BattleSceneBG/Water.jpg"),
+	"Level3.tscn" : load("res://Art/BattleSceneBG/VibrantLandscape.png"),
+	"Level4.tscn" : load("res://Art/BattleSceneBG/AfternoonFullMist.png"),
+}
+
 func init(character_name, lvl, tolerance, health, sprite):
 	
+	GameManager.CanMove = false
+	GameManager.CanDash = false
 	inventory.visible = false
 	
-	if GameManager.KingDouglass == true:
-		$DouglassBG.visible = true
+	self.texture = loadedHeadshots[GameManager.level]
 	
 	#Add constructor values
 	animatedSprite = sprite;
@@ -200,6 +208,8 @@ func endWrap(haveEnemyAttack):
 		normal_player_audio.play()
 		battle_player_audio.stream_paused = true
 		
+		GameManager.CanMove = true
+		GameManager.CanDash = true
 		GameManager.battles_won += 1
 		
 		if StateDialogue.main_status == "Start":

@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://mcldwkhfjuu7"]
+[gd_scene load_steps=91 format=3 uid="uid://mcldwkhfjuu7"]
 
 [ext_resource type="Script" path="res://Scenes/level_3.gd" id="1_xy56b"]
 [ext_resource type="PackedScene" uid="uid://c5r4iaw4g3u2n" path="res://Scenes/actionable.tscn" id="2_tycac"]
@@ -343,6 +343,12 @@ font = ExtResource("4_2crn2")
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_2axwg"]
+font = ExtResource("4_2crn2")
+font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_imv1g"]
 font = ExtResource("4_2crn2")
 font_size = 32
 outline_size = 1
@@ -804,6 +810,18 @@ script = ExtResource("36_nnen4")
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="CanvasLayer/Notification"]
 stream = ExtResource("37_uuveu")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Notification"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -1.0
+offset_right = 397.0
+offset_bottom = 25.0
+text = "F TO INTERACT"
+label_settings = SubResource("LabelSettings_imv1g")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FBLAqua Spirit" parent="." instance=ExtResource("25_8nj1k")]
 position = Vector2(2144, 958)

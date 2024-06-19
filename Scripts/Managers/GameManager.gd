@@ -17,6 +17,7 @@ var ifour = false
 var ifive = false
 
 var CanMove = true
+var CanDash = true
 var KingDouglass = false
 
 var inventory = []

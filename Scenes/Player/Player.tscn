@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=114 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
 [ext_resource type="Texture2D" uid="uid://b1jgsdcltjrqk" path="res://Headshots/Shadow Strategist.png" id="10_0w7wn"]
@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/Minion.gd" id="10_lof2j"]
 [ext_resource type="Texture2D" uid="uid://cgih4ucdio7v0" path="res://Art/Sprites/dash.png" id="10_pkq5v"]
 [ext_resource type="Script" path="res://Scripts/battle_scene.gd" id="11_au2jd"]
-[ext_resource type="Texture2D" uid="uid://b7vseq6o7cflu" path="res://Art/BattleSequence/Battleground2.png" id="11_oej5d"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="13_lfmpa"]
 [ext_resource type="AudioStream" uid="uid://bqj7qhps81rwo" path="res://Scenes/Levels/Clement Panchout _ Jelly Blob _ 2017.wav" id="14_clbvy"]
+[ext_resource type="Texture2D" uid="uid://cg3ysrxfnw25f" path="res://Art/BattleSceneBG/VibrantGrass.png" id="14_nrt1p"]
 [ext_resource type="AudioStream" uid="uid://cseuohao12amf" path="res://Art/Audio/BattleSceneSFX/Select.wav" id="14_pklul"]
 [ext_resource type="AudioStream" uid="uid://bg2sl7g6ka8f3" path="res://Scenes/Levels/simple-piano-melody-9834.mp3" id="14_ssngf"]
 [ext_resource type="AudioStream" uid="uid://cmj36t1kcgnrs" path="res://Art/Audio/BattleSceneSFX/AttackSFX.wav" id="15_mcbi5"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://buxnkvlxiqg7i" path="res://Art/LivelyNPCS/king.png" id="16_3tqg7"]
 [ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="16_js7fr"]
 [ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/Dude_Monster_Idle_4.png" id="16_jtuuo"]
-[ext_resource type="Texture2D" uid="uid://h80ocumqtilp" path="res://Art/BattleSceneBG/AfternoonFullMist.png" id="16_oe6h8"]
 [ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="17_3l3bd"]
 [ext_resource type="AudioStream" uid="uid://bt0i24d1ltalk" path="res://Art/Audio/BattleSceneSFX/Dialogue.wav" id="18_sqmar"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
@@ -1174,6 +1173,7 @@ offset_left = -0.666664
 offset_top = 0.666672
 offset_right = 426.333
 offset_bottom = 240.667
+mouse_filter = 2
 
 [node name="background" type="TextureRect" parent="Camera2D/CanvasLayer/battle_scene"]
 visible = false
@@ -1189,17 +1189,12 @@ offset_right = 437.167
 offset_bottom = 292.333
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_oej5d")
+mouse_filter = 2
+texture = ExtResource("14_nrt1p")
 expand_mode = 1
 script = ExtResource("11_au2jd")
 battleMusic = ExtResource("14_clbvy")
 normalMusic = ExtResource("14_ssngf")
-
-[node name="DouglassBG" type="Sprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
-visible = false
-position = Vector2(334, 212)
-scale = Vector2(0.293403, 0.330247)
-texture = ExtResource("16_oe6h8")
 
 [node name="Player" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
 texture_filter = 1
@@ -1242,6 +1237,7 @@ offset_left = 80.0
 offset_top = 5.0
 offset_right = 537.0
 offset_bottom = 84.0
+mouse_filter = 2
 
 [node name="Health" type="ProgressBar" parent="Camera2D/CanvasLayer/battle_scene/background"]
 light_mask = 2
@@ -1252,6 +1248,7 @@ offset_top = 28.3333
 offset_right = 128.667
 offset_bottom = 417.333
 rotation = -1.57079
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_ub6e5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0guox")
 step = 1.0
@@ -1296,8 +1293,10 @@ offset_right = 234.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="Fight_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
+z_index = 1
 layout_mode = 0
 offset_left = 329.0
 offset_top = 13.0
@@ -1305,10 +1304,12 @@ offset_right = 447.0
 offset_bottom = 59.0
 theme_override_fonts/font = ExtResource("13_lfmpa")
 theme_override_font_sizes/font_size = 40
+action_mode = 0
 text = "Negotiate"
 
 [node name="Move1_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 visible = false
+z_index = 1
 layout_mode = 0
 offset_left = 330.0
 offset_top = 13.0
@@ -1316,10 +1317,12 @@ offset_right = 447.0
 offset_bottom = 57.0
 theme_override_fonts/font = ExtResource("13_lfmpa")
 theme_override_font_sizes/font_size = 40
+action_mode = 0
 text = "Question!"
 
 [node name="Return" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 visible = false
+z_index = 1
 layout_mode = 0
 offset_left = 365.0
 offset_top = -42.0
@@ -1327,10 +1330,12 @@ offset_right = 451.0
 offset_bottom = -7.0
 theme_override_fonts/font = ExtResource("13_lfmpa")
 theme_override_font_sizes/font_size = 40
+action_mode = 0
 text = "Return"
 
 [node name="Move2_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
 visible = false
+z_index = 1
 layout_mode = 0
 offset_left = 332.0
 offset_top = 66.0
@@ -1338,9 +1343,11 @@ offset_right = 443.0
 offset_bottom = 108.0
 theme_override_fonts/font = ExtResource("13_lfmpa")
 theme_override_font_sizes/font_size = 40
+action_mode = 0
 text = "Move2"
 
 [node name="Run_button" type="Button" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
+z_index = 1
 layout_mode = 0
 offset_left = 332.0
 offset_top = 66.0
@@ -1348,6 +1355,7 @@ offset_right = 444.0
 offset_bottom = 108.0
 theme_override_fonts/font = ExtResource("13_lfmpa")
 theme_override_font_sizes/font_size = 40
+action_mode = 0
 text = "Run"
 
 [node name="Label" type="Label" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
@@ -1355,6 +1363,18 @@ layout_mode = 0
 offset_right = 263.0
 offset_bottom = 83.0
 text = "Placeholder text."
+label_settings = SubResource("LabelSettings_of8i5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="Camera2D/CanvasLayer/battle_scene/background/Panel"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = -5.99988
+offset_right = 370.0
+offset_bottom = 18.0001
+text = "Arrow keys + Enter"
 label_settings = SubResource("LabelSettings_of8i5")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1378,6 +1398,7 @@ offset_right = 336.0
 offset_bottom = 213.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Music" type="Node" parent="Camera2D/CanvasLayer/battle_scene/background"]
@@ -1416,6 +1437,7 @@ visible = false
 layout_mode = 0
 offset_right = 661.0
 offset_bottom = 420.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0.65098)
 
 [node name="MoneyLabel" type="Label" parent="Camera2D"]

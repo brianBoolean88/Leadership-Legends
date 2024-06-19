@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=23 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://Scenes/balloon.gd" id="1_36de5"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_4k68w"]
@@ -75,6 +75,10 @@ MarginContainer/constants/margin_left = 30
 MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_da05u"]
+font = ExtResource("2_4k68w")
+font_size = 32
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
@@ -223,6 +227,15 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4k68w")
 theme_override_font_sizes/font_size = 30
 text = "Response example"
+
+[node name="Label" type="Label" parent="Balloon"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 185.0
+offset_right = 76.0
+offset_bottom = 213.0
+text = "Space"
+label_settings = SubResource("LabelSettings_da05u")
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
