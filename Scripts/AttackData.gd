@@ -14,7 +14,9 @@ class_name Attack_Data
 }
 
 @export var minionData = [
-	"Shadow Strategist"
+	"Shadow Strategist",
+	"FBLAqua Spirit",
+	"FBLAqua Spirit",
 ]
 
 var passedQuestion : bool = false
