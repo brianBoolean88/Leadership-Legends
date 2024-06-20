@@ -1,6 +1,10 @@
-[gd_scene load_steps=114 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=102 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
+[ext_resource type="Texture2D" uid="uid://crjhafi5mu2mt" path="res://Art/Sprites/BusinessManIdle.png" id="3_ra27d"]
+[ext_resource type="Texture2D" uid="uid://cff24x14yclth" path="res://Art/Sprites/BusinessManAttack.png" id="3_soak2"]
+[ext_resource type="Texture2D" uid="uid://cphhg5wc4t2fe" path="res://Art/Sprites/BusinessManDash.png" id="4_fmmbx"]
+[ext_resource type="Texture2D" uid="uid://pl7j4jsdu0dn" path="res://Art/Sprites/BusinessManWalk.png" id="4_nxdux"]
 [ext_resource type="Texture2D" uid="uid://b1jgsdcltjrqk" path="res://Headshots/Shadow Strategist.png" id="10_0w7wn"]
 [ext_resource type="Texture2D" uid="uid://cqk02t80ro8s5" path="res://Art/Sprites/backpack icon.png" id="10_44i4q"]
 [ext_resource type="Script" path="res://Scripts/Minion.gd" id="10_lof2j"]
@@ -15,11 +19,12 @@
 [ext_resource type="AudioStream" uid="uid://cobddu2k35y00" path="res://Art/Audio/BattleSceneSFX/BattleSequence.wav" id="15_vubc7"]
 [ext_resource type="Texture2D" uid="uid://buxnkvlxiqg7i" path="res://Art/LivelyNPCS/king.png" id="16_3tqg7"]
 [ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="16_js7fr"]
-[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/Dude_Monster_Idle_4.png" id="16_jtuuo"]
 [ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="17_3l3bd"]
 [ext_resource type="AudioStream" uid="uid://bt0i24d1ltalk" path="res://Art/Audio/BattleSceneSFX/Dialogue.wav" id="18_sqmar"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_gooki"]
+[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/WaterGuyIdle.png" id="22_s3f3n"]
+[ext_resource type="Texture2D" uid="uid://4dqabvbucr3i" path="res://Art/Sprites/ShadowStrategistIdle.png" id="22_yoknt"]
 [ext_resource type="PackedScene" uid="uid://ddhkb3u68e3p3" path="res://Scenes/question_tab.tscn" id="23_2j0v6"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="27_on0bn"]
@@ -33,111 +38,125 @@ font = ExtResource("13_lfmpa")
 font_size = 19
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uky13"]
-polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10, 5, 10, 5, 2, 10, -1, 10, -10, 8, -13)
+polygon = PackedVector2Array(-1, -8, -5, -7, -7, -6, -6, -2, -4, 2, -4, 10, 5, 10, 5, 2, 6, -2, 7, -7, 4, -8)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fg2lj"]
-load_path = "res://.godot/imported/Player_attack1.png-34c5ddb09f671a1509427ad274bbbc84.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5kus"]
+atlas = ExtResource("3_soak2")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cfcvs"]
-load_path = "res://.godot/imported/Player_attack2.png-94b5109085744e59248a62929175c272.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_76ieh"]
+atlas = ExtResource("3_soak2")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_whwty"]
-load_path = "res://.godot/imported/Player_attack3.png-049f1643405c4ba11df10413f4cebd5e.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlhsn"]
+atlas = ExtResource("3_soak2")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o0bqh"]
-load_path = "res://.godot/imported/Player_attack4.png-d8bcd731cfa744667a262c9a5a9863c1.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_870dc"]
+atlas = ExtResource("3_soak2")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fncth"]
-load_path = "res://.godot/imported/Player_attack5.png-1fe1126ace88b9968a7a8c59f3d6d76f.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pure"]
+atlas = ExtResource("4_fmmbx")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rp2ta"]
-load_path = "res://.godot/imported/Player_attack6.png-106c90f3897e4153ae98e0b55e067708.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcmd6"]
+atlas = ExtResource("4_fmmbx")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efp7h"]
-load_path = "res://.godot/imported/Player_Dash1.png-a2faf66980c1e8ecb4f0b8b952525382.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuxwu"]
+atlas = ExtResource("4_fmmbx")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k24kq"]
-load_path = "res://.godot/imported/Player_Dash2.png-ac6ae547ae588112259f9900632957d0.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_16kww"]
+atlas = ExtResource("4_fmmbx")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3qcwl"]
-load_path = "res://.godot/imported/Player_Dash3.png-587a88fc49c4e9cf52b0cffe34398fe5.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmyf2"]
+atlas = ExtResource("4_fmmbx")
+region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vbu5t"]
-load_path = "res://.godot/imported/Player_Dash4.png-d570a76b98975f47f77768d860574a61.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mmmg"]
+atlas = ExtResource("4_fmmbx")
+region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6uyfr"]
-load_path = "res://.godot/imported/Player_Death1.png-130b2745ae406a47c68e062c1aedf067.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d6le"]
+atlas = ExtResource("3_ra27d")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ybgl"]
-load_path = "res://.godot/imported/Player_Death2.png-971f0c58713299353657988aaa902ddd.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_so2fb"]
+atlas = ExtResource("3_ra27d")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01mst"]
-load_path = "res://.godot/imported/Player_Death3.png-d05a40cc8ae884cf4c76c805bf019ca4.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed7jb"]
+atlas = ExtResource("3_ra27d")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1jv4u"]
-load_path = "res://.godot/imported/Player_Death4.png-507b0ab30ef179b86df957e0c5a0064f.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1uen"]
+atlas = ExtResource("3_ra27d")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yaeps"]
-load_path = "res://.godot/imported/Player_Idle1.png-75688ef2036fcb7a48a4a1f6fe44c46f.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_tunq4"]
+atlas = ExtResource("4_nxdux")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ccjfe"]
-load_path = "res://.godot/imported/Player_Idle2.png-0731cd20697fa292e7f80b4389adfa56.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_47hgk"]
+atlas = ExtResource("4_nxdux")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bwfu8"]
-load_path = "res://.godot/imported/Player_Idle3.png-01c7516e3b8be9d8d20f758dcb076a98.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fmw6"]
+atlas = ExtResource("4_nxdux")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mx7ea"]
-load_path = "res://.godot/imported/Player_MoonKick1.png-7c97a54a23737a21149568c3a28cb257.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8hhk"]
+atlas = ExtResource("4_nxdux")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqxic"]
-load_path = "res://.godot/imported/Player_MoonKick2.png-32e4c4909de775ca4787591cc0209b4a.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_ku2jl"]
+atlas = ExtResource("4_nxdux")
+region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_opl2q"]
-load_path = "res://.godot/imported/Player_MoonKick3.png-96232eaf78fa76e783405f2f2c6b231c.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jonoq"]
-load_path = "res://.godot/imported/Player_walk1.png-d970c3964b83a4394c8975e2b7f99ddd.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c68m6"]
-load_path = "res://.godot/imported/Player_walk2.png-618de9b0e643fa6b3b97e5e783c8baa1.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3wwm"]
+atlas = ExtResource("4_nxdux")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vax36"]
 animations = [{
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("CompressedTexture2D_fg2lj")
-}, {
-"duration": 0.6,
-"texture": SubResource("CompressedTexture2D_cfcvs")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5kus")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_whwty")
-}, {
-"duration": 1.25,
-"texture": SubResource("CompressedTexture2D_o0bqh")
+"texture": SubResource("AtlasTexture_76ieh")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_fncth")
+"texture": SubResource("AtlasTexture_vlhsn")
 }, {
-"duration": 0.8,
-"texture": SubResource("CompressedTexture2D_rp2ta")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_870dc")
 }],
 "loop": false,
 "name": &"Attack",
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 0.25,
-"texture": SubResource("CompressedTexture2D_efp7h")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pure")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_k24kq")
+"texture": SubResource("AtlasTexture_dcmd6")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_3qcwl")
+"texture": SubResource("AtlasTexture_cuxwu")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_vbu5t")
+"texture": SubResource("AtlasTexture_16kww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmyf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mmmg")
 }],
 "loop": false,
 "name": &"Dash",
@@ -145,30 +164,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_6uyfr")
+"texture": SubResource("AtlasTexture_5d6le")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_0ybgl")
+"texture": SubResource("AtlasTexture_so2fb")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_01mst")
+"texture": SubResource("AtlasTexture_ed7jb")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_1jv4u")
-}],
-"loop": false,
-"name": &"Death",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_yaeps")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ccjfe")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_bwfu8")
+"texture": SubResource("AtlasTexture_l1uen")
 }],
 "loop": true,
 "name": &"Idle",
@@ -176,24 +181,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_mx7ea")
+"texture": SubResource("AtlasTexture_tunq4")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_qqxic")
+"texture": SubResource("AtlasTexture_47hgk")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_opl2q")
-}],
-"loop": false,
-"name": &"MoonKick",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_jonoq")
+"texture": SubResource("AtlasTexture_8fmw6")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_c68m6")
+"texture": SubResource("AtlasTexture_r8hhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ku2jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3wwm")
 }],
 "loop": true,
 "name": &"Walk",
@@ -263,253 +266,56 @@ func get_random_offset() -> Vector2:
 font = ExtResource("13_lfmpa")
 shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hf0vr"]
-animations = [{
-"frames": [{
-"duration": 0.5,
-"texture": SubResource("CompressedTexture2D_fg2lj")
-}, {
-"duration": 0.6,
-"texture": SubResource("CompressedTexture2D_cfcvs")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_whwty")
-}, {
-"duration": 1.25,
-"texture": SubResource("CompressedTexture2D_o0bqh")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_fncth")
-}, {
-"duration": 0.8,
-"texture": SubResource("CompressedTexture2D_rp2ta")
-}],
-"loop": false,
-"name": &"Attack",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 0.25,
-"texture": SubResource("CompressedTexture2D_efp7h")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_k24kq")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_3qcwl")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_vbu5t")
-}],
-"loop": false,
-"name": &"Dash",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_6uyfr")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_0ybgl")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_01mst")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_1jv4u")
-}],
-"loop": false,
-"name": &"Death",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_yaeps")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ccjfe")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_bwfu8")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_mx7ea")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_qqxic")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_opl2q")
-}],
-"loop": false,
-"name": &"MoonKick",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_jonoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_c68m6")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 5.0
-}]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6a58"]
+atlas = ExtResource("22_yoknt")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6cp0"]
-load_path = "res://.godot/imported/Enemy09.png-bb5565872c8a59ca0e9a6c3f5b1b0fb8.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvr65"]
+atlas = ExtResource("22_yoknt")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mevv5"]
-load_path = "res://.godot/imported/Enemy10.png-2b13f1dc3a9a1db626574ad6292939e1.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_o82gb"]
+atlas = ExtResource("22_yoknt")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3gyuu"]
-load_path = "res://.godot/imported/Enemy11.png-74c5a80d1a5b6e021303539cf050f0f7.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n5067"]
-load_path = "res://.godot/imported/Enemy12.png-776b08bb20f589c258e122f7268451e3.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmlkv"]
-load_path = "res://.godot/imported/Enemy13.png-ee96501bb6f45dd8ea72fd1c5bf89eef.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nm7sq"]
-load_path = "res://.godot/imported/Enemy14.png-72f43b154cf70b3fcb5cf2e7604cd807.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1053m"]
-load_path = "res://.godot/imported/Enemy15.png-c02cd7d0245510f9a5610286bf513d9b.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oysdx"]
-load_path = "res://.godot/imported/Enemy16.png-65f66df82f6c9ca5b2e777a02f71724d.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v5qgf"]
-load_path = "res://.godot/imported/Enemy18.png-bf4f446e1305cbf49b49cf6c04f50459.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11yeb"]
-load_path = "res://.godot/imported/Enemy19.png-1ec4ac4c3cb657dfa871e3719a366f54.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_15aw7"]
-load_path = "res://.godot/imported/Enemy20.png-c832ca120ce3315b4784fe13df6ee197.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qf4jw"]
-load_path = "res://.godot/imported/Enemy21.png-c9de5cf0714289501930723e7f564ec1.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ijf8h"]
-load_path = "res://.godot/imported/Enemy22.png-cadf75d5db496547c3ee20ff40de3e1c.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tx3fq"]
-load_path = "res://.godot/imported/Enemy02.png-85b4a0c5724e8f051ff07efbbb0340ac.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0om5y"]
-load_path = "res://.godot/imported/Enemy03.png-caedc4a192931321e92e1f3e37315fa7.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4w5iu"]
-load_path = "res://.godot/imported/Enemy04.png-b3be951462a1527a7c689e367f5805f3.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7eh6p"]
-load_path = "res://.godot/imported/Enemy06.png-1bfa534b9133c81c02c96ce18e6f5a1c.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b3a2r"]
-load_path = "res://.godot/imported/Enemy07.png-204649409c79c661972255bc1125e7ba.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0k7u"]
+atlas = ExtResource("22_yoknt")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o41dt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_b6cp0")
+"texture": SubResource("AtlasTexture_i6a58")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_mevv5")
+"texture": SubResource("AtlasTexture_uvr65")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_3gyuu")
+"texture": SubResource("AtlasTexture_o82gb")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_n5067")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_cmlkv")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_nm7sq")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_1053m")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_oysdx")
-}],
-"loop": false,
-"name": &"Attack",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_v5qgf")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_11yeb")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_15aw7")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_qf4jw")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ijf8h")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"Death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_tx3fq")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_0om5y")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_4w5iu")
+"texture": SubResource("AtlasTexture_b0k7u")
 }],
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_7eh6p")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_b3a2r")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7k40b"]
-atlas = ExtResource("16_jtuuo")
+atlas = ExtResource("22_s3f3n")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7hlqx"]
-atlas = ExtResource("16_jtuuo")
+atlas = ExtResource("22_s3f3n")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsjwb"]
-atlas = ExtResource("16_jtuuo")
+atlas = ExtResource("22_s3f3n")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqrcw"]
-atlas = ExtResource("16_jtuuo")
+atlas = ExtResource("22_s3f3n")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ie318"]
@@ -1024,6 +830,7 @@ occluder = SubResource("OccluderPolygon2D_uky13")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vax36")
 animation = &"Attack"
+frame = 3
 
 [node name="HitParticles" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
 position = Vector2(15, 5)
@@ -1198,10 +1005,11 @@ normalMusic = ExtResource("14_ssngf")
 
 [node name="Player" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
 texture_filter = 1
-position = Vector2(144.667, 238.333)
-scale = Vector2(3.02604, 3.19792)
-sprite_frames = SubResource("SpriteFrames_hf0vr")
-animation = &"Attack"
+position = Vector2(146, 230)
+scale = Vector2(3.43229, 3.47396)
+sprite_frames = SubResource("SpriteFrames_vax36")
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="Shadow Strategist" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
 visible = false
@@ -1210,6 +1018,7 @@ scale = Vector2(3.70833, 3.29167)
 sprite_frames = SubResource("SpriteFrames_o41dt")
 animation = &"Idle"
 autoplay = "Idle"
+flip_h = true
 
 [node name="FBLAqua Spirit" type="AnimatedSprite2D" parent="Camera2D/CanvasLayer/battle_scene/background"]
 visible = false

@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=28 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_aaoao"]
+[ext_resource type="Texture2D" uid="uid://4dqabvbucr3i" path="res://Art/Sprites/ShadowStrategistIdle.png" id="3_8t3dj"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_d5isq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_mb2dn"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="21_mks5l"]
@@ -11,137 +12,39 @@
 line_spacing = -5.0
 font = ExtResource("2_aaoao")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6cp0"]
-load_path = "res://.godot/imported/Enemy09.png-bb5565872c8a59ca0e9a6c3f5b1b0fb8.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqp3f"]
+atlas = ExtResource("3_8t3dj")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mevv5"]
-load_path = "res://.godot/imported/Enemy10.png-2b13f1dc3a9a1db626574ad6292939e1.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_24efr"]
+atlas = ExtResource("3_8t3dj")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3gyuu"]
-load_path = "res://.godot/imported/Enemy11.png-74c5a80d1a5b6e021303539cf050f0f7.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_st6p2"]
+atlas = ExtResource("3_8t3dj")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n5067"]
-load_path = "res://.godot/imported/Enemy12.png-776b08bb20f589c258e122f7268451e3.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmlkv"]
-load_path = "res://.godot/imported/Enemy13.png-ee96501bb6f45dd8ea72fd1c5bf89eef.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nm7sq"]
-load_path = "res://.godot/imported/Enemy14.png-72f43b154cf70b3fcb5cf2e7604cd807.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1053m"]
-load_path = "res://.godot/imported/Enemy15.png-c02cd7d0245510f9a5610286bf513d9b.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oysdx"]
-load_path = "res://.godot/imported/Enemy16.png-65f66df82f6c9ca5b2e777a02f71724d.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v5qgf"]
-load_path = "res://.godot/imported/Enemy18.png-bf4f446e1305cbf49b49cf6c04f50459.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11yeb"]
-load_path = "res://.godot/imported/Enemy19.png-1ec4ac4c3cb657dfa871e3719a366f54.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_15aw7"]
-load_path = "res://.godot/imported/Enemy20.png-c832ca120ce3315b4784fe13df6ee197.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qf4jw"]
-load_path = "res://.godot/imported/Enemy21.png-c9de5cf0714289501930723e7f564ec1.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ijf8h"]
-load_path = "res://.godot/imported/Enemy22.png-cadf75d5db496547c3ee20ff40de3e1c.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tx3fq"]
-load_path = "res://.godot/imported/Enemy02.png-85b4a0c5724e8f051ff07efbbb0340ac.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0om5y"]
-load_path = "res://.godot/imported/Enemy03.png-caedc4a192931321e92e1f3e37315fa7.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4w5iu"]
-load_path = "res://.godot/imported/Enemy04.png-b3be951462a1527a7c689e367f5805f3.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7eh6p"]
-load_path = "res://.godot/imported/Enemy06.png-1bfa534b9133c81c02c96ce18e6f5a1c.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b3a2r"]
-load_path = "res://.godot/imported/Enemy07.png-204649409c79c661972255bc1125e7ba.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0yrc"]
+atlas = ExtResource("3_8t3dj")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_toimg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_b6cp0")
+"texture": SubResource("AtlasTexture_pqp3f")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_mevv5")
+"texture": SubResource("AtlasTexture_24efr")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_3gyuu")
+"texture": SubResource("AtlasTexture_st6p2")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_n5067")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_cmlkv")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_nm7sq")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_1053m")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_oysdx")
-}],
-"loop": false,
-"name": &"Attack",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_v5qgf")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_11yeb")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_15aw7")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_qf4jw")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ijf8h")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"Death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_tx3fq")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_0om5y")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_4w5iu")
+"texture": SubResource("AtlasTexture_i0yrc")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_7eh6p")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_b3a2r")
-}],
-"loop": true,
-"name": &"Walk",
 "speed": 5.0
 }]
 
@@ -343,10 +246,13 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.578125, 0.578125)
 sprite_frames = SubResource("SpriteFrames_toimg")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.559725
+frame = 3
+frame_progress = 0.026956
+flip_h = true
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
 

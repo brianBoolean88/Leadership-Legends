@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_r8gcm"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_cjr56"]
-[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/Dude_Monster_Idle_4.png" id="2_g3vlb"]
+[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/WaterGuyIdle.png" id="3_a8amd"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="4_ch2wq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="5_iwlr4"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="6_j7q1n"]
@@ -13,19 +13,19 @@ line_spacing = -5.0
 font = ExtResource("2_cjr56")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_er0iy"]
-atlas = ExtResource("2_g3vlb")
+atlas = ExtResource("3_a8amd")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ysmeo"]
-atlas = ExtResource("2_g3vlb")
+atlas = ExtResource("3_a8amd")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqo1p"]
-atlas = ExtResource("2_g3vlb")
+atlas = ExtResource("3_a8amd")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ytjc"]
-atlas = ExtResource("2_g3vlb")
+atlas = ExtResource("3_a8amd")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ga6xj"]
@@ -243,10 +243,12 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.65625, 0.65625)
 sprite_frames = SubResource("SpriteFrames_ga6xj")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.348846
+frame = 3
+frame_progress = 0.880789
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
 

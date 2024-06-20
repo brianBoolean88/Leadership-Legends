@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Shadow.gd" id="1_xttev"]
 [ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="2_sf2ko"]
-[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/Dude_Monster_Idle_4.png" id="3_75ejl"]
+[ext_resource type="Texture2D" uid="uid://oh81swpgf8tv" path="res://Art/Sprites/WaterGuyIdle.png" id="3_75ejl"]
 [ext_resource type="AudioStream" uid="uid://climcpy7gbpcl" path="res://Art/Audio/BattleSceneSFX/Victory.wav" id="4_gbhbb"]
 [ext_resource type="AudioStream" uid="uid://cobddu2k35y00" path="res://Art/Audio/BattleSceneSFX/BattleSequence.wav" id="5_y241i"]
 [ext_resource type="AudioStream" uid="uid://qeidv7slohxa" path="res://Art/Audio/BattleSceneSFX/Defeat.wav" id="6_mecfw"]

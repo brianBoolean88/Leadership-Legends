@@ -9,7 +9,7 @@ func endPrompt():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("DialogueInteract"):
+	if Input.is_action_just_pressed("DialogueInteract") and get_parent().visible:
 		endPrompt()
 
 
