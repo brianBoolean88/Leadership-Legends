@@ -89,6 +89,9 @@ FBLA has been overtaken by a sinister corporation - **DarkCorp Enterprises**. As
 - Learn concepts that help with final boss battle
 - Enter the portal to confront Vice President Douglass
 
+### 🌩️ Level 4: Boss Fight
+- Enter a cutscene with VP Douglass
+- Try to convince him to join back on your team!
 ---
 
 ## 🛠️ Development Tools
