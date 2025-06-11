@@ -4,7 +4,7 @@
 🏅 *Placed 3rd in the FBLA National Leadership Conference*  
 🎮 *Created in Godot 3.0*  
 👤 **Project Lead**: Brian Wang  
-🎨 **Pixel Art**: Collaborator via Aseprite
+🎨 **Pixel Art**: Steven Mo
 
 ![Icon](https://i.gyazo.com/9efe10ac18123f74929a112e83672c20.png)  
 ![Banner](https://i.gyazo.com/e20217a2530067fffba0762a3f742efd.png)
