@@ -9,7 +9,7 @@
 ![Icon](https://i.gyazo.com/9efe10ac18123f74929a112e83672c20.png)  
 ![Banner](https://i.gyazo.com/e20217a2530067fffba0762a3f742efd.png)
 
-View more information about the game here: ![Google Slides](https://docs.google.com/presentation/d/1QI7hozEMq-J3vcviJmgUyzJfYykuP6lpT-8doC6trjg/edit?usp=sharing)
+View more information about the game here: [Google Slides](https://docs.google.com/presentation/d/1QI7hozEMq-J3vcviJmgUyzJfYykuP6lpT-8doC6trjg/edit?usp=sharing)
 
 ---
 
